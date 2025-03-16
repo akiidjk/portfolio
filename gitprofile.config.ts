@@ -150,6 +150,15 @@ const CONFIG = {
       description:
         'This is one of the challenges added later, but despite that it wasn’t very complex, in fact the most complex part wasn’t even the web part, but despite that the challenge was still really nice',
     },
+    {
+      title: 'Writeup Speed - ByteTheCookies',
+      conferenceName: '',
+      journalName: 'ByteTheCookies',
+      authors: 'akiidjk',
+      link: 'https://bytethecookies.github.io/writeups/srdnlen2025/speed/',
+      description:
+        'Welcome to Radiator Springs’ finest store, where every car enthusiast’s dream comes true! But remember, in the world of racing, precision matters—so tread carefully as you navigate this high-octane experience. Ka-chow!',
+    },
   ],
   // Display articles from your medium or dev account. (Optional)
   blog: {
