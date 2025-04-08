@@ -26,7 +26,7 @@ const CONFIG = {
       manual: {
         // Properties for manually specifying projects
         projects: [
-          'akiidjk/Styx',
+          'akiidjk/Adh',
           'akiidjk/DiscordCTFHelper',
           'akiidjk/SLANotifier',
           'akiidjk/ProjectFABT',
