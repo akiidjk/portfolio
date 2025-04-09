@@ -81,7 +81,7 @@ const CONFIG = {
     dev: '',
     stackoverflow: '', // example: '1/jeff-atwood'
     skype: '',
-    telegram: '',
+    telegram: 'akiidjk',
     website: 'https://bytethecookies.github.io/',
     phone: '',
     email: 'akiidjk@proton.com',
@@ -102,11 +102,32 @@ const CONFIG = {
   ],
   experiences: [
     {
+      company: 'Olicyber 2025',
+      position: 'Finalist',
+      from: 'May 2025',
+      to: 'May 2025',
+      companyLink: 'https://olicyber.it/',
+    },
+    {
       company: 'Exotique Malta (Valletta)',
       position: 'Technical Assistant',
       from: 'October 2024',
       to: 'November 2024',
       companyLink: 'https://exotique.com.mt/valletta-store/',
+    },
+    {
+      company: 'Olicyber 2024',
+      position: 'Finalist',
+      from: 'June 2024',
+      to: 'June 2024',
+      companyLink: 'https://olicyber.it/',
+    },
+    {
+      company: 'Cyberchallenge 2023',
+      position: 'Finalist',
+      from: 'January 2023',
+      to: 'July 2023',
+      companyLink: 'https://cyberchallenge.it/',
     },
   ],
   certifications: [
@@ -118,12 +139,6 @@ const CONFIG = {
     // },
   ],
   educations: [
-    {
-      institution: 'IIS Margherita Hack Baronissi',
-      degree: 'Degree (not yet)',
-      from: '2020',
-      to: '2025',
-    },
     // {
     //   institution: 'Institution Name',
     //   degree: 'Degree',
