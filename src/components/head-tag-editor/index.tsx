@@ -4,6 +4,8 @@ import { isDarkishTheme } from '../../utils';
 type HeadTagEditorProps = {
   googleAnalyticsId?: string;
   appliedTheme: string;
+  umamiDomain?: string;
+  umamiId?: string;
 };
 
 /**
@@ -16,6 +18,8 @@ type HeadTagEditorProps = {
 const HeadTagEditor: React.FC<HeadTagEditorProps> = ({
   googleAnalyticsId,
   appliedTheme,
+  umamiDomain,
+  umamiId,
 }) => {
   return (
     <Helmet>
@@ -29,6 +33,7 @@ const HeadTagEditor: React.FC<HeadTagEditorProps> = ({
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
           ></script>
+
           <script>
             {`window.dataLayer = window.dataLayer || [];
 function gtag() {
@@ -38,6 +43,15 @@ gtag('js', new Date());
 gtag('config', '${googleAnalyticsId}');
 `}
           </script>
+        </>
+      )}
+      {umamiDomain && umamiId && (
+        <>
+          <script
+            defer
+            src={`https://${umamiDomain}/script.js`}
+            data-website-id={umamiId}
+          ></script>
         </>
       )}
     </Helmet>

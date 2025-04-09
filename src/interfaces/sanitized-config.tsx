@@ -100,6 +100,11 @@ export interface SanitizedPublication {
   description?: string;
 }
 
+export interface SanitizedUmami {
+  domain?: string;
+  id?: string;
+}
+
 export interface SanitizedGoogleAnalytics {
   id?: string;
 }
@@ -146,6 +151,7 @@ export interface SanitizedConfig {
   educations: Array<SanitizedEducation>;
   certifications: Array<SanitizedCertification>;
   publications: Array<SanitizedPublication>;
+  umami: SanitizedUmami;
   googleAnalytics: SanitizedGoogleAnalytics;
   hotjar: SanitizedHotjar;
   blog: SanitizedBlog;

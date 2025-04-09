@@ -246,6 +246,18 @@ interface Publication {
   description?: string;
 }
 
+interface Umami {
+  /**
+   * Umami domain
+   */
+  domain?: string;
+
+  /**
+   * Umami id
+   */
+  id?: string;
+}
+
 interface GoogleAnalytics {
   /**
    * GA3 tracking id/GA4 tag id UA-XXXXXXXXX-X | G-XXXXXXXXXX
@@ -408,6 +420,11 @@ interface Config {
    * Resume
    */
   resume?: Resume;
+
+  /**
+   * Umami config
+   */
+  umami?: Umami;
 
   /**
    * Google Analytics config

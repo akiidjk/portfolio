@@ -193,6 +193,8 @@ const GitProfile = ({ config }: { config: Config }) => {
             <HeadTagEditor
               googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
               appliedTheme={theme}
+              umamiDomain={sanitizedConfig.umami.domain}
+              umamiId={sanitizedConfig.umami.id}
             />
             <div className={`p-4 lg:p-10 min-h-full ${BG_COLOR}`}>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 rounded-box">
@@ -264,15 +266,15 @@ const GitProfile = ({ config }: { config: Config }) => {
                     )}
                     {sanitizedConfig.projects.external.projects.length !==
                       0 && (
-                      <ExternalProjectCard
-                        loading={loading}
-                        header={sanitizedConfig.projects.external.header}
-                        externalProjects={
-                          sanitizedConfig.projects.external.projects
-                        }
-                        googleAnalyticId={sanitizedConfig.googleAnalytics.id}
-                      />
-                    )}
+                        <ExternalProjectCard
+                          loading={loading}
+                          header={sanitizedConfig.projects.external.header}
+                          externalProjects={
+                            sanitizedConfig.projects.external.projects
+                          }
+                          googleAnalyticId={sanitizedConfig.googleAnalytics.id}
+                        />
+                      )}
                     {sanitizedConfig.blog.display && (
                       <BlogCard
                         loading={loading}

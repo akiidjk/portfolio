@@ -175,6 +175,10 @@ const CONFIG = {
     username: 'akiidjk', // to hide blog section, keep it empty
     limit: 2, // How many articles to display. Max is 10.
   },
+  umami: {
+    domain: '158.180.230.169:3001',
+    id: 'df578def-c5e8-4946-b5fe-feddee2d1769',
+  },
   googleAnalytics: {
     id: '', //G-RB9VKDS1ML // GA3 tracking id/GA4 tag id UA-XXXXXXXXX-X | G-XXXXXXXXXX
   },
