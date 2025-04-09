@@ -159,6 +159,15 @@ const CONFIG = {
       description:
         'Welcome to Radiator Springs’ finest store, where every car enthusiast’s dream comes true! But remember, in the world of racing, precision matters—so tread carefully as you navigate this high-octane experience. Ka-chow!',
     },
+    {
+      title: 'Telemetry',
+      conferenceName: '',
+      journalName: 'ByteTheCookies',
+      authors: 'akiidjk',
+      link: 'https://bytethecookies.github.io/writeups/ulisse2025/telemetry/',
+      description:
+        'Elia has just developed a brand-new website to analyze logs at runtime 🧻. Confident in his security skills, he bet his entire house that you won’t find the hidden flag… Will you prove him wrong? 🏠🔍',
+    },
   ],
   // Display articles from your medium or dev account. (Optional)
   blog: {
