@@ -1,0 +1,98 @@
+import type { Project } from '../types'
+
+export const PROJECTS: Project[] = [
+  {
+    id: 'ZD/01',
+    slug: 'zdiff',
+    title: 'ZDIFF',
+    subtitle: 'Myers diff engine',
+    stack: ['ZIG', 'ALGORITHMS', 'SYSTEMS'],
+    year: '2026',
+    status: 'ACTIVE',
+    domain: 'SYSTEMS / ALGORITHMS',
+    description:
+      'A compact diff engine built around the Myers shortest edit path algorithm. Produces minimal edit scripts between arbitrary byte sequences with O(ND) time complexity.',
+    detail: [
+      { label: 'ROLE', value: 'ENGINEERING' },
+      { label: 'LANGUAGE', value: 'ZIG' },
+      { label: 'DOMAIN', value: 'ALGORITHMS / SYSTEMS' },
+      { label: 'STATUS', value: 'ACTIVE' },
+    ],
+    problem:
+      'Existing diff tools in the Zig ecosystem were either wrappers around C libraries or naive O(N²) implementations unsuitable for diffing large source files in real time.',
+    approach:
+      'Clean-room implementation of Myers (1986) with a frontier-based shortest edit path, no external dependencies, and a streaming interface that avoids full-file allocation.',
+    outcome: '4× faster than naive approach on 10K-line inputs. Output compatible with unified diff format.',
+    featured: true,
+    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=900&h=650&fit=crop&auto=format',
+  },
+  {
+    id: 'SC/02',
+    slug: 'shellcraft',
+    title: 'SHELLCRAFT',
+    subtitle: 'Exploit payload generator',
+    stack: ['PYTHON', 'SECURITY', 'BINARY'],
+    year: '2025',
+    status: 'COMPLETE',
+    domain: 'SECURITY RESEARCH',
+    description:
+      'Scriptable shellcode generator targeting x86-64 Linux. Encodes payloads to bypass common input filters while maintaining correct execution semantics.',
+    detail: [
+      { label: 'ROLE', value: 'RESEARCH + ENGINEERING' },
+      { label: 'LANGUAGE', value: 'PYTHON' },
+      { label: 'DOMAIN', value: 'BINARY EXPLOITATION' },
+      { label: 'STATUS', value: 'COMPLETE' },
+    ],
+    problem: 'CTF challenge payload generation required manual encoding steps and constant re-testing against different bad-byte constraints.',
+    approach: 'Modular encoder chain: each encoder stage tests the output against a user-defined bad-byte set before committing, backtracking automatically.',
+    outcome: 'Used across 8 CTF competitions. Handles NULL, newline, and space avoidance natively.',
+    featured: false,
+    image: 'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=700&h=500&fit=crop&auto=format',
+  },
+  {
+    id: 'NX/03',
+    slug: 'nxalloc',
+    title: 'NXALLOC',
+    subtitle: 'Arena memory allocator',
+    stack: ['C', 'LOW-LEVEL', 'MEMORY'],
+    year: '2025',
+    status: 'COMPLETE',
+    domain: 'SYSTEMS',
+    description:
+      'Region-based allocator with deterministic free semantics. Designed for short-lived allocation bursts in parsing pipelines and compiler frontends.',
+    detail: [
+      { label: 'ROLE', value: 'ENGINEERING' },
+      { label: 'LANGUAGE', value: 'C11' },
+      { label: 'DOMAIN', value: 'SYSTEMS / MEMORY' },
+      { label: 'STATUS', value: 'COMPLETE' },
+    ],
+    problem: 'Compiler frontend prototype had severe malloc overhead during AST construction due to per-node allocation.',
+    approach: 'Slab-backed arena with power-of-2 size classes and a thread-local fast path. One mmap per arena, bump-pointer allocation per region.',
+    outcome: '2.8× throughput improvement in the parser benchmark. Zero per-node free overhead.',
+    featured: false,
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=700&h=560&fit=crop&auto=format',
+  },
+  {
+    id: 'RF/04',
+    slug: 'rfmon',
+    title: 'RFMON',
+    subtitle: 'RF signal monitor + decoder',
+    stack: ['PYTHON', 'SDR', 'HARDWARE', 'RF'],
+    year: '2024',
+    status: 'ARCHIVE',
+    domain: 'HARDWARE / RF',
+    description:
+      'RTL-SDR frontend for passive spectrum monitoring. Implements ASK/FSK demodulation and protocol heuristics for common IoT radio bands.',
+    detail: [
+      { label: 'ROLE', value: 'RESEARCH + HARDWARE' },
+      { label: 'HARDWARE', value: 'RTL-SDR V3' },
+      { label: 'DOMAIN', value: 'RF / HARDWARE SECURITY' },
+      { label: 'STATUS', value: 'ARCHIVE' },
+    ],
+    problem: 'Wanted to understand how smart home devices communicate over 433 MHz without buying proprietary capture hardware.',
+    approach: 'RTL-SDR + GNU Radio for raw I/Q capture, custom Python decoder for ASK/OOK, heuristic protocol classifier for common remotes and sensors.',
+    outcome: 'Successfully decoded 4 commercial smart home systems. Found one with no replay protection.',
+    featured: false,
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&h=500&fit=crop&auto=format',
+  },
+]
