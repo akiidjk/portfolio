@@ -12,6 +12,10 @@ const server = serve({
       },
     },
 
+    "/robots.txt": new Response(Bun.file("public/robots.txt"), { headers: { "Content-Type": "text/plain; charset=utf-8" } }),
+    "/llms.txt": new Response(Bun.file("public/llms.txt"), { headers: { "Content-Type": "text/plain; charset=utf-8" } }),
+    "/sitemap.xml": new Response(Bun.file("public/sitemap.xml"), { headers: { "Content-Type": "application/xml; charset=utf-8" } }),
+
     "/*": index,
 
     "/api/hello": {

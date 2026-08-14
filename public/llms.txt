@@ -1,0 +1,15 @@
+# Francesco Memoli (akiidjk)
+
+> Portfolio of Francesco Memoli, known online as akiidjk — software engineer and security researcher specializing in systems programming, web exploitation, reverse engineering, and CTF infrastructure. Co-founder of the CTF team ByteTheCookies, based in Salerno, Italy.
+
+## Pages
+
+- [Home](https://akiidjk.dev/): Hero intro, featured work, lab experiments, competition archive, about, and contact.
+- [Projects](https://akiidjk.dev/projects): Full catalog of open-source projects and tools, including CookieFarm (attack-defense CTF framework) and Discord CTF Helper.
+
+## Contact
+
+- Email: akiidjk@proton.me
+- GitHub: https://github.com/akiidjk
+- LinkedIn: https://linkedin.com/in/akiidjk
+- CTF team: ByteTheCookies
