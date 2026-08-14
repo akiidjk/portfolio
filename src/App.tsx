@@ -12,12 +12,26 @@ import { Work } from './components/Work'
 import { useIsMobile } from './hooks/useBreakpoint'
 import { useRoute } from './hooks/useRoute'
 
-export default function App() {
+const ROUTE_META: Record<string, { title: string; description: string }> = {
+  '/': {
+    title: 'Francesco Memoli (akiidjk) — Software Engineer & Security Researcher',
+    description:
+      'Portfolio of Francesco Memoli (akiidjk), software engineer and security researcher focused on systems programming, binary exploitation, reverse engineering, and CTF infrastructure. Co-founder of ByteTheCookies.',
+  },
+  '/projects': {
+    title: 'Projects — Francesco Memoli (akiidjk)',
+    description:
+      'Catalog of open-source projects by Francesco Memoli (akiidjk): CTF infrastructure, emulators, and low-level tools including CookieFarm and Discord CTF Helper.',
+  },
+}
+
+export default function App({ initialPath = '/' }: { initialPath?: string }) {
   const [active, setActive] = useState('index')
   const [isLoading, setIsLoading] = useState(true)
-  const { path, navigate } = useRoute()
+  const { path, navigate } = useRoute(initialPath)
   const isProjectsPage = path === '/projects'
   const isMobile = useIsMobile()
+  const meta = ROUTE_META[path] ?? ROUTE_META['/']!
 
   useEffect(() => {
     if (isProjectsPage) return
@@ -31,6 +45,15 @@ export default function App() {
 
   return (
     <div style={{ margin: '0 auto', position: 'relative' }}>
+      <title>{meta.title}</title>
+      <meta name="description" content={meta.description} />
+      <link rel="canonical" href={`https://akiidjk.dev${path === '/' ? '' : path}`} />
+      <meta property="og:title" content={meta.title} />
+      <meta property="og:description" content={meta.description} />
+      <meta property="og:url" content={`https://akiidjk.dev${path === '/' ? '' : path}`} />
+      <meta name="twitter:title" content={meta.title} />
+      <meta name="twitter:description" content={meta.description} />
+
       {isLoading && <LoadingScreen onFinish={() => setIsLoading(false)} />}
 
       <Cursor />

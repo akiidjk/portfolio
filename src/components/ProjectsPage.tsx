@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { PROJECTS } from '../data/projects'
 import { useIsMobile } from '../hooks/useBreakpoint'
 import { isWebGLAvailable } from '../lib/webgl-support'
@@ -24,9 +24,12 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState('ALL')
   const [selected, setSelected] = useState<Project | null>(null)
-  const [supportsWebGL] = useState(isWebGLAvailable)
+  // Starts false to match SSR (no WebGL there), upgraded after mount.
+  const [supportsWebGL, setSupportsWebGL] = useState(false)
   const catalogRef = useRef<HTMLDivElement>(null)
   const isMobile = useIsMobile()
+
+  useEffect(() => setSupportsWebGL(isWebGLAvailable()), [])
 
   const categories = useMemo(() => {
     const set = new Set(PROJECTS.map((p) => p.domain.split('/')[0]?.trim() ?? p.domain))
