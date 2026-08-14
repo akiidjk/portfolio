@@ -8,7 +8,7 @@ import { SectionHeader } from './SectionHeader'
 // Work assumes at least 4 projects to fill the bento-style layout below.
 const [featuredProject, secondProject, thirdProject, fourthProject] = PROJECTS as [Project, Project, Project, Project]
 
-export function Work() {
+export function Work({ onViewAll }: { onViewAll: () => void }) {
   const [selected, setSelected] = useState<Project | null>(null)
 
   return (
@@ -79,6 +79,33 @@ export function Work() {
             ────────────────────
           </div>
         </div>
+      </div>
+
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 24 }}>
+        <button
+          onClick={onViewAll}
+          style={{
+            background: 'none',
+            border: '1px solid #1a1a1a',
+            color: '#5D5D5D',
+            fontFamily: 'JetBrains Mono',
+            fontSize: 10,
+            padding: '10px 18px',
+            cursor: 'none',
+            letterSpacing: '0.1em',
+            transition: 'color 0.2s, border-color 0.2s',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = '#E8E8E3'
+            e.currentTarget.style.borderColor = '#292929'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = '#5D5D5D'
+            e.currentTarget.style.borderColor = '#1a1a1a'
+          }}
+        >
+          VIEW ALL PROJECTS ↗
+        </button>
       </div>
 
       {selected && <ProjectDetail project={selected} onClose={() => setSelected(null)} />}

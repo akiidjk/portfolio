@@ -27,7 +27,7 @@ export function Nav({ active }: { active: string }) {
     >
 
       <img
-        src="/assets/spidy_2.jpg"
+        src="/assets/spidy.jpg"
         alt="Logo"
         style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover', border: '1px solid #1a1a1a', transform: "scaleX(-1)" }}
       />

@@ -7,36 +7,47 @@ import { Hero } from './components/Hero'
 import { Lab } from './components/Lab'
 import { LoadingScreen } from './components/LoadingScreen'
 import { Nav } from './components/Nav'
+import { ProjectsPage } from './components/ProjectsPage'
 import { Work } from './components/Work'
+import { useRoute } from './hooks/useRoute'
 
 export default function App() {
   const [active, setActive] = useState('index')
   const [isLoading, setIsLoading] = useState(true)
+  const { path, navigate } = useRoute()
+  const isProjectsPage = path === '/projects'
 
   useEffect(() => {
+    if (isProjectsPage) return
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id) }),
       { threshold: 0.25 }
     )
     document.querySelectorAll('section[id]').forEach((s) => obs.observe(s))
     return () => obs.disconnect()
-  }, [])
+  }, [isProjectsPage])
 
   return (
     <div style={{ margin: '0 auto', position: 'relative' }}>
       {isLoading && <LoadingScreen onFinish={() => setIsLoading(false)} />}
 
       <Cursor />
-      <Nav active={active} />
 
-      <div style={{ paddingTop: 57 }}>
-        <Hero />
-        <Work />
-        <Lab />
-        <Archive />
-        <About />
-        <Contact />
-      </div>
+      {isProjectsPage ? (
+        <ProjectsPage onNavigateHome={() => navigate('/')} />
+      ) : (
+        <>
+          <Nav active={active} />
+          <div style={{ paddingTop: 57 }}>
+            <Hero />
+            <Work onViewAll={() => navigate('/projects')} />
+            <Lab />
+            <Archive />
+            <About />
+            <Contact />
+          </div>
+        </>
+      )}
     </div>
   )
 }
