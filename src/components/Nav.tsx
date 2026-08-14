@@ -25,9 +25,12 @@ export function Nav({ active }: { active: string }) {
         backdropFilter: 'blur(12px)',
       }}
     >
-      <span style={{ fontFamily: 'JetBrains Mono', fontSize: 11, color: '#E8E8E3', letterSpacing: '0.15em' }}>
-        SF™
-      </span>
+
+      <img
+        src="/assets/spidy_2.jpg"
+        alt="Logo"
+        style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover', border: '1px solid #1a1a1a', transform: "scaleX(-1)" }}
+      />
 
       <div style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
         {LINKS.map((l) => (
@@ -49,18 +52,6 @@ export function Nav({ active }: { active: string }) {
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <div
-          style={{
-            width: 5,
-            height: 5,
-            backgroundColor: '#C7FF2E',
-            borderRadius: '50%',
-            boxShadow: '0 0 6px #C7FF2E',
-          }}
-        />
-        <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#5D5D5D', letterSpacing: '0.1em' }}>
-          AVAILABLE
-        </span>
       </div>
     </nav>
   )

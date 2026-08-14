@@ -4,6 +4,14 @@ import index from "./index.html";
 const server = serve({
   routes: {
     // Serve index.html for all unmatched routes.
+    "/assets/*": {
+      async GET(req) {
+        const path = (new URL(req.url).pathname).replace("/assets/", "src/assets/");
+        const file = Bun.file(path);
+        return new Response(file);
+      },
+    },
+
     "/*": index,
 
     "/api/hello": {

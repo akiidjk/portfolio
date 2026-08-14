@@ -5,11 +5,13 @@ import { Contact } from './components/Contact'
 import { Cursor } from './components/Cursor'
 import { Hero } from './components/Hero'
 import { Lab } from './components/Lab'
+import { LoadingScreen } from './components/LoadingScreen'
 import { Nav } from './components/Nav'
 import { Work } from './components/Work'
 
 export default function App() {
   const [active, setActive] = useState('index')
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -21,7 +23,9 @@ export default function App() {
   }, [])
 
   return (
-    <div style={{ maxWidth: 1440, margin: '0 auto', position: 'relative' }}>
+    <div style={{ margin: '0 auto', position: 'relative' }}>
+      {isLoading && <LoadingScreen onFinish={() => setIsLoading(false)} />}
+
       <Cursor />
       <Nav active={active} />
 

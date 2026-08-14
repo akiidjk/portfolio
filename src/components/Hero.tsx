@@ -3,7 +3,7 @@ import { useTypewriter } from '../hooks/useTypewriter'
 import { HeroCanvas } from './HeroCanvas'
 
 export function Hero() {
-  const typed = useTypewriter('I build software and break things to understand how they work.', 28)
+  const typed = useTypewriter('Student at UNISA, Dev, CTF player and co-founder of @bytethecookies.', 28)
   const [ts, setTs] = useState('')
 
   useEffect(() => {
@@ -45,13 +45,28 @@ export function Hero() {
           zIndex: 1,
         }}
       >
-        <span>41.8919° N — 12.5113° E</span>
+        <span>Eat some cookies pls</span>
         <span>{ts}</span>
-        <span>SYS.ONLINE</span>
+        <span>I use arch btw</span>
       </div>
 
+      <img
+        src="/assets/black_hole.jpg"
+        alt="Black Hole"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0,
+          opacity: 0.1,
+        }}
+      />
+
       {/* Main content */}
-      <div style={{ position: 'relative', zIndex: 1 }}>
+      < div style={{ position: 'relative', zIndex: 1 }}>
         <div
           style={{
             fontFamily: 'JetBrains Mono',
@@ -62,7 +77,7 @@ export function Hero() {
             textTransform: 'uppercase',
           }}
         >
-          SOFTWARE / SECURITY / LOW-LEVEL SYSTEMS
+          SOFTWARE / SECURITY / SYSTEMS
         </div>
 
         <h1
@@ -98,7 +113,7 @@ export function Hero() {
                 color: '#999',
                 lineHeight: 1.6,
                 margin: 0,
-                maxWidth: 520,
+                maxWidth: 550,
                 minHeight: 22,
               }}
             >
@@ -124,24 +139,8 @@ export function Hero() {
                 letterSpacing: '0.05em',
               }}
             >
-              based in italy — building things that live close to the machine.
+              I build software and break things to understand how they work.
             </p>
-          </div>
-
-          <div
-            style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: 10,
-              color: '#3D3D3D',
-              lineHeight: 2.2,
-              textAlign: 'right',
-              letterSpacing: '0.08em',
-            }}
-          >
-            <div>→ LOW-LEVEL SYSTEMS</div>
-            <div>→ CYBERSECURITY</div>
-            <div>→ ZIG · C · PYTHON</div>
-            <div style={{ color: '#5D5D5D' }}>→ OPEN TO WORK</div>
           </div>
         </div>
       </div>
