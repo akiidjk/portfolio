@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { LabItem } from '../types'
 
-export function LabRow({ item, last }: { item: LabItem; last: boolean }) {
+export function LabRow({ item, last, minWidth }: { item: LabItem; last: boolean; minWidth?: number }) {
   const [hov, setHov] = useState(false)
   const isWip = item.result === 'WIP'
   const isAbandoned = item.result === 'ABANDONED'
@@ -20,6 +20,7 @@ export function LabRow({ item, last }: { item: LabItem; last: boolean }) {
         transition: 'background 0.15s',
         cursor: 'none',
         gap: 16,
+        minWidth,
       }}
     >
       <span style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#3D3D3D', letterSpacing: '0.1em' }}>

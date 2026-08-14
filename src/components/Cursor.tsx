@@ -1,9 +1,12 @@
 import { useEffect, useRef } from 'react'
+import { useHasFinePointer } from '../hooks/useBreakpoint'
 
 export function Cursor() {
   const ref = useRef<HTMLDivElement>(null)
+  const hasFinePointer = useHasFinePointer()
 
   useEffect(() => {
+    if (!hasFinePointer) return
     const move = (e: MouseEvent) => {
       if (!ref.current) return
       ref.current.style.left = e.clientX + 'px'
@@ -11,7 +14,10 @@ export function Cursor() {
     }
     window.addEventListener('mousemove', move)
     return () => window.removeEventListener('mousemove', move)
-  }, [])
+  }, [hasFinePointer])
+
+  // No real mouse (touch device) — skip the custom crosshair entirely.
+  if (!hasFinePointer) return null
 
   return (
     <div

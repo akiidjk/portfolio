@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
+import { useIsMobile } from '../hooks/useBreakpoint'
 import { useTypewriter } from '../hooks/useTypewriter'
 import { HeroCanvas } from './HeroCanvas'
 
 export function Hero() {
   const typed = useTypewriter('Student at UNISA, Dev, CTF player and co-founder of @bytethecookies.', 28)
   const [ts, setTs] = useState('')
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     const tick = () => setTs(new Date().toISOString().replace('T', ' ').slice(0, 19))
@@ -21,7 +23,7 @@ export function Hero() {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        padding: '0 40px 56px',
+        padding: isMobile ? '0 20px 40px' : '0 40px 56px',
         borderBottom: '1px solid #1a1a1a',
         position: 'relative',
         overflow: 'hidden',
@@ -33,21 +35,21 @@ export function Hero() {
       <div
         style={{
           position: 'absolute',
-          top: 88,
-          left: 40,
-          right: 40,
+          top: isMobile ? 72 : 88,
+          left: isMobile ? 20 : 40,
+          right: isMobile ? 20 : 40,
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: isMobile ? 'center' : 'space-between',
           fontFamily: 'JetBrains Mono',
-          fontSize: 10,
+          fontSize: isMobile ? 9 : 10,
           color: '#3D3D3D',
           letterSpacing: '0.1em',
           zIndex: 1,
         }}
       >
-        <span>Eat some cookies pls</span>
+        {!isMobile && <span>Eat some cookies pls</span>}
         <span>{ts}</span>
-        <span>I use arch btw</span>
+        {!isMobile && <span>I use arch btw</span>}
       </div>
 
       <img
@@ -66,14 +68,14 @@ export function Hero() {
       />
 
       {/* Main content */}
-      < div style={{ position: 'relative', zIndex: 1 }}>
+      <div style={{ position: 'relative', zIndex: 1 }}>
         <div
           style={{
             fontFamily: 'JetBrains Mono',
-            fontSize: 10,
+            fontSize: isMobile ? 9 : 10,
             color: '#3D3D3D',
             letterSpacing: '0.2em',
-            marginBottom: 20,
+            marginBottom: isMobile ? 14 : 20,
             textTransform: 'uppercase',
           }}
         >
@@ -84,11 +86,12 @@ export function Hero() {
           style={{
             fontFamily: 'Inter',
             fontWeight: 700,
-            fontSize: 'clamp(72px, 11vw, 156px)',
-            lineHeight: 0.88,
+            fontSize: 'clamp(42px, 13vw, 156px)',
+            lineHeight: 0.9,
             letterSpacing: '-0.045em',
             color: '#E8E8E3',
-            margin: '0 0 48px',
+            margin: isMobile ? '0 0 28px' : '0 0 48px',
+            overflowWrap: 'break-word',
           }}
         >
           FRANCESCO
@@ -109,7 +112,7 @@ export function Hero() {
             <p
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: 13,
+                fontSize: isMobile ? 12 : 13,
                 color: '#999',
                 lineHeight: 1.6,
                 margin: 0,
@@ -146,21 +149,23 @@ export function Hero() {
       </div>
 
       {/* Scroll hint */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 56,
-          right: 40,
-          fontFamily: 'JetBrains Mono',
-          fontSize: 9,
-          color: '#3D3D3D',
-          letterSpacing: '0.15em',
-          writingMode: 'vertical-rl',
-          zIndex: 1,
-        }}
-      >
-        SCROLL ↓
-      </div>
+      {!isMobile && (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 56,
+            right: 40,
+            fontFamily: 'JetBrains Mono',
+            fontSize: 9,
+            color: '#3D3D3D',
+            letterSpacing: '0.15em',
+            writingMode: 'vertical-rl',
+            zIndex: 1,
+          }}
+        >
+          SCROLL ↓
+        </div>
+      )}
     </section>
   )
 }

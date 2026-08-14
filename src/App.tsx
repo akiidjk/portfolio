@@ -9,6 +9,7 @@ import { LoadingScreen } from './components/LoadingScreen'
 import { Nav } from './components/Nav'
 import { ProjectsPage } from './components/ProjectsPage'
 import { Work } from './components/Work'
+import { useIsMobile } from './hooks/useBreakpoint'
 import { useRoute } from './hooks/useRoute'
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true)
   const { path, navigate } = useRoute()
   const isProjectsPage = path === '/projects'
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     if (isProjectsPage) return
@@ -38,7 +40,7 @@ export default function App() {
       ) : (
         <>
           <Nav active={active} />
-          <div style={{ paddingTop: 57 }}>
+          <div style={{ paddingTop: isMobile ? 52 : 57 }}>
             <Hero />
             <Work onViewAll={() => navigate('/projects')} />
             <Lab />

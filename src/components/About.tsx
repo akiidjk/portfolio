@@ -1,3 +1,4 @@
+import { useIsMobile } from '../hooks/useBreakpoint'
 import { SectionHeader } from './SectionHeader'
 
 const FOCUS_AREAS = [
@@ -10,17 +11,19 @@ const FOCUS_AREAS = [
 ]
 
 export function About() {
+  const isMobile = useIsMobile()
+
   return (
-    <section id="about" style={{ padding: '80px 40px', borderBottom: '1px solid #1a1a1a' }}>
+    <section id="about" style={{ padding: isMobile ? '56px 20px' : '80px 40px', borderBottom: '1px solid #1a1a1a' }}>
       <SectionHeader index="04" title="ABOUT" />
 
-      <div style={{ marginTop: 48, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80 }}>
+      <div style={{ marginTop: isMobile ? 32 : 48, display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 40 : 80 }}>
         <div>
           <p
             style={{
               fontFamily: 'Inter',
               fontWeight: 300,
-              fontSize: 21,
+              fontSize: 'clamp(17px, 5vw, 21px)',
               color: '#E8E8E3',
               lineHeight: 1.5,
               letterSpacing: '-0.025em',

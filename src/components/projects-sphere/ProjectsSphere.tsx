@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import type { Project } from '../../types'
+import { useIsMobile } from '../../hooks/useBreakpoint'
 import { useMediaQuery } from '../../hooks/useMediaQuery'
 import { ProjectSidePanel } from './ProjectSidePanel'
 import { SphereScene } from './SphereScene'
@@ -18,6 +19,7 @@ export function ProjectsSphere({
   const [activeId, setActiveId] = useState<string | null>(null)
   const [isDragging, setIsDragging] = useState(false)
   const isCompact = useMediaQuery('(max-width: 900px)')
+  const isMobile = useIsMobile()
 
   const matchingIds = useMemo(() => new Set(filtered.map((p) => p.id)), [filtered])
   const activeProject = useMemo(() => projects.find((p) => p.id === activeId) ?? null, [projects, activeId])
@@ -30,13 +32,13 @@ export function ProjectsSphere({
       style={{
         display: 'grid',
         gridTemplateColumns: isCompact ? '1fr' : 'minmax(0, 1fr) 360px',
-        gap: 40,
+        gap: isMobile ? 24 : 40,
         alignItems: 'start',
       }}
     >
       <div
         style={{
-          height: isCompact ? 380 : 560,
+          height: isMobile ? 320 : isCompact ? 420 : 560,
           border: '1px solid #1a1a1a',
           backgroundColor: '#050505',
           position: 'relative',
@@ -65,7 +67,7 @@ export function ProjectsSphere({
             pointerEvents: 'none',
           }}
         >
-          TRASCINA PER RUOTARE
+          {isMobile ? 'TOCCA UN PUNTO' : 'TRASCINA PER RUOTARE'}
         </div>
       </div>
 

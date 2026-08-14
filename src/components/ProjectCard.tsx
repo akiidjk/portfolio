@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { Project } from '../types'
+import { useIsMobile } from '../hooks/useBreakpoint'
 
 export function ProjectCard({
   project,
@@ -11,6 +12,7 @@ export function ProjectCard({
   onClick: () => void
 }) {
   const [hovered, setHovered] = useState(false)
+  const isMobile = useIsMobile()
 
   return (
     <div
@@ -34,7 +36,7 @@ export function ProjectCard({
         style={{
           position: 'relative',
           width: '100%',
-          height: featured ? 360 : 240,
+          height: featured ? (isMobile ? 220 : 360) : (isMobile ? 180 : 240),
           overflow: 'hidden',
           backgroundColor: '#111',
           flexShrink: 0,
@@ -130,7 +132,7 @@ export function ProjectCard({
       </div>
 
       {/* Content */}
-      <div style={{ padding: '20px 24px 24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ padding: isMobile ? '16px 18px 18px' : '20px 24px 24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
         <div style={{ flex: 1 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
             <div>

@@ -1,4 +1,5 @@
 import { ARCHIVE_ENTRIES } from '../data/archive-entries'
+import { useIsMobile } from '../hooks/useBreakpoint'
 import { SectionHeader } from './SectionHeader'
 
 const STATS = [
@@ -9,27 +10,36 @@ const STATS = [
 ]
 
 export function Archive() {
+  const isMobile = useIsMobile()
+
   return (
-    <section id="archive" style={{ padding: '80px 40px', borderBottom: '1px solid #1a1a1a' }}>
+    <section id="archive" style={{ padding: isMobile ? '56px 20px' : '80px 40px', borderBottom: '1px solid #1a1a1a' }}>
       <SectionHeader index="03" title="ARCHIVE" right="CHRONOLOGICAL" />
 
-      <div style={{ marginTop: 48, display: 'grid', gridTemplateColumns: '1fr 260px', gap: 60 }}>
+      <div
+        style={{
+          marginTop: isMobile ? 32 : 48,
+          display: 'grid',
+          gridTemplateColumns: isMobile ? '1fr' : '1fr 260px',
+          gap: isMobile ? 40 : 60,
+        }}
+      >
         {/* Timeline */}
-        <div style={{ borderLeft: '1px solid #1a1a1a', paddingLeft: 36 }}>
+        <div style={{ borderLeft: '1px solid #1a1a1a', paddingLeft: isMobile ? 24 : 36 }}>
           {ARCHIVE_ENTRIES.map((entry, i) => (
             <div
               key={i}
               style={{
                 position: 'relative',
                 display: 'flex',
-                gap: 36,
+                gap: isMobile ? 20 : 36,
                 paddingBottom: i < ARCHIVE_ENTRIES.length - 1 ? 36 : 0,
               }}
             >
               <div
                 style={{
                   position: 'absolute',
-                  left: -41,
+                  left: isMobile ? -29 : -41,
                   top: 5,
                   width: 7,
                   height: 7,

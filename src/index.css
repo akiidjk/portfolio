@@ -25,6 +25,8 @@
 html {
     scroll-behavior: smooth;
     scrollbar-width: none;
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
 html::-webkit-scrollbar {
@@ -37,11 +39,21 @@ body {
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    cursor: none;
+    overflow-x: hidden;
+    max-width: 100%;
+    -webkit-tap-highlight-color: transparent;
 }
 
-* {
-    cursor: none !important;
+/* The custom crosshair cursor only makes sense on devices with a real,
+   hoverable mouse — leave native touch behavior untouched otherwise. */
+@media (hover: hover) and (pointer: fine) {
+    body {
+        cursor: none;
+    }
+
+    * {
+        cursor: none !important;
+    }
 }
 
 ::selection {

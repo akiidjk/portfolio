@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { PROJECTS } from '../data/projects'
 import type { Project } from '../types'
+import { useIsMobile } from '../hooks/useBreakpoint'
 import { ProjectCard } from './ProjectCard'
 import { ProjectDetail } from './ProjectDetail'
 import { SectionHeader } from './SectionHeader'
@@ -10,46 +11,48 @@ const [featuredProject, secondProject, thirdProject, fourthProject] = PROJECTS a
 
 export function Work({ onViewAll }: { onViewAll: () => void }) {
   const [selected, setSelected] = useState<Project | null>(null)
+  const isMobile = useIsMobile()
 
   return (
-    <section id="work" style={{ padding: '80px 40px', borderBottom: '1px solid #1a1a1a' }}>
+    <section id="work" style={{ padding: isMobile ? '56px 20px' : '80px 40px', borderBottom: '1px solid #1a1a1a' }}>
       <SectionHeader index="01" title="SELECTED WORK" right={`${PROJECTS.length} PROJECTS`} />
 
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(12, 1fr)',
-          gap: 2,
-          marginTop: 40,
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(12, 1fr)',
+          gap: isMobile ? 16 : 2,
+          marginTop: isMobile ? 24 : 40,
         }}
       >
         {/* Featured large */}
-        <div style={{ gridColumn: '1 / 8' }}>
+        <div style={{ gridColumn: isMobile ? 'auto' : '1 / 8' }}>
           <ProjectCard project={featuredProject} featured onClick={() => setSelected(featuredProject)} />
         </div>
 
         {/* Two stacked right */}
-        <div style={{ gridColumn: '8 / 13', display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <div style={{ gridColumn: isMobile ? 'auto' : '8 / 13', display: 'flex', flexDirection: 'column', gap: isMobile ? 16 : 2 }}>
           <ProjectCard project={secondProject} onClick={() => setSelected(secondProject)} />
           <ProjectCard project={thirdProject} onClick={() => setSelected(thirdProject)} />
         </div>
 
         {/* Bottom half */}
-        <div style={{ gridColumn: '1 / 7', marginTop: 2 }}>
+        <div style={{ gridColumn: isMobile ? 'auto' : '1 / 7', marginTop: isMobile ? 0 : 2 }}>
           <ProjectCard project={fourthProject} onClick={() => setSelected(fourthProject)} />
         </div>
 
         {/* Status block */}
         <div
           style={{
-            gridColumn: '7 / 13',
-            marginTop: 2,
+            gridColumn: isMobile ? 'auto' : '7 / 13',
+            marginTop: isMobile ? 0 : 2,
             border: '1px solid #1a1a1a',
             backgroundColor: '#0d0d0d',
-            padding: 36,
+            padding: isMobile ? 24 : 36,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
+            gap: isMobile ? 20 : 0,
           }}
         >
           <div style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#3D3D3D', letterSpacing: '0.2em' }}>
@@ -60,7 +63,7 @@ export function Work({ onViewAll }: { onViewAll: () => void }) {
               style={{
                 fontFamily: 'Inter',
                 fontWeight: 300,
-                fontSize: 22,
+                fontSize: isMobile ? 18 : 22,
                 color: '#E8E8E3',
                 lineHeight: 1.4,
                 margin: '0 0 28px',
@@ -81,7 +84,7 @@ export function Work({ onViewAll }: { onViewAll: () => void }) {
         </div>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 24 }}>
+      <div style={{ display: 'flex', justifyContent: isMobile ? 'stretch' : 'flex-end', marginTop: isMobile ? 20 : 24 }}>
         <button
           onClick={onViewAll}
           style={{
@@ -90,7 +93,8 @@ export function Work({ onViewAll }: { onViewAll: () => void }) {
             color: '#5D5D5D',
             fontFamily: 'JetBrains Mono',
             fontSize: 10,
-            padding: '10px 18px',
+            padding: isMobile ? '14px 18px' : '10px 18px',
+            width: isMobile ? '100%' : 'auto',
             cursor: 'none',
             letterSpacing: '0.1em',
             transition: 'color 0.2s, border-color 0.2s',

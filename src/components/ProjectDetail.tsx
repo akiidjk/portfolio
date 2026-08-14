@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
 import type { Project } from '../types'
+import { useIsMobile } from '../hooks/useBreakpoint'
 
 export function ProjectDetail({ project, onClose }: { project: Project; onClose: () => void }) {
+  const isMobile = useIsMobile()
+
   useEffect(() => {
     const esc = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', esc)
@@ -24,53 +27,56 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
         cursor: 'none',
       }}
     >
+      <button
+        onClick={onClose}
+        style={{
+          position: 'fixed',
+          top: isMobile ? 16 : 24,
+          right: isMobile ? 16 : 24,
+          zIndex: 1,
+          background: 'rgba(8,8,8,0.9)',
+          border: '1px solid #1a1a1a',
+          color: '#5D5D5D',
+          fontFamily: 'JetBrains Mono',
+          fontSize: 11,
+          padding: isMobile ? '8px 12px' : '8px 16px',
+          cursor: 'none',
+          letterSpacing: '0.1em',
+        }}
+      >
+        × CLOSE
+      </button>
+
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
           maxWidth: 860,
           margin: '0 auto',
-          padding: '80px 40px 120px',
+          padding: isMobile ? '90px 20px 60px' : '80px 40px 120px',
         }}
       >
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 48 }}>
-          <div>
-            <div style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#3D3D3D', letterSpacing: '0.15em', marginBottom: 12 }}>
-              {project.id} ──────────────────────── {project.year}
-            </div>
-            <h2
-              style={{
-                fontFamily: 'Inter',
-                fontWeight: 700,
-                fontSize: 64,
-                letterSpacing: '-0.045em',
-                color: '#E8E8E3',
-                margin: 0,
-                lineHeight: 1,
-              }}
-            >
-              {project.title}
-            </h2>
-            <div style={{ fontFamily: 'JetBrains Mono', fontSize: 12, color: '#5D5D5D', marginTop: 8 }}>
-              {project.subtitle}
-            </div>
+        <div style={{ marginBottom: isMobile ? 32 : 48, paddingRight: isMobile ? 90 : 120 }}>
+          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#3D3D3D', letterSpacing: '0.15em', marginBottom: 12 }}>
+            {project.id} ──────────────────────── {project.year}
           </div>
-
-          <button
-            onClick={onClose}
+          <h2
             style={{
-              background: 'none',
-              border: '1px solid #1a1a1a',
-              color: '#5D5D5D',
-              fontFamily: 'JetBrains Mono',
-              fontSize: 11,
-              padding: '8px 16px',
-              cursor: 'none',
-              letterSpacing: '0.1em',
+              fontFamily: 'Inter',
+              fontWeight: 700,
+              fontSize: 'clamp(28px, 8vw, 64px)',
+              letterSpacing: '-0.045em',
+              color: '#E8E8E3',
+              margin: 0,
+              lineHeight: 1.05,
+              overflowWrap: 'break-word',
             }}
           >
-            × CLOSE
-          </button>
+            {project.title}
+          </h2>
+          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 12, color: '#5D5D5D', marginTop: 8 }}>
+            {project.subtitle}
+          </div>
         </div>
 
         {/* Meta table */}
@@ -102,7 +108,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
             alt={project.title}
             style={{
               width: '100%',
-              height: 320,
+              height: isMobile ? 200 : 320,
               objectFit: 'cover',
               filter: 'grayscale(100%) contrast(1.3)',
               display: 'block',
@@ -134,7 +140,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
         ))}
 
         {/* Stack */}
-        <div style={{ marginTop: 48, paddingTop: 24, borderTop: '1px solid #1a1a1a', display: 'flex', gap: 8 }}>
+        <div style={{ marginTop: 48, paddingTop: 24, borderTop: '1px solid #1a1a1a', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           {project.stack.map((s) => (
             <span
               key={s}

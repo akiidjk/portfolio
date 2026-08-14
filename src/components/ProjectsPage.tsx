@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 import { PROJECTS } from '../data/projects'
+import { useIsMobile } from '../hooks/useBreakpoint'
 import { isWebGLAvailable } from '../lib/webgl-support'
 import type { Project } from '../types'
 import { ProjectDetail } from './ProjectDetail'
@@ -25,6 +26,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
   const [selected, setSelected] = useState<Project | null>(null)
   const [supportsWebGL] = useState(isWebGLAvailable)
   const catalogRef = useRef<HTMLDivElement>(null)
+  const isMobile = useIsMobile()
 
   const categories = useMemo(() => {
     const set = new Set(PROJECTS.map((p) => p.domain.split('/')[0]?.trim() ?? p.domain))
@@ -54,11 +56,11 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '18px 40px',
+          padding: isMobile ? '14px 16px' : '18px 40px',
           borderBottom: '1px solid #1a1a1a',
           backgroundColor: 'rgba(8,8,8,0.96)',
           backdropFilter: 'blur(12px)',
-          gap: 24,
+          gap: isMobile ? 12 : 24,
         }}
       >
         <button
@@ -71,6 +73,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             display: 'flex',
             alignItems: 'center',
             gap: 10,
+            flexShrink: 0,
             fontFamily: 'JetBrains Mono',
             fontSize: 11,
             letterSpacing: '0.1em',
@@ -80,17 +83,19 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
           ← INDEX
         </button>
 
-        <span
-          style={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: 11,
-            color: '#E8E8E3',
-            letterSpacing: '0.15em',
-            flexShrink: 0,
-          }}
-        >
-          PROJECTS
-        </span>
+        {!isMobile && (
+          <span
+            style={{
+              fontFamily: 'JetBrains Mono',
+              fontSize: 11,
+              color: '#E8E8E3',
+              letterSpacing: '0.15em',
+              flexShrink: 0,
+            }}
+          >
+            PROJECTS
+          </span>
+        )}
 
         <div
           style={{
@@ -99,7 +104,8 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             gap: 10,
             border: '1px solid #1a1a1a',
             padding: '8px 14px',
-            minWidth: 200,
+            flex: isMobile ? 1 : '0 1 auto',
+            minWidth: isMobile ? 0 : 200,
           }}
         >
           <SearchIcon />
@@ -112,6 +118,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
               border: 'none',
               outline: 'none',
               flex: 1,
+              minWidth: 0,
               fontFamily: 'JetBrains Mono',
               fontSize: 10,
               letterSpacing: '0.1em',
@@ -124,11 +131,11 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
       {/* Hero */}
       <section
         style={{
-          padding: '80px 40px',
+          padding: isMobile ? '48px 20px' : '80px 40px',
           borderBottom: '1px solid #1a1a1a',
           display: 'grid',
-          gridTemplateColumns: '1.1fr 0.9fr',
-          gap: 60,
+          gridTemplateColumns: isMobile ? '1fr' : '1.1fr 0.9fr',
+          gap: isMobile ? 32 : 60,
           alignItems: 'center',
         }}
       >
@@ -150,12 +157,13 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             style={{
               fontFamily: 'Inter',
               fontWeight: 700,
-              fontSize: 'clamp(56px, 7vw, 104px)',
+              fontSize: 'clamp(38px, 9vw, 104px)',
               lineHeight: 0.92,
               letterSpacing: '-0.045em',
               color: '#E8E8E3',
               margin: '0 0 28px',
               textTransform: 'uppercase',
+              overflowWrap: 'break-word',
             }}
           >
             Built
@@ -280,7 +288,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
       {/* Category filters */}
       <div
         style={{
-          padding: '20px 40px',
+          padding: isMobile ? '16px 20px' : '20px 40px',
           borderBottom: '1px solid #1a1a1a',
           display: 'flex',
           gap: 10,
@@ -309,7 +317,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
       </div>
 
       {/* Catalog */}
-      <section ref={catalogRef} style={{ padding: '60px 40px 140px' }}>
+      <section ref={catalogRef} style={{ padding: isMobile ? '40px 20px 80px' : '60px 40px 140px' }}>
         <div
           style={{
             fontFamily: 'JetBrains Mono',

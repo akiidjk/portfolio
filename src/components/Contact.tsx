@@ -1,3 +1,4 @@
+import { useIsMobile } from '../hooks/useBreakpoint'
 import { SectionHeader } from './SectionHeader'
 
 const SOCIAL_LINKS = [
@@ -8,17 +9,19 @@ const SOCIAL_LINKS = [
 ]
 
 export function Contact() {
+  const isMobile = useIsMobile()
+
   return (
-    <section id="contact" style={{ padding: '80px 40px 100px' }}>
+    <section id="contact" style={{ padding: isMobile ? '56px 20px 60px' : '80px 40px 100px' }}>
       <SectionHeader index="05" title="CONTACT" />
 
       <div
         style={{
-          marginTop: 80,
+          marginTop: isMobile ? 48 : 80,
           display: 'grid',
-          gridTemplateColumns: '1fr auto',
-          gap: 80,
-          alignItems: 'flex-end',
+          gridTemplateColumns: isMobile ? '1fr' : '1fr auto',
+          gap: isMobile ? 40 : 80,
+          alignItems: isMobile ? 'flex-start' : 'flex-end',
         }}
       >
         <div>
@@ -26,7 +29,7 @@ export function Contact() {
             style={{
               fontFamily: 'Inter',
               fontWeight: 700,
-              fontSize: 'clamp(48px, 7vw, 96px)',
+              fontSize: 'clamp(36px, 12vw, 96px)',
               letterSpacing: '-0.045em',
               color: '#E8E8E3',
               margin: '0 0 24px',
@@ -52,7 +55,7 @@ export function Contact() {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           {SOCIAL_LINKS.map((link) => (
-            <div key={link.label} style={{ display: 'flex', gap: 28, justifyContent: 'flex-end', alignItems: 'center' }}>
+            <div key={link.label} style={{ display: 'flex', gap: 28, justifyContent: isMobile ? 'space-between' : 'flex-end', alignItems: 'center' }}>
               <span style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#3D3D3D', letterSpacing: '0.15em' }}>
                 {link.label}
               </span>
@@ -64,10 +67,12 @@ export function Contact() {
 
       <div
         style={{
-          marginTop: 80,
+          marginTop: isMobile ? 48 : 80,
           paddingTop: 24,
           borderTop: '1px solid #1a1a1a',
           display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
+          gap: isMobile ? 8 : 0,
           justifyContent: 'space-between',
           fontFamily: 'JetBrains Mono',
           fontSize: 9,
