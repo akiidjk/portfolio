@@ -36,7 +36,7 @@ async function getTemplateSplit(origin: string): Promise<[string, string]> {
   // per-request re-bundle and keeps the injected HMR client in sync.
   if (isProd && cachedTemplateSplit) return cachedTemplateSplit
 
-  const res = await fetch(new URL(INTERNAL_HTML_ROUTE, origin))
+  const res = await fetch(new URL(INTERNAL_HTML_ROUTE, origin), { signal: AbortSignal.timeout(5000) })
   const html = await res.text()
   const idx = html.indexOf(SSR_OUTLET)
   if (idx === -1) throw new Error(`index.html is missing the ${SSR_OUTLET} marker`)
@@ -113,7 +113,7 @@ const server = serve({
     '/*': async (req) => {
       const startedAt = performance.now()
       const url = new URL(req.url)
-      const [before, after] = await getTemplateSplit(url.origin)
+      const [before, after] = await getTemplateSplit(server.url.origin)
       const head = injectRouteMeta(before, url.pathname)
 
       const payload = JSON.stringify({ path: url.pathname }).replace(/</g, '\\u003c')
@@ -164,3 +164,9 @@ const server = serve({
 })
 
 console.log(`🚀 Server running at ${server.url}`)
+
+if (isProd) {
+  getTemplateSplit(server.url.origin).catch((error) => {
+    console.error('Failed to warm the SSR template cache:', error)
+  })
+}
