@@ -67,7 +67,7 @@ export function ProjectsSphere({
             pointerEvents: 'none',
           }}
         >
-          {isMobile ? 'TOCCA UN PUNTO' : 'TRASCINA PER RUOTARE'}
+          {isMobile ? 'TAP A POINT' : 'DRAG TO ROTATE'}
         </div>
       </div>
 

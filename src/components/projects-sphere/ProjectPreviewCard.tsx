@@ -68,7 +68,7 @@ export function ProjectPreviewCard({
             fontFamily: 'JetBrains Mono',
             fontSize: 13,
           }}
-          aria-label="Chiudi anteprima"
+          aria-label="Close preview"
         >
           ×
         </button>
@@ -151,7 +151,7 @@ export function ProjectPreviewCard({
             cursor: 'none',
           }}
         >
-          APRI PROGETTO ↗
+          OPEN PROJECT ↗
         </button>
       </div>
     </div>

@@ -46,8 +46,8 @@ export function ProjectSidePanel({
                 lineHeight: 1.6,
               }}
             >
-              [ {projects.length} PROGETT{projects.length === 1 ? 'O' : 'I'} ] — TOCCA UN PUNTO SULLA SFERA O UNA VOCE
-              QUI SOTTO
+              [ {projects.length} PROJECT{projects.length === 1 ? '' : 'S'} ] — TAP A POINT ON THE SPHERE OR AN ENTRY
+              BELOW
             </div>
             <div style={{ border: '1px solid #1a1a1a', maxHeight: 480, overflowY: 'auto' }}>
               {projects.map((p, i) => (
@@ -76,7 +76,7 @@ export function ProjectSidePanel({
               ))}
               {projects.length === 0 && (
                 <div style={{ padding: 20, fontFamily: 'JetBrains Mono', fontSize: 11, color: '#3D3D3D' }}>
-                  NESSUN PROGETTO CORRISPONDENTE.
+                  NO MATCHING PROJECTS.
                 </div>
               )}
             </div>
