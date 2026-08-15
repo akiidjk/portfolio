@@ -11,19 +11,7 @@ import { ProjectsPage } from './components/ProjectsPage'
 import { Work } from './components/Work'
 import { useIsMobile } from './hooks/useBreakpoint'
 import { useRoute } from './hooks/useRoute'
-
-const ROUTE_META: Record<string, { title: string; description: string }> = {
-  '/': {
-    title: 'Francesco Memoli (akiidjk) — Software Engineer & Security Researcher',
-    description:
-      'Portfolio of Francesco Memoli (akiidjk), software engineer and security researcher focused on systems programming, binary exploitation, reverse engineering, and CTF infrastructure. Co-founder of ByteTheCookies.',
-  },
-  '/projects': {
-    title: 'Projects — Francesco Memoli (akiidjk)',
-    description:
-      'Catalog of open-source projects by Francesco Memoli (akiidjk): CTF infrastructure, emulators, and low-level tools including CookieFarm and Discord CTF Helper.',
-  },
-}
+import { canonicalUrl, getRouteMeta } from './route-meta'
 
 export default function App({ initialPath = '/' }: { initialPath?: string }) {
   const [active, setActive] = useState('index')
@@ -31,7 +19,6 @@ export default function App({ initialPath = '/' }: { initialPath?: string }) {
   const { path, navigate } = useRoute(initialPath)
   const isProjectsPage = path === '/projects'
   const isMobile = useIsMobile()
-  const meta = ROUTE_META[path] ?? ROUTE_META['/']!
 
   useEffect(() => {
     if (isProjectsPage) return
@@ -43,17 +30,29 @@ export default function App({ initialPath = '/' }: { initialPath?: string }) {
     return () => obs.disconnect()
   }, [isProjectsPage])
 
+  // The initial <head> for each route is rendered server-side straight into
+  // the static template (see index.tsx) — SSR streams into #root only, and
+  // React's <title>/<meta> hoisting would land inside #root, not <head>, if
+  // used here. In-app navigation (no reload) still needs the tab title and
+  // OG/description tags to follow the route, hence the imperative update.
+  useEffect(() => {
+    const meta = getRouteMeta(path)
+    const url = canonicalUrl(path)
+    document.title = meta.title
+    const setMetaContent = (selector: string, value: string) => {
+      document.querySelector(selector)?.setAttribute('content', value)
+    }
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', url)
+    setMetaContent('meta[name="description"]', meta.description)
+    setMetaContent('meta[property="og:title"]', meta.title)
+    setMetaContent('meta[property="og:description"]', meta.description)
+    setMetaContent('meta[property="og:url"]', url)
+    setMetaContent('meta[name="twitter:title"]', meta.title)
+    setMetaContent('meta[name="twitter:description"]', meta.description)
+  }, [path])
+
   return (
     <div style={{ margin: '0 auto', position: 'relative' }}>
-      <title>{meta.title}</title>
-      <meta name="description" content={meta.description} />
-      <link rel="canonical" href={`https://akiidjk.dev${path === '/' ? '' : path}`} />
-      <meta property="og:title" content={meta.title} />
-      <meta property="og:description" content={meta.description} />
-      <meta property="og:url" content={`https://akiidjk.dev${path === '/' ? '' : path}`} />
-      <meta name="twitter:title" content={meta.title} />
-      <meta name="twitter:description" content={meta.description} />
-
       {isLoading && <LoadingScreen onFinish={() => setIsLoading(false)} />}
 
       <Cursor />
@@ -66,7 +65,6 @@ export default function App({ initialPath = '/' }: { initialPath?: string }) {
           <div style={{ paddingTop: isMobile ? 52 : 57 }}>
             <Hero />
             <Work onViewAll={() => navigate('/projects')} />
-            <Lab />
             <Archive />
             <About />
             <Contact />

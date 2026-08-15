@@ -1,33 +1,58 @@
 import { serve } from "bun";
+import { StrictMode } from "react";
 import { renderToReadableStream } from "react-dom/server";
-import tailwindPlugin from "bun-plugin-tailwind";
-import { Document } from "./Document";
+import App from "./App";
+import indexHtml from "./index.html";
+import { canonicalUrl, getRouteMeta } from "./route-meta";
 
 const isProd = process.env.NODE_ENV === "production";
 
-// Bundle the client hydration entry + Tailwind CSS once at boot.
-// `bun --hot` re-executes this module (and rebuilds) whenever a
-// dependency changes, so a browser refresh picks up new code.
-const clientBuild = await Bun.build({
-  entrypoints: ["./src/entry-client.tsx", "./src/index.css"],
-  target: "browser",
-  minify: isProd,
-  sourcemap: isProd ? "none" : "linked",
-  naming: "[name].[ext]",
-  define: { "process.env.NODE_ENV": JSON.stringify(isProd ? "production" : "development") },
-  plugins: [tailwindPlugin],
-});
+// Bun only transforms an HTML import (bundling <script>/<link>, injecting
+// the dev HMR client) for requests that hit a route it owns. Requesting
+// this internal route lets our own SSR route reuse that exact transform —
+// same trick as https://teyik0.medium.com/how-to-keep-bun-fullstack-hmr-while-adding-custom-ssr-no-proxy-no-vite-6ea12c76fe29
+const INTERNAL_HTML_ROUTE = "/_bun_hmr_entry";
+const SSR_OUTLET = "<!--ssr-outlet-->";
 
-if (!clientBuild.success) {
-  for (const log of clientBuild.logs) console.error(log);
-  throw new Error("Client bundle failed to build");
+let cachedTemplateSplit: [string, string] | null = null;
+
+async function getTemplateSplit(origin: string): Promise<[string, string]> {
+  // Dev needs a fresh fetch every request — that's what re-triggers Bun's
+  // per-request re-bundle and keeps the injected HMR client in sync.
+  if (isProd && cachedTemplateSplit) return cachedTemplateSplit;
+
+  const res = await fetch(new URL(INTERNAL_HTML_ROUTE, origin));
+  const html = await res.text();
+  const idx = html.indexOf(SSR_OUTLET);
+  if (idx === -1) throw new Error(`index.html is missing the ${SSR_OUTLET} marker`);
+
+  const split: [string, string] = [html.slice(0, idx), html.slice(idx + SSR_OUTLET.length)];
+  if (isProd) cachedTemplateSplit = split;
+  return split;
 }
 
-const clientRoutes: Record<string, Response> = {};
-for (const output of clientBuild.outputs) {
-  clientRoutes["/" + output.path.split("/").pop()] = new Response(output, {
-    headers: { "Content-Type": output.type },
-  });
+function escapeHtml(s: string) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+// Swaps the static template's default ("/") head tags for the requested
+// route's — the SSR stream only fills #root, so this is the one place
+// that can put the right <title>/description/OG tags in a real <head>.
+function injectRouteMeta(head: string, pathname: string): string {
+  const meta = getRouteMeta(pathname);
+  const url = canonicalUrl(pathname);
+  const title = escapeHtml(meta.title);
+  const description = escapeHtml(meta.description);
+
+  return head
+    .replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`)
+    .replace(/(<meta name="description"\s+content=")[^"]*(")/, `$1${description}$2`)
+    .replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${url}$2`)
+    .replace(/(<meta property="og:title"\s+content=")[^"]*(")/, `$1${title}$2`)
+    .replace(/(<meta property="og:description"\s+content=")[^"]*(")/, `$1${description}$2`)
+    .replace(/(<meta property="og:url"\s+content=")[^"]*(")/, `$1${url}$2`)
+    .replace(/(<meta name="twitter:title"\s+content=")[^"]*(")/, `$1${title}$2`)
+    .replace(/(<meta name="twitter:description"\s+content=")[^"]*(")/, `$1${description}$2`);
 }
 
 const server = serve({
@@ -44,7 +69,7 @@ const server = serve({
     "/llms.txt": new Response(Bun.file("public/llms.txt"), { headers: { "Content-Type": "text/plain; charset=utf-8" } }),
     "/sitemap.xml": new Response(Bun.file("public/sitemap.xml"), { headers: { "Content-Type": "application/xml; charset=utf-8" } }),
 
-    ...clientRoutes,
+    [INTERNAL_HTML_ROUTE]: indexHtml,
 
     "/api/hello": {
       async GET(req) {
@@ -71,13 +96,39 @@ const server = serve({
     // SSR fallback for every other (non-API, non-asset) route — the
     // client router then takes over for in-app navigation.
     "/*": async (req) => {
-      const { pathname } = new URL(req.url);
-      const stream = await renderToReadableStream(<Document initialPath={pathname} />, {
-        bootstrapModules: ["/entry-client.js"],
-        onError(error) {
-          console.error(error);
+      const url = new URL(req.url);
+      const [before, after] = await getTemplateSplit(url.origin);
+      const head = injectRouteMeta(before, url.pathname);
+
+      const payload = JSON.stringify({ path: url.pathname }).replace(/</g, "\\u003c");
+
+      const reactStream = await renderToReadableStream(
+        <StrictMode>
+          <App initialPath={url.pathname} />
+        </StrictMode>,
+        {
+          onError(error) {
+            console.error(error);
+          },
+        },
+      );
+
+      const encoder = new TextEncoder();
+      const stream = new ReadableStream({
+        async start(controller) {
+          controller.enqueue(encoder.encode(head));
+          await reactStream.pipeTo(
+            new WritableStream({
+              write(chunk) {
+                controller.enqueue(chunk);
+              },
+            }),
+          );
+          controller.enqueue(encoder.encode(`<script>window.__SSR__=${payload}</script>${after}`));
+          controller.close();
         },
       });
+
       return new Response(stream, { headers: { "Content-Type": "text/html; charset=utf-8" } });
     },
   },
