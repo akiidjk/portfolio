@@ -50,6 +50,11 @@ function escapeHtml(s: string) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 }
 
+function logRequest(method: string, pathname: string, status: number, startedAt: number) {
+  const ms = (performance.now() - startedAt).toFixed(1)
+  console.log(`[${new Date().toISOString()}] ${method} ${pathname} ${status} ${ms}ms`)
+}
+
 // Swaps the static template's default ("/") head tags for the requested
 // route's — the SSR stream only fills #root, so this is the one place
 // that can put the right <title>/description/OG tags in a real <head>.
@@ -106,6 +111,7 @@ const server = serve({
     // SSR fallback for every other (non-asset) route — the client router
     // then takes over for in-app navigation.
     '/*': async (req) => {
+      const startedAt = performance.now()
       const url = new URL(req.url)
       const [before, after] = await getTemplateSplit(url.origin)
       const head = injectRouteMeta(before, url.pathname)
@@ -140,6 +146,7 @@ const server = serve({
       })
 
       const status = isKnownRoute(url.pathname) ? 200 : 404
+      logRequest(req.method, url.pathname, status, startedAt)
       return new Response(stream, {
         status,
         headers: withSecurityHeaders({ 'Content-Type': 'text/html; charset=utf-8' }),
