@@ -117,7 +117,7 @@ const server = serve({
         const path = new URL(req.url).pathname.replace('/assets/', 'src/assets/')
         const file = Bun.file(path)
         return new Response(file, {
-          headers: withSecurityHeaders({ 'Cache-Control': 'public, max-age=31536000, immutable' }),
+          headers: withSecurityHeaders({ 'Cache-Control': 'public, max-age=86400' }),
         })
       },
     },
