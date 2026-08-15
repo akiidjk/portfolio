@@ -4,7 +4,7 @@ import { useIsMobile } from '../hooks/useBreakpoint'
 import { isWebGLAvailable } from '../lib/webgl-support'
 import type { Project } from '../types'
 import { ProjectDetail } from './ProjectDetail'
-import { ProjectsGrid } from './ProjectsGrid'
+import { ProjectsList } from './ProjectsList'
 import { ProjectsSphere } from './projects-sphere/ProjectsSphere'
 
 const activeCount = PROJECTS.filter((p) => /active|maintained/i.test(p.status)).length
@@ -46,7 +46,6 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
     })
   }, [query, category])
 
-  const isUnfiltered = category === 'ALL' && query.trim() === ''
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#080808' }}>
@@ -350,7 +349,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
         ) : supportsWebGL ? (
           <ProjectsSphere projects={PROJECTS} filtered={filtered} onOpen={setSelected} />
         ) : (
-          <ProjectsGrid projects={filtered} isUnfiltered={isUnfiltered} onSelect={setSelected} />
+          <ProjectsList projects={filtered} onSelect={setSelected} />
         )}
       </section>
 

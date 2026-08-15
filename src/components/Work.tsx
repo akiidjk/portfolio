@@ -3,8 +3,8 @@ import { PROJECTS } from '../data/projects'
 import type { Project } from '../types'
 import { useIsMobile } from '../hooks/useBreakpoint'
 import { ProjectDetail } from './ProjectDetail'
+import { ProjectsList } from './ProjectsList'
 import { SectionHeader } from './SectionHeader'
-import { SurveillanceTile } from './SurveillanceTile'
 
 const FEED_COUNT = 8
 const featuredProjects = PROJECTS.slice(0, FEED_COUNT)
@@ -17,67 +17,41 @@ export function Work({ onViewAll }: { onViewAll: () => void }) {
     <section id="work" style={{ padding: isMobile ? '56px 20px' : '80px 40px', borderBottom: '1px solid #1a1a1a' }}>
       <SectionHeader index="01" title="SELECTED WORK" right={`${PROJECTS.length} PROJECTS`} />
 
+      <div style={{ marginTop: isMobile ? 24 : 40 }}>
+        <ProjectsList projects={featuredProjects} onSelect={setSelected} />
+      </div>
+
+      {/* Status */}
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
-          gap: isMobile ? 10 : 2,
-          marginTop: isMobile ? 24 : 40,
+          marginTop: isMobile ? 24 : 32,
+          border: '1px solid #161616',
+          backgroundColor: '#0d0d0d',
+          padding: isMobile ? '16px 18px' : '18px 24px',
+          display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
+          justifyContent: 'space-between',
+          alignItems: isMobile ? 'flex-start' : 'center',
+          gap: isMobile ? 14 : 24,
         }}
       >
-        {featuredProjects.map((project, i) => (
-          <SurveillanceTile key={project.id} project={project} index={i} onClick={() => setSelected(project)} />
-        ))}
-
-        {/* Control panel — the one feed that isn't a camera */}
-        <div
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'JetBrains Mono', fontSize: 9, letterSpacing: '0.1em', color: '#C7FF2E', flexShrink: 0 }}>
+          <span style={{ width: 5, height: 5, borderRadius: '50%', backgroundColor: 'currentColor', boxShadow: '0 0 5px #C7FF2E' }} />
+          CURRENT
+        </div>
+        <p
           style={{
-            position: 'relative',
-            aspectRatio: '16 / 8',
-            overflow: 'hidden',
-            backgroundColor: '#0d0d0d',
-            border: '1px solid #161616',
-            padding: isMobile ? '14px 16px' : '16px 18px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
+            fontFamily: 'Inter',
+            fontWeight: 300,
+            fontSize: isMobile ? 13 : 14,
+            color: '#999',
+            lineHeight: 1.5,
+            margin: 0,
+            flex: 1,
           }}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontFamily: 'JetBrains Mono', fontSize: 9, letterSpacing: '0.1em' }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#C7FF2E' }}>
-              <span style={{ width: 5, height: 5, borderRadius: '50%', backgroundColor: 'currentColor' }} />
-              LIVE
-            </span>
-            <span style={{ color: '#5D5D5D' }}>PANEL-00</span>
-          </div>
-
-          <div>
-            <div style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#3D3D3D', letterSpacing: '0.15em', marginBottom: 10 }}>
-              [ CURRENT ]
-            </div>
-            <p
-              style={{
-                fontFamily: 'Inter',
-                fontWeight: 300,
-                fontSize: isMobile ? 13 : 14,
-                color: '#999',
-                lineHeight: 1.5,
-                margin: '0 0 12px',
-              }}
-            >
-              Building client projects, competing in weekly CTFs, leveling up in microservices &amp; DevOps.
-            </p>
-            <div style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#5D5D5D', lineHeight: 1.9 }}>
-              <div>→ Weekly CTFs w/ ByteTheCookies</div>
-              <div>→ Microservices &amp; DevOps <span style={{ color: '#C7FF2E' }}>WIP</span></div>
-              <div>→ Web exploitation</div>
-            </div>
-          </div>
-
-          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#1a1a1a', letterSpacing: '0.1em' }}>
-            ──────────────
-          </div>
-        </div>
+          Building client projects, competing in weekly CTFs with ByteTheCookies, and leveling up in microservices &amp; DevOps <span style={{ color: '#C7FF2E' }}>WIP</span>.
+        </p>
       </div>
 
       <div style={{ display: 'flex', justifyContent: isMobile ? 'stretch' : 'flex-end', marginTop: isMobile ? 20 : 24 }}>
