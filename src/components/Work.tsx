@@ -47,15 +47,6 @@ export function Work({ onViewAll }: { onViewAll: () => void }) {
             flexShrink: 0,
           }}
         >
-          <span
-            style={{
-              width: 5,
-              height: 5,
-              borderRadius: '50%',
-              backgroundColor: 'currentColor',
-              boxShadow: '0 0 5px #C7FF2E',
-            }}
-          />
           CURRENT
         </div>
         <p
