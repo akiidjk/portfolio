@@ -3,6 +3,7 @@
 .dockerignore
 Dockerfile
 Justfile
+compose.yaml
 
 node_modules
 dist

@@ -1,10 +1,6 @@
-# Load PORT / IMAGE_NAME / etc. from .env if present.
+# Load PORT / IMAGE_NAME / etc. from .env if present. compose.yaml reads
+# the same file directly, so this is the one place those values live.
 set dotenv-load
-
-image_name := env_var_or_default("IMAGE_NAME", "akiidjk-portfolio")
-image_tag := env_var_or_default("IMAGE_TAG", "latest")
-container_name := env_var_or_default("CONTAINER_NAME", image_name)
-port := env_var_or_default("PORT", "3000")
 
 # List all available recipes.
 default:
@@ -47,43 +43,44 @@ format:
 format-check:
     bun run format:check
 
-## ---------- docker (local build/run only, no remote deploy) ----------
+## ---------- docker compose (local build/run only, no remote deploy) ----------
 
 # Build the production image.
 [group('docker')]
 docker-build:
-    docker build --build-arg PORT={{ port }} -t {{ image_name }}:{{ image_tag }} .
+    docker compose build
 
-# Run the built image in the foreground, mapped to $PORT.
+# Run in the foreground, mapped to $PORT.
 [group('docker')]
 docker-run:
-    docker run --rm -p {{ port }}:{{ port }} -e PORT={{ port }} --name {{ container_name }} {{ image_name }}:{{ image_tag }}
+    docker compose up
 
-# Run the built image detached (background).
+# Run detached (background).
 [group('docker')]
 docker-run-detached:
-    docker run -d -p {{ port }}:{{ port }} -e PORT={{ port }} --name {{ container_name }} {{ image_name }}:{{ image_tag }}
+    docker compose up -d
 
-# Build then run — the one-shot local shortcut.
+# Build then run detached — the one-shot local shortcut.
 [group('docker')]
-up: docker-build docker-run-detached
+up:
+    docker compose up --build -d
 
-# Stop the detached container, if running.
+# Stop and remove the container.
 [group('docker')]
 docker-stop:
-    docker stop {{ container_name }}
+    docker compose down
 
-# Tail logs from the detached container.
+# Tail logs from the running container.
 [group('docker')]
 docker-logs:
-    docker logs -f {{ container_name }}
+    docker compose logs -f
 
 # Open a shell in a throwaway container for debugging the image.
 [group('docker')]
 docker-shell:
-    docker run --rm -it --entrypoint sh {{ image_name }}:{{ image_tag }}
+    docker compose run --rm --entrypoint sh app
 
-# Remove the built image.
+# Remove the container and the built image.
 [group('docker')]
 docker-clean:
-    docker rmi {{ image_name }}:{{ image_tag }}
+    docker compose down --rmi local
