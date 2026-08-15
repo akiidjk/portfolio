@@ -123,7 +123,17 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
           // Mobile has no hover, so status + stack are always on — a
           // second compact line instead of the desktop hover-reveal.
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginTop: 6 }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontFamily: 'JetBrains Mono', fontSize: 9, color: '#5D5D5D', letterSpacing: '0.05em' }}>
+            <span
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 5,
+                fontFamily: 'JetBrains Mono',
+                fontSize: 9,
+                color: '#5D5D5D',
+                letterSpacing: '0.05em',
+              }}
+            >
               <StatusDot active={isActive} />
               {project.year}
             </span>
@@ -152,7 +162,18 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
 
       {/* Status + year — desktop only; mobile shows this inline above */}
       {!isMobile && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'JetBrains Mono', fontSize: 10, color: '#5D5D5D', letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            fontFamily: 'JetBrains Mono',
+            fontSize: 10,
+            color: '#5D5D5D',
+            letterSpacing: '0.05em',
+            whiteSpace: 'nowrap',
+          }}
+        >
           <StatusDot active={isActive} />
           {project.year}
         </div>
@@ -175,13 +196,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
   )
 }
 
-export function ProjectsList({
-  projects,
-  onSelect,
-}: {
-  projects: Project[]
-  onSelect: (project: Project) => void
-}) {
+export function ProjectsList({ projects, onSelect }: { projects: Project[]; onSelect: (project: Project) => void }) {
   return (
     <div style={{ borderTop: '1px solid #1a1a1a' }}>
       {projects.map((project, i) => (

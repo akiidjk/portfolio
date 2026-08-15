@@ -14,7 +14,14 @@ export function About() {
     <section id="about" style={{ padding: isMobile ? '56px 20px' : '80px 40px', borderBottom: '1px solid #1a1a1a' }}>
       <SectionHeader index="03" title="ABOUT" />
 
-      <div style={{ marginTop: isMobile ? 32 : 48, display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 40 : 80 }}>
+      <div
+        style={{
+          marginTop: isMobile ? 32 : 48,
+          display: 'grid',
+          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+          gap: isMobile ? 40 : 80,
+        }}
+      >
         <div>
           <p
             style={{
@@ -27,10 +34,14 @@ export function About() {
               margin: '0 0 28px',
             }}
           >
-            First-year Computer Science student at UNISA, split between breaking web applications in CTFs and studying how large-scale systems are designed, deployed, and kept alive.
+            First-year Computer Science student at UNISA, split between breaking web applications in CTFs and studying
+            how large-scale systems are designed, deployed, and kept alive.
           </p>
           <p style={{ fontFamily: 'Inter', fontSize: 14, color: '#666', lineHeight: 1.75, margin: '0 0 16px' }}>
-            I have a solid grounding in Python and hands-on experience across different areas of IT. Right now I'm focused on cybersecurity, actively competing in CTF competitions, mostly web exploitation, alongside a growing interest in microservices, scalability, DevOps and distributed systems architecture: service decomposition, API design, event-driven systems, deployment pipelines and observability.
+            I have a solid grounding in Python and hands-on experience across different areas of IT. Right now I'm
+            focused on cybersecurity, actively competing in CTF competitions, mostly web exploitation, alongside a
+            growing interest in microservices, scalability, DevOps and distributed systems architecture: service
+            decomposition, API design, event-driven systems, deployment pipelines and observability.
           </p>
           <p style={{ fontFamily: 'Inter', fontSize: 14, color: '#666', lineHeight: 1.75, margin: 0 }}>
             My goal is simple: learn, learn, learn, never stop learning, and become better than yesterday.
@@ -38,7 +49,15 @@ export function About() {
         </div>
 
         <div>
-          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#292929', letterSpacing: '0.18em', marginBottom: 24 }}>
+          <div
+            style={{
+              fontFamily: 'JetBrains Mono',
+              fontSize: 9,
+              color: '#292929',
+              letterSpacing: '0.18em',
+              marginBottom: 24,
+            }}
+          >
             ── TECHNICAL FOCUS ──────────────
           </div>
           {FOCUS_AREAS.map((item) => (

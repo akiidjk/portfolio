@@ -41,7 +41,8 @@ export function HeroCanvas() {
     const canvas = ref.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')!
-    let w = 0, h = 0
+    let w = 0,
+      h = 0
 
     const resize = () => {
       w = canvas.width = canvas.offsetWidth
@@ -60,7 +61,9 @@ export function HeroCanvas() {
       const rect = canvas.getBoundingClientRect()
       mouse = { x: e.clientX - rect.left, y: e.clientY - rect.top }
     }
-    const onLeave = () => { mouse = null }
+    const onLeave = () => {
+      mouse = null
+    }
     canvas.addEventListener('pointermove', onMove)
     canvas.addEventListener('pointerleave', onLeave)
 
@@ -86,7 +89,8 @@ export function HeroCanvas() {
           if (dist < INFLUENCE_RADIUS) {
             const t = 1 - dist / INFLUENCE_RADIUS
             p.glow = t
-            const nx = dx / dist, ny = dy / dist
+            const nx = dx / dist,
+              ny = dy / dist
             // Rotate the pull vector so particles spiral in rather than fly straight at the cursor.
             const spin = 1.1 * t
             const cx = nx * Math.cos(spin) - ny * Math.sin(spin)
@@ -118,7 +122,8 @@ export function HeroCanvas() {
       // Constellation lines between nearby particles
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i]!, b = particles[j]!
+          const a = particles[i]!,
+            b = particles[j]!
           const dist = Math.hypot(a.x - b.x, a.y - b.y)
           if (dist < CONNECT_RADIUS) {
             const alpha = (1 - dist / CONNECT_RADIUS) * 0.12

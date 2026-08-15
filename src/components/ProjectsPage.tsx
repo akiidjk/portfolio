@@ -1,11 +1,17 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { PROJECTS } from '../data/projects'
 import { useIsMobile } from '../hooks/useBreakpoint'
 import { isWebGLAvailable } from '../lib/webgl-support'
 import type { Project } from '../types'
 import { ProjectDetail } from './ProjectDetail'
 import { ProjectsList } from './ProjectsList'
-import { ProjectsSphere } from './projects-sphere/ProjectsSphere'
+
+// Pulls in three.js + @react-three/fiber + @react-three/drei + framer-motion
+// — hundreds of KB only needed on this one WebGL view. Splitting it out
+// keeps that weight off every visitor who never leaves the home page.
+const ProjectsSphere = lazy(() =>
+  import('./projects-sphere/ProjectsSphere').then((m) => ({ default: m.ProjectsSphere })),
+)
 
 const activeCount = PROJECTS.filter((p) => /active|maintained/i.test(p.status)).length
 const years = PROJECTS.map((p) => Number(p.year)).filter((y) => !Number.isNaN(y))
@@ -40,12 +46,10 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
     const q = query.trim().toLowerCase()
     return PROJECTS.filter((p) => {
       const matchesCategory = category === 'ALL' || p.domain.startsWith(category)
-      const matchesQuery =
-        !q || [p.title, p.subtitle, p.domain, ...p.stack].join(' ').toLowerCase().includes(q)
+      const matchesQuery = !q || [p.title, p.subtitle, p.domain, ...p.stack].join(' ').toLowerCase().includes(q)
       return matchesCategory && matchesQuery
     })
   }, [query, category])
-
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#080808' }}>
@@ -185,8 +189,8 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
               maxWidth: 460,
             }}
           >
-            Every tool, experiment and system I've shipped from CTF infrastructure to emulators
-            and low-level utilities. Filter by domain or search to find something specific.
+            Every tool, experiment and system I've shipped from CTF infrastructure to emulators and low-level utilities.
+            Filter by domain or search to find something specific.
           </p>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
@@ -242,7 +246,8 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 4px)',
+              background:
+                'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 4px)',
             }}
           />
 
@@ -260,7 +265,16 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
               padding: '10px 12px',
             }}
           >
-            <div style={{ width: 6, height: 6, borderRadius: '50%', flexShrink: 0, backgroundColor: '#C7FF2E', boxShadow: '0 0 6px #C7FF2E' }} />
+            <div
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: '50%',
+                flexShrink: 0,
+                backgroundColor: '#C7FF2E',
+                boxShadow: '0 0 6px #C7FF2E',
+              }}
+            />
             <div>
               <div
                 style={{
@@ -347,7 +361,9 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             NO PROJECTS MATCH YOUR SEARCH.
           </div>
         ) : supportsWebGL ? (
-          <ProjectsSphere projects={PROJECTS} filtered={filtered} onOpen={setSelected} />
+          <Suspense fallback={<ProjectsList projects={filtered} onSelect={setSelected} />}>
+            <ProjectsSphere projects={PROJECTS} filtered={filtered} onOpen={setSelected} />
+          </Suspense>
         ) : (
           <ProjectsList projects={filtered} onSelect={setSelected} />
         )}

@@ -59,13 +59,19 @@ export function Archive() {
                 {entry.year}
               </div>
               <div>
-                <div style={{ fontFamily: 'Inter', fontSize: 15, fontWeight: 500, color: '#E8E8E3', letterSpacing: '-0.01em' }}>
+                <div
+                  style={{
+                    fontFamily: 'Inter',
+                    fontSize: 15,
+                    fontWeight: 500,
+                    color: '#E8E8E3',
+                    letterSpacing: '-0.01em',
+                  }}
+                >
                   {entry.event}
                 </div>
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginTop: 5 }}>
-                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#3D3D3D' }}>
-                    {entry.org}
-                  </span>
+                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#3D3D3D' }}>{entry.org}</span>
                   <span
                     style={{
                       fontFamily: 'JetBrains Mono',
@@ -88,7 +94,15 @@ export function Archive() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
           {STATS.map((s) => (
             <div key={s.label} style={{ borderBottom: '1px solid #1a1a1a', paddingBottom: 28 }}>
-              <div style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#3D3D3D', letterSpacing: '0.18em', marginBottom: 10 }}>
+              <div
+                style={{
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: 9,
+                  color: '#3D3D3D',
+                  letterSpacing: '0.18em',
+                  marginBottom: 10,
+                }}
+              >
                 {s.label}
               </div>
               <div

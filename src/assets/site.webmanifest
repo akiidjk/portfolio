@@ -2,9 +2,7 @@
   "name": "Francesco Memoli — akiidjk",
   "short_name": "akiidjk",
   "description": "Software engineer and security researcher - systems programming, web exploitation, CTF infrastructure.",
-  "icons": [
-    { "src": "/assets/logo.svg", "sizes": "any", "type": "image/svg+xml" }
-  ],
+  "icons": [{ "src": "/assets/logo.svg", "sizes": "any", "type": "image/svg+xml" }],
   "theme_color": "#080808",
   "background_color": "#080808",
   "display": "standalone",

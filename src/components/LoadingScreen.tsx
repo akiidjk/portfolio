@@ -47,7 +47,9 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
 
   // Let an impatient visitor skip straight to the exit animation.
   useEffect(() => {
-    const skip = (e: KeyboardEvent) => { if (e.key === 'Escape') setProgress(100) }
+    const skip = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setProgress(100)
+    }
     window.addEventListener('keydown', skip)
     return () => window.removeEventListener('keydown', skip)
   }, [])

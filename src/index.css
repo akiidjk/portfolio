@@ -3,107 +3,105 @@
 @import 'tailwindcss';
 
 @theme inline {
-    --font-sans: 'Inter', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-    --color-background: #080808;
-    --color-surface: #111111;
-    --color-surface-light: #181818;
-    --color-border: #292929;
-    --color-text-primary: #E8E8E3;
-    --color-text-secondary: #999999;
-    --color-text-muted: #5D5D5D;
-    --color-accent: #C7FF2E;
+  --color-background: #080808;
+  --color-surface: #111111;
+  --color-surface-light: #181818;
+  --color-border: #292929;
+  --color-text-primary: #e8e8e3;
+  --color-text-secondary: #999999;
+  --color-text-muted: #5d5d5d;
+  --color-accent: #c7ff2e;
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    overflow-x: hidden;
-    max-width: 100%;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 html::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 body {
-    background-color: #080808;
-    color: #E8E8E3;
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    max-width: 100%;
-    -webkit-tap-highlight-color: transparent;
+  background-color: #080808;
+  color: #e8e8e3;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  max-width: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* The custom crosshair cursor only makes sense on devices with a real,
    hoverable mouse — leave native touch behavior untouched otherwise. */
 @media (hover: hover) and (pointer: fine) {
-    body {
-        cursor: none;
-    }
+  body {
+    cursor: none;
+  }
 
-    * {
-        cursor: none !important;
-    }
+  * {
+    cursor: none !important;
+  }
 }
 
 ::selection {
-    background: rgba(199, 255, 46, 0.2);
-    color: #E8E8E3;
+  background: rgba(199, 255, 46, 0.2);
+  color: #e8e8e3;
 }
 
 @keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
 
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0;
-    }
+  50% {
+    opacity: 0;
+  }
 }
 
 /* Noise texture overlay */
 body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.03;
-    pointer-events: none;
-    z-index: 9999;
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
 }
 
 /* Project detail modal open animation */
 @keyframes overlayFadeIn {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes modalSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(24px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-

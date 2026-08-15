@@ -11,9 +11,7 @@ import { useCallback, useEffect, useState } from 'react'
  * real, already-matching URL by the time hydration runs.
  */
 export function useRoute(initialPath = '/') {
-  const [path, setPath] = useState(() =>
-    typeof window !== 'undefined' ? window.location.pathname : initialPath
-  )
+  const [path, setPath] = useState(() => (typeof window !== 'undefined' ? window.location.pathname : initialPath))
 
   useEffect(() => {
     const onPopState = () => setPath(window.location.pathname)

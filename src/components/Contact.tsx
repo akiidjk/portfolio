@@ -54,7 +54,15 @@ export function Contact() {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           {SOCIAL_LINKS.map((link) => (
-            <div key={link.label} style={{ display: 'flex', gap: 28, justifyContent: isMobile ? 'space-between' : 'flex-end', alignItems: 'center' }}>
+            <div
+              key={link.label}
+              style={{
+                display: 'flex',
+                gap: 28,
+                justifyContent: isMobile ? 'space-between' : 'flex-end',
+                alignItems: 'center',
+              }}
+            >
               <span style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#3D3D3D', letterSpacing: '0.15em' }}>
                 {link.label}
               </span>
@@ -64,7 +72,12 @@ export function Contact() {
                 rel="noopener noreferrer"
                 style={{ textDecoration: 'none', color: '#999' }}
               >
-                <span className='hover:underline transition-all animation' style={{ fontFamily: 'JetBrains Mono', fontSize: 13, color: '#999' }}>{link.handle}</span>
+                <span
+                  className="hover:underline transition-all animation"
+                  style={{ fontFamily: 'JetBrains Mono', fontSize: 13, color: '#999' }}
+                >
+                  {link.handle}
+                </span>
               </a>
             </div>
           ))}

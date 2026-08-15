@@ -77,8 +77,9 @@ export function CookieBanner() {
             margin: 0,
           }}
         >
-          This site sets <span style={{ color: '#E8E8E3' }}>zero</span> cookies. If analytics ever show up here, they'll be the
-          cookieless, anonymous kind,  no identity, no cross-site profile, nothing sold. You are still legally required to click something anyway.
+          This site sets <span style={{ color: '#E8E8E3' }}>zero</span> cookies. If analytics ever show up here, they'll
+          be the cookieless, anonymous kind, no identity, no cross-site profile, nothing sold. You are still legally
+          required to click something anyway.
         </p>
       </div>
 

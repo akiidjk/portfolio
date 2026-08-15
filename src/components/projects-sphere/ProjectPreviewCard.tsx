@@ -91,10 +91,27 @@ export function ProjectPreviewCard({
       </div>
 
       <div style={{ padding: 24, display: 'flex', flexDirection: 'column', flex: 1 }}>
-        <div style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#3D3D3D', letterSpacing: '0.1em', marginBottom: 8 }}>
+        <div
+          style={{
+            fontFamily: 'JetBrains Mono',
+            fontSize: 9,
+            color: '#3D3D3D',
+            letterSpacing: '0.1em',
+            marginBottom: 8,
+          }}
+        >
           {project.domain}
         </div>
-        <h3 style={{ fontFamily: 'Inter', fontWeight: 700, fontSize: 24, letterSpacing: '-0.03em', color: '#E8E8E3', margin: '0 0 6px' }}>
+        <h3
+          style={{
+            fontFamily: 'Inter',
+            fontWeight: 700,
+            fontSize: 24,
+            letterSpacing: '-0.03em',
+            color: '#E8E8E3',
+            margin: '0 0 6px',
+          }}
+        >
           {project.title}
         </h3>
         <div style={{ fontFamily: 'JetBrains Mono', fontSize: 11, color: '#5D5D5D', marginBottom: 16 }}>

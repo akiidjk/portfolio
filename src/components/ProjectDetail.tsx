@@ -26,7 +26,9 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
   }
 
   useEffect(() => {
-    const esc = (e: KeyboardEvent) => { if (e.key === 'Escape') handleClose() }
+    const esc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleClose()
+    }
     window.addEventListener('keydown', esc)
     document.body.style.overflow = 'hidden'
     return () => {
@@ -46,9 +48,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
         zIndex: 5000,
         overflowY: 'auto',
         cursor: 'none',
-        animation: isClosing
-          ? `overlayFadeIn ${CLOSE_DURATION}ms ease reverse forwards`
-          : 'overlayFadeIn 0.25s ease',
+        animation: isClosing ? `overlayFadeIn ${CLOSE_DURATION}ms ease reverse forwards` : 'overlayFadeIn 0.25s ease',
       }}
     >
       <button
@@ -84,7 +84,15 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
       >
         {/* Header */}
         <div style={{ marginBottom: isMobile ? 32 : 48, paddingRight: isMobile ? 90 : 120 }}>
-          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#3D3D3D', letterSpacing: '0.15em', marginBottom: 12 }}>
+          <div
+            style={{
+              fontFamily: 'JetBrains Mono',
+              fontSize: 10,
+              color: '#3D3D3D',
+              letterSpacing: '0.15em',
+              marginBottom: 12,
+            }}
+          >
             {project.id} ──────────────────────── {project.year}
           </div>
           <h2
@@ -168,7 +176,9 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
                   height: isMobile ? 200 : 320,
                   objectFit: 'cover',
                   display: 'block',
-                  filter: imageHovered ? 'grayscale(60%) contrast(1.15) brightness(0.95)' : 'grayscale(100%) contrast(1.3)',
+                  filter: imageHovered
+                    ? 'grayscale(60%) contrast(1.15) brightness(0.95)'
+                    : 'grayscale(100%) contrast(1.3)',
                   transform: imageHovered ? 'scale(1.03)' : 'scale(1)',
                   transition: 'filter 0.4s, transform 0.5s',
                 }}
@@ -177,7 +187,8 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  background: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 6px)',
+                  background:
+                    'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 6px)',
                   pointerEvents: 'none',
                 }}
               />
@@ -199,7 +210,15 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
               pointerEvents: 'none',
             }}
           >
-            <div style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#C7FF2E', lineHeight: 2, letterSpacing: '0.1em' }}>
+            <div
+              style={{
+                fontFamily: 'JetBrains Mono',
+                fontSize: 10,
+                color: '#C7FF2E',
+                lineHeight: 2,
+                letterSpacing: '0.1em',
+              }}
+            >
               <div>DOMAIN · {project.domain}</div>
               <div>STATUS · {project.status}</div>
             </div>
@@ -242,17 +261,36 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
           { label: 'OUTCOME', content: project.outcome },
         ].map((section) => (
           <div key={section.label} style={{ marginBottom: 40 }}>
-            <div style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#3D3D3D', letterSpacing: '0.2em', marginBottom: 16 }}>
+            <div
+              style={{
+                fontFamily: 'JetBrains Mono',
+                fontSize: 10,
+                color: '#3D3D3D',
+                letterSpacing: '0.2em',
+                marginBottom: 16,
+              }}
+            >
               ── {section.label}
             </div>
-            <p style={{ fontFamily: 'Inter', fontSize: 16, color: '#999', lineHeight: 1.7, margin: 0, fontWeight: 300 }}>
+            <p
+              style={{ fontFamily: 'Inter', fontSize: 16, color: '#999', lineHeight: 1.7, margin: 0, fontWeight: 300 }}
+            >
               {section.content}
             </p>
           </div>
         ))}
 
         {/* Stack */}
-        <div style={{ marginTop: 48, paddingTop: 24, borderTop: '1px solid #1a1a1a', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <div
+          style={{
+            marginTop: 48,
+            paddingTop: 24,
+            borderTop: '1px solid #1a1a1a',
+            display: 'flex',
+            gap: 8,
+            flexWrap: 'wrap',
+          }}
+        >
           {project.stack.map((s) => (
             <span
               key={s}

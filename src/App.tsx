@@ -4,6 +4,7 @@ import { Archive } from './components/Archive'
 import { Contact } from './components/Contact'
 import { CookieBanner } from './components/CookieBanner'
 import { Cursor } from './components/Cursor'
+import { ErrorBoundary } from './components/ErrorBoundary'
 import { Hero } from './components/Hero'
 import { LoadingScreen } from './components/LoadingScreen'
 import { Nav } from './components/Nav'
@@ -25,8 +26,11 @@ export default function App({ initialPath = '/' }: { initialPath?: string }) {
   useEffect(() => {
     if (isProjectsPage || isNotFound) return
     const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id) }),
-      { threshold: 0.25 }
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id)
+        }),
+      { threshold: 0.25 },
     )
     document.querySelectorAll('section[id]').forEach((s) => obs.observe(s))
     return () => obs.disconnect()
@@ -61,23 +65,29 @@ export default function App({ initialPath = '/' }: { initialPath?: string }) {
       <CookieBanner />
 
       {isProjectsPage ? (
-        <ProjectsPage onNavigateHome={() => navigate('/')} />
+        <ErrorBoundary>
+          <ProjectsPage onNavigateHome={() => navigate('/')} />
+        </ErrorBoundary>
       ) : isNotFound ? (
         <>
           <Nav active={active} />
           <div style={{ paddingTop: isMobile ? 52 : 57 }}>
-            <NotFound path={path} onNavigateHome={() => navigate('/')} />
+            <ErrorBoundary>
+              <NotFound path={path} onNavigateHome={() => navigate('/')} />
+            </ErrorBoundary>
           </div>
         </>
       ) : (
         <>
           <Nav active={active} />
           <div style={{ paddingTop: isMobile ? 52 : 57 }}>
-            <Hero />
-            <Work onViewAll={() => navigate('/projects')} />
-            <Archive />
-            <About />
-            <Contact />
+            <ErrorBoundary>
+              <Hero />
+              <Work onViewAll={() => navigate('/projects')} />
+              <Archive />
+              <About />
+              <Contact />
+            </ErrorBoundary>
           </div>
         </>
       )}

@@ -46,7 +46,8 @@ export function ProjectSidePanel({
                 lineHeight: 1.6,
               }}
             >
-              [ {projects.length} PROGETT{projects.length === 1 ? 'O' : 'I'} ] — TOCCA UN PUNTO SULLA SFERA O UNA VOCE QUI SOTTO
+              [ {projects.length} PROGETT{projects.length === 1 ? 'O' : 'I'} ] — TOCCA UN PUNTO SULLA SFERA O UNA VOCE
+              QUI SOTTO
             </div>
             <div style={{ border: '1px solid #1a1a1a', maxHeight: 480, overflowY: 'auto' }}>
               {projects.map((p, i) => (

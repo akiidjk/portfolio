@@ -19,9 +19,7 @@ const app = (
 
 // https://bun.com/docs/bundler/hot-reloading#import-meta-hot-data
 if (import.meta.hot) {
-  const root = (import.meta.hot.data.root ??= elem.innerHTML.trim()
-    ? hydrateRoot(elem, app)
-    : createRoot(elem))
+  const root = (import.meta.hot.data.root ??= elem.innerHTML.trim() ? hydrateRoot(elem, app) : createRoot(elem))
   root.render(app)
 } else if (elem.innerHTML.trim()) {
   hydrateRoot(elem, app)
