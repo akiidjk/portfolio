@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { About } from './components/About'
 import { Archive } from './components/Archive'
 import { Contact } from './components/Contact'
+import { CookieBanner } from './components/CookieBanner'
 import { Cursor } from './components/Cursor'
 import { Hero } from './components/Hero'
 import { LoadingScreen } from './components/LoadingScreen'
@@ -57,6 +58,7 @@ export default function App({ initialPath = '/' }: { initialPath?: string }) {
       {isLoading && <LoadingScreen onFinish={() => setIsLoading(false)} />}
 
       <Cursor />
+      <CookieBanner />
 
       {isProjectsPage ? (
         <ProjectsPage onNavigateHome={() => navigate('/')} />
