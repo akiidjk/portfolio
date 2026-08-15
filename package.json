@@ -1,20 +1,29 @@
 {
-  "name": "bun-react-template",
+  "name": "akiidjk-portfolio",
   "version": "0.1.0",
+  "description": "Personal portfolio of Francesco Memoli (akiidjk) — CS student, CTF player, and builder.",
   "private": true,
   "type": "module",
+  "license": "MIT",
+  "author": "Francesco Memoli <akiidjk@proton.me>",
+  "homepage": "https://akiidjk.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akiidjk/portfolio.git"
+  },
   "scripts": {
     "dev": "bun --hot src/index.tsx",
-    "build": "bun build --target=bun --production --outdir=dist ./src/index.tsx",
-    "start": "NODE_ENV=production bun src/index.tsx"
+    "build": "bun build --target=bun --production --splitting --outdir=dist ./src/index.tsx",
+    "start": "NODE_ENV=production bun src/index.tsx",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@react-three/drei": "^10.7.8",
     "@react-three/fiber": "^9.7.0",
-    "@tailwindcss/postcss": "^4.3.3",
     "bun-plugin-tailwind": "^0.1.2",
     "framer-motion": "^13.1.0",
-    "postcss": "^8.5.26",
     "react": "^19",
     "react-dom": "^19",
     "tailwindcss": "^4.3.3",
@@ -24,6 +33,7 @@
     "@types/bun": "latest",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/three": "^0.185.4"
+    "@types/three": "^0.185.4",
+    "prettier": "^3.9.6"
   }
 }
