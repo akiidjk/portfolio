@@ -16,8 +16,17 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   },
 }
 
+export const NOT_FOUND_META: RouteMeta = {
+  title: '404 — Francesco Memoli (akiidjk)',
+  description: 'This page does not exist.',
+}
+
+export function isKnownRoute(path: string): boolean {
+  return path in ROUTE_META
+}
+
 export function getRouteMeta(path: string): RouteMeta {
-  return ROUTE_META[path] ?? ROUTE_META['/']!
+  return ROUTE_META[path] ?? NOT_FOUND_META
 }
 
 export function canonicalUrl(path: string): string {

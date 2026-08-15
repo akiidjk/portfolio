@@ -3,7 +3,7 @@ import { StrictMode } from "react";
 import { renderToReadableStream } from "react-dom/server";
 import App from "./App";
 import indexHtml from "./index.html";
-import { canonicalUrl, getRouteMeta } from "./route-meta";
+import { canonicalUrl, getRouteMeta, isKnownRoute } from "./route-meta";
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -107,7 +107,8 @@ const server = serve({
         },
       });
 
-      return new Response(stream, { headers: { "Content-Type": "text/html; charset=utf-8" } });
+      const status = isKnownRoute(url.pathname) ? 200 : 404;
+      return new Response(stream, { status, headers: { "Content-Type": "text/html; charset=utf-8" } });
     },
   },
 

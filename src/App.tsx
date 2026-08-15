@@ -6,28 +6,30 @@ import { Cursor } from './components/Cursor'
 import { Hero } from './components/Hero'
 import { LoadingScreen } from './components/LoadingScreen'
 import { Nav } from './components/Nav'
+import { NotFound } from './components/NotFound'
 import { ProjectsPage } from './components/ProjectsPage'
 import { Work } from './components/Work'
 import { useIsMobile } from './hooks/useBreakpoint'
 import { useRoute } from './hooks/useRoute'
-import { canonicalUrl, getRouteMeta } from './route-meta'
+import { canonicalUrl, getRouteMeta, isKnownRoute } from './route-meta'
 
 export default function App({ initialPath = '/' }: { initialPath?: string }) {
   const [active, setActive] = useState('index')
   const [isLoading, setIsLoading] = useState(true)
   const { path, navigate } = useRoute(initialPath)
   const isProjectsPage = path === '/projects'
+  const isNotFound = !isKnownRoute(path)
   const isMobile = useIsMobile()
 
   useEffect(() => {
-    if (isProjectsPage) return
+    if (isProjectsPage || isNotFound) return
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id) }),
       { threshold: 0.25 }
     )
     document.querySelectorAll('section[id]').forEach((s) => obs.observe(s))
     return () => obs.disconnect()
-  }, [isProjectsPage])
+  }, [isProjectsPage, isNotFound])
 
   // The initial <head> for each route is rendered server-side straight into
   // the static template (see index.tsx) — SSR streams into #root only, and
@@ -58,6 +60,13 @@ export default function App({ initialPath = '/' }: { initialPath?: string }) {
 
       {isProjectsPage ? (
         <ProjectsPage onNavigateHome={() => navigate('/')} />
+      ) : isNotFound ? (
+        <>
+          <Nav active={active} />
+          <div style={{ paddingTop: isMobile ? 52 : 57 }}>
+            <NotFound path={path} onNavigateHome={() => navigate('/')} />
+          </div>
+        </>
       ) : (
         <>
           <Nav active={active} />
