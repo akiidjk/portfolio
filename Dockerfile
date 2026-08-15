@@ -24,4 +24,9 @@ ARG PORT=3000
 ENV PORT=${PORT}
 EXPOSE ${PORT}
 
+# Bun is already in the image, so use it for the probe instead of pulling
+# in curl/wget just for this. Hits the real home page, not a stub route.
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD bun -e "fetch('http://localhost:'+process.env.PORT+'/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+
 CMD ["bun", "index.js"]

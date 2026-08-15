@@ -32,6 +32,21 @@ build:
 start:
     bun run start
 
+# Type-check with tsc, no output emitted.
+[group('bun')]
+typecheck:
+    bun run typecheck
+
+# Format the whole repo in place.
+[group('bun')]
+format:
+    bun run format
+
+# Check formatting without writing — what CI runs.
+[group('bun')]
+format-check:
+    bun run format:check
+
 ## ---------- docker (local build/run only, no remote deploy) ----------
 
 # Build the production image.
