@@ -14,10 +14,20 @@ function ReticleCorner({ position }: { position: 'tl' | 'tr' | 'bl' | 'br' }) {
   const size = 8
   const base: React.CSSProperties = { position: 'absolute', width: size, height: size }
   const sides: Record<typeof position, React.CSSProperties> = {
-    tl: { top: -4, left: -4, borderTop: '1px solid #292929', borderLeft: '1px solid #292929' },
-    tr: { top: -4, right: -4, borderTop: '1px solid #292929', borderRight: '1px solid #292929' },
-    bl: { bottom: -4, left: -4, borderBottom: '1px solid #292929', borderLeft: '1px solid #292929' },
-    br: { bottom: -4, right: -4, borderBottom: '1px solid #292929', borderRight: '1px solid #292929' },
+    tl: { top: -4, left: -4, borderTop: '1px solid var(--active-gray)', borderLeft: '1px solid var(--active-gray)' },
+    tr: { top: -4, right: -4, borderTop: '1px solid var(--active-gray)', borderRight: '1px solid var(--active-gray)' },
+    bl: {
+      bottom: -4,
+      left: -4,
+      borderBottom: '1px solid var(--active-gray)',
+      borderLeft: '1px solid var(--active-gray)',
+    },
+    br: {
+      bottom: -4,
+      right: -4,
+      borderBottom: '1px solid var(--active-gray)',
+      borderRight: '1px solid var(--active-gray)',
+    },
   }
   return <div style={{ ...base, ...sides[position] }} />
 }
@@ -37,7 +47,7 @@ export function Nav({ active }: { active: string }) {
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: isMobile ? '12px 16px' : '18px 40px',
-        borderBottom: '1px solid #1a1a1a',
+        borderBottom: '1px solid var(--hairline)',
         backgroundColor: 'rgba(8,8,8,0.96)',
         backdropFilter: 'blur(12px)',
       }}
@@ -51,7 +61,7 @@ export function Nav({ active }: { active: string }) {
             height: isMobile ? 32 : 48,
             borderRadius: '50%',
             objectFit: 'cover',
-            border: '1px solid #1a1a1a',
+            border: '1px solid var(--hairline)',
             transform: 'scaleX(-1)',
             display: 'block',
           }}
@@ -73,7 +83,7 @@ export function Nav({ active }: { active: string }) {
               fontSize: isMobile ? 9 : 10,
               letterSpacing: isMobile ? '0.02em' : '0.1em',
               textDecoration: 'none',
-              color: active === l.id ? '#E8E8E3' : '#3D3D3D',
+              color: active === l.id ? 'var(--phosphor-white)' : 'var(--dim-label)',
               transition: 'color 0.2s',
             }}
           >

@@ -24,7 +24,8 @@ function Wireframe() {
   return (
     <mesh>
       <sphereGeometry args={[SPHERE_RADIUS, 20, 14]} />
-      <meshBasicMaterial color="#292929" wireframe transparent opacity={0.45} />
+      {/* react-three-fiber passes this straight to THREE.Color, which can't resolve CSS var() — literal, mirrors --active-gray */}
+      <meshBasicMaterial color="#404040" wireframe transparent opacity={0.45} />
     </mesh>
   )
 }

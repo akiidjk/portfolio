@@ -30,7 +30,7 @@ export function Contact() {
               fontWeight: 700,
               fontSize: 'clamp(36px, 12vw, 96px)',
               letterSpacing: '-0.045em',
-              color: '#E8E8E3',
+              color: 'var(--phosphor-white)',
               margin: '0 0 24px',
               lineHeight: 1,
             }}
@@ -42,7 +42,7 @@ export function Contact() {
             style={{
               fontFamily: 'JetBrains Mono',
               fontSize: 14,
-              color: '#C7FF2E',
+              color: 'var(--signal-green)',
               textDecoration: 'none',
               letterSpacing: '0.03em',
               display: 'inline-block',
@@ -63,18 +63,25 @@ export function Contact() {
                 alignItems: 'center',
               }}
             >
-              <span style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#3D3D3D', letterSpacing: '0.15em' }}>
+              <span
+                style={{
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: 9,
+                  color: 'var(--dim-label)',
+                  letterSpacing: '0.15em',
+                }}
+              >
                 {link.label}
               </span>
               <a
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ textDecoration: 'none', color: '#999' }}
+                style={{ textDecoration: 'none', color: 'var(--body-gray)' }}
               >
                 <span
                   className="hover:underline transition-all animation"
-                  style={{ fontFamily: 'JetBrains Mono', fontSize: 13, color: '#999' }}
+                  style={{ fontFamily: 'JetBrains Mono', fontSize: 13, color: 'var(--body-gray)' }}
                 >
                   {link.handle}
                 </span>
@@ -88,14 +95,14 @@ export function Contact() {
         style={{
           marginTop: isMobile ? 48 : 80,
           paddingTop: 24,
-          borderTop: '1px solid #1a1a1a',
+          borderTop: '1px solid var(--hairline)',
           display: 'flex',
           flexDirection: isMobile ? 'column' : 'row',
           gap: isMobile ? 8 : 0,
           justifyContent: 'space-between',
           fontFamily: 'JetBrains Mono',
           fontSize: 9,
-          color: '#292929',
+          color: 'var(--active-gray)',
           letterSpacing: '0.12em',
         }}
       >

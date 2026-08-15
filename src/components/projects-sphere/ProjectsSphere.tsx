@@ -39,7 +39,7 @@ export function ProjectsSphere({
       <div
         style={{
           height: isMobile ? 320 : isCompact ? 420 : 560,
-          border: '1px solid #1a1a1a',
+          border: '1px solid var(--hairline)',
           backgroundColor: '#050505',
           position: 'relative',
         }}
@@ -62,7 +62,7 @@ export function ProjectsSphere({
             left: 14,
             fontFamily: 'JetBrains Mono',
             fontSize: 9,
-            color: '#3D3D3D',
+            color: 'var(--dim-label)',
             letterSpacing: '0.1em',
             pointerEvents: 'none',
           }}

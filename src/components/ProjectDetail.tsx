@@ -59,8 +59,8 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
           right: isMobile ? 16 : 24,
           zIndex: 1,
           background: 'rgba(8,8,8,0.9)',
-          border: '1px solid #1a1a1a',
-          color: '#5D5D5D',
+          border: '1px solid var(--hairline)',
+          color: 'var(--muted-steel)',
           fontFamily: 'JetBrains Mono',
           fontSize: 11,
           padding: isMobile ? '8px 12px' : '8px 16px',
@@ -88,7 +88,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
             style={{
               fontFamily: 'JetBrains Mono',
               fontSize: 10,
-              color: '#3D3D3D',
+              color: 'var(--dim-label)',
               letterSpacing: '0.15em',
               marginBottom: 12,
             }}
@@ -101,7 +101,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
               fontWeight: 700,
               fontSize: 'clamp(28px, 8vw, 64px)',
               letterSpacing: '-0.045em',
-              color: '#E8E8E3',
+              color: 'var(--phosphor-white)',
               margin: 0,
               lineHeight: 1.05,
               overflowWrap: 'break-word',
@@ -109,13 +109,13 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
           >
             {project.title}
           </h2>
-          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 12, color: '#5D5D5D', marginTop: 8 }}>
+          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 12, color: 'var(--muted-steel)', marginTop: 8 }}>
             {project.subtitle}
           </div>
         </div>
 
         {/* Meta table */}
-        <div style={{ borderTop: '1px solid #1a1a1a', marginBottom: 48 }}>
+        <div style={{ borderTop: '1px solid var(--hairline)', marginBottom: 48 }}>
           {project.detail.map((d) => (
             <div
               key={d.label}
@@ -123,13 +123,27 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
                 display: 'flex',
                 justifyContent: 'space-between',
                 padding: '14px 0',
-                borderBottom: '1px solid #1a1a1a',
+                borderBottom: '1px solid var(--hairline)',
               }}
             >
-              <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#3D3D3D', letterSpacing: '0.12em' }}>
+              <span
+                style={{
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: 10,
+                  color: 'var(--dim-label)',
+                  letterSpacing: '0.12em',
+                }}
+              >
                 {d.label}
               </span>
-              <span style={{ fontFamily: 'JetBrains Mono', fontSize: 11, color: '#E8E8E3', letterSpacing: '0.05em' }}>
+              <span
+                style={{
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: 11,
+                  color: 'var(--phosphor-white)',
+                  letterSpacing: '0.05em',
+                }}
+              >
                 {d.value}
               </span>
             </div>
@@ -144,7 +158,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
             position: 'relative',
             marginBottom: 48,
             overflow: 'hidden',
-            border: `1px solid ${imageHovered ? '#292929' : 'transparent'}`,
+            border: `1px solid ${imageHovered ? 'var(--active-gray)' : 'transparent'}`,
             transition: 'border-color 0.3s',
           }}
         >
@@ -156,10 +170,10 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: '#0d0d0d',
+                backgroundColor: 'var(--panel-black)',
                 fontFamily: 'JetBrains Mono',
                 fontSize: 11,
-                color: '#3D3D3D',
+                color: 'var(--dim-label)',
                 letterSpacing: '0.15em',
               }}
             >
@@ -188,7 +202,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
                   position: 'absolute',
                   inset: 0,
                   background:
-                    'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 6px)',
+                    'repeating-linear-gradient(0deg, transparent, transparent 3px, var(--scanline-light) 3px, var(--scanline-light) 6px)',
                   pointerEvents: 'none',
                 }}
               />
@@ -214,7 +228,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
               style={{
                 fontFamily: 'JetBrains Mono',
                 fontSize: 10,
-                color: '#C7FF2E',
+                color: 'var(--signal-green)',
                 lineHeight: 2,
                 letterSpacing: '0.1em',
               }}
@@ -241,8 +255,8 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
                 width: 36,
                 height: 36,
                 backgroundColor: 'rgba(8,8,8,0.85)',
-                border: `1px solid ${imageHovered ? '#C7FF2E' : '#1a1a1a'}`,
-                color: imageHovered ? '#C7FF2E' : '#5D5D5D',
+                border: `1px solid ${imageHovered ? 'var(--signal-green)' : 'var(--hairline)'}`,
+                color: imageHovered ? 'var(--signal-green)' : 'var(--muted-steel)',
                 cursor: 'none',
                 opacity: imageHovered || isMobile ? 1 : 0,
                 transform: imageHovered || isMobile ? 'translateY(0)' : 'translateY(6px)',
@@ -265,7 +279,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
               style={{
                 fontFamily: 'JetBrains Mono',
                 fontSize: 10,
-                color: '#3D3D3D',
+                color: 'var(--dim-label)',
                 letterSpacing: '0.2em',
                 marginBottom: 16,
               }}
@@ -273,7 +287,14 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
               ── {section.label}
             </div>
             <p
-              style={{ fontFamily: 'Inter', fontSize: 16, color: '#999', lineHeight: 1.7, margin: 0, fontWeight: 300 }}
+              style={{
+                fontFamily: 'Inter',
+                fontSize: 16,
+                color: 'var(--body-gray)',
+                lineHeight: 1.7,
+                margin: 0,
+                fontWeight: 300,
+              }}
             >
               {section.content}
             </p>
@@ -285,7 +306,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
           style={{
             marginTop: 48,
             paddingTop: 24,
-            borderTop: '1px solid #1a1a1a',
+            borderTop: '1px solid var(--hairline)',
             display: 'flex',
             gap: 8,
             flexWrap: 'wrap',
@@ -297,8 +318,8 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
               style={{
                 fontFamily: 'JetBrains Mono',
                 fontSize: 10,
-                color: '#5D5D5D',
-                border: '1px solid #292929',
+                color: 'var(--muted-steel)',
+                border: '1px solid var(--active-gray)',
                 padding: '4px 12px',
                 letterSpacing: '0.1em',
               }}

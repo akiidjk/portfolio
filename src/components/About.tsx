@@ -11,7 +11,10 @@ export function About() {
   const isMobile = useIsMobile()
 
   return (
-    <section id="about" style={{ padding: isMobile ? '56px 20px' : '80px 40px', borderBottom: '1px solid #1a1a1a' }}>
+    <section
+      id="about"
+      style={{ padding: isMobile ? '56px 20px' : '80px 40px', borderBottom: '1px solid var(--hairline)' }}
+    >
       <SectionHeader index="03" title="ABOUT" />
 
       <div
@@ -28,7 +31,7 @@ export function About() {
               fontFamily: 'Inter',
               fontWeight: 300,
               fontSize: 'clamp(17px, 5vw, 21px)',
-              color: '#E8E8E3',
+              color: 'var(--phosphor-white)',
               lineHeight: 1.5,
               letterSpacing: '-0.025em',
               margin: '0 0 28px',
@@ -37,13 +40,21 @@ export function About() {
             First-year Computer Science student at UNISA, split between breaking web applications in CTFs and studying
             how large-scale systems are designed, deployed, and kept alive.
           </p>
-          <p style={{ fontFamily: 'Inter', fontSize: 14, color: '#666', lineHeight: 1.75, margin: '0 0 16px' }}>
+          <p
+            style={{
+              fontFamily: 'Inter',
+              fontSize: 14,
+              color: 'var(--soft-gray)',
+              lineHeight: 1.75,
+              margin: '0 0 16px',
+            }}
+          >
             I have a solid grounding in Python and hands-on experience across different areas of IT. Right now I'm
             focused on cybersecurity, actively competing in CTF competitions, mostly web exploitation, alongside a
             growing interest in microservices, scalability, DevOps and distributed systems architecture: service
             decomposition, API design, event-driven systems, deployment pipelines and observability.
           </p>
-          <p style={{ fontFamily: 'Inter', fontSize: 14, color: '#666', lineHeight: 1.75, margin: 0 }}>
+          <p style={{ fontFamily: 'Inter', fontSize: 14, color: 'var(--soft-gray)', lineHeight: 1.75, margin: 0 }}>
             My goal is simple: learn, learn, learn, never stop learning, and become better than yesterday.
           </p>
         </div>
@@ -53,7 +64,7 @@ export function About() {
             style={{
               fontFamily: 'JetBrains Mono',
               fontSize: 9,
-              color: '#292929',
+              color: 'var(--active-gray)',
               letterSpacing: '0.18em',
               marginBottom: 24,
             }}
@@ -69,11 +80,15 @@ export function About() {
                 alignItems: 'center',
                 paddingBottom: 14,
                 marginBottom: 14,
-                borderBottom: '1px solid #111',
+                borderBottom: '1px solid var(--divider-black)',
               }}
             >
-              <span style={{ fontFamily: 'Inter', fontSize: 13, color: '#E8E8E3', fontWeight: 500 }}>{item.area}</span>
-              <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#3D3D3D' }}>{item.tools}</span>
+              <span style={{ fontFamily: 'Inter', fontSize: 13, color: 'var(--phosphor-white)', fontWeight: 500 }}>
+                {item.area}
+              </span>
+              <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: 'var(--dim-label)' }}>
+                {item.tools}
+              </span>
             </div>
           ))}
         </div>

@@ -44,8 +44,8 @@ export function CookieBanner() {
         right: 0,
         bottom: 0,
         zIndex: 90000,
-        backgroundColor: '#0d0d0d',
-        borderTop: '1px solid #1a1a1a',
+        backgroundColor: 'var(--panel-black)',
+        borderTop: '1px solid var(--hairline)',
         padding: isMobile ? '20px' : '20px 40px',
         display: 'flex',
         flexDirection: isMobile ? 'column' : 'row',
@@ -60,7 +60,7 @@ export function CookieBanner() {
           style={{
             fontFamily: 'JetBrains Mono',
             fontSize: 9,
-            color: '#3D3D3D',
+            color: 'var(--dim-label)',
             letterSpacing: '0.2em',
             marginBottom: 8,
             textTransform: 'uppercase',
@@ -72,14 +72,14 @@ export function CookieBanner() {
           style={{
             fontFamily: 'JetBrains Mono',
             fontSize: isMobile ? 11 : 12,
-            color: '#5D5D5D',
+            color: 'var(--muted-steel)',
             lineHeight: 1.6,
             margin: 0,
           }}
         >
-          This site sets <span style={{ color: '#E8E8E3' }}>zero</span> cookies. If analytics ever show up here, they'll
-          be the cookieless, anonymous kind, no identity, no cross-site profile, nothing sold. You are still legally
-          required to click something anyway.
+          This site sets <span style={{ color: 'var(--phosphor-white)' }}>zero</span> cookies. If analytics ever show up
+          here, they'll be the cookieless, anonymous kind, no identity, no cross-site profile, nothing sold. You are
+          still legally required to click something anyway.
         </p>
       </div>
 
@@ -88,8 +88,8 @@ export function CookieBanner() {
           onClick={dismiss}
           style={{
             background: 'none',
-            border: '1px solid #1a1a1a',
-            color: '#5D5D5D',
+            border: '1px solid var(--hairline)',
+            color: 'var(--muted-steel)',
             fontFamily: 'JetBrains Mono',
             fontSize: 10,
             padding: isMobile ? '14px 16px' : '10px 16px',
@@ -99,14 +99,14 @@ export function CookieBanner() {
             transition: 'color 0.2s, border-color 0.2s',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = '#080808'
-            e.currentTarget.style.backgroundColor = '#C7FF2E'
-            e.currentTarget.style.borderColor = '#C7FF2E'
+            e.currentTarget.style.color = 'var(--void-black)'
+            e.currentTarget.style.backgroundColor = 'var(--signal-green)'
+            e.currentTarget.style.borderColor = 'var(--signal-green)'
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = '#5D5D5D'
+            e.currentTarget.style.color = 'var(--muted-steel)'
             e.currentTarget.style.backgroundColor = 'transparent'
-            e.currentTarget.style.borderColor = '#1a1a1a'
+            e.currentTarget.style.borderColor = 'var(--hairline)'
           }}
         >
           ACCEPT (DOESN'T MATTER)
@@ -115,8 +115,8 @@ export function CookieBanner() {
           onClick={dismiss}
           style={{
             background: 'none',
-            border: '1px solid #1a1a1a',
-            color: '#5D5D5D',
+            border: '1px solid var(--hairline)',
+            color: 'var(--muted-steel)',
             fontFamily: 'JetBrains Mono',
             fontSize: 10,
             padding: isMobile ? '14px 16px' : '10px 16px',
@@ -126,12 +126,12 @@ export function CookieBanner() {
             transition: 'color 0.2s, border-color 0.2s',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = '#E8E8E3'
-            e.currentTarget.style.borderColor = '#292929'
+            e.currentTarget.style.color = 'var(--phosphor-white)'
+            e.currentTarget.style.borderColor = 'var(--active-gray)'
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = '#5D5D5D'
-            e.currentTarget.style.borderColor = '#1a1a1a'
+            e.currentTarget.style.color = 'var(--muted-steel)'
+            e.currentTarget.style.borderColor = 'var(--hairline)'
           }}
         >
           REJECT (ALSO DOESN'T MATTER)

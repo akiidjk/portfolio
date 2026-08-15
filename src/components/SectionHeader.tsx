@@ -11,22 +11,34 @@ export function SectionHeader({ index, title, right }: { index: string; title: s
         flexWrap: isMobile ? 'wrap' : 'nowrap',
         gap: isMobile ? 10 : 20,
         paddingBottom: 18,
-        borderBottom: '1px solid #1a1a1a',
+        borderBottom: '1px solid var(--hairline)',
       }}
     >
-      <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#292929', letterSpacing: '0.12em' }}>
+      <span
+        style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: 'var(--active-gray)', letterSpacing: '0.12em' }}
+      >
         [{index}]
       </span>
-      <span style={{ fontFamily: 'Inter', fontWeight: 700, fontSize: 12, color: '#E8E8E3', letterSpacing: '0.16em' }}>
+      <span
+        style={{
+          fontFamily: 'Inter',
+          fontWeight: 700,
+          fontSize: 12,
+          color: 'var(--phosphor-white)',
+          letterSpacing: '0.16em',
+        }}
+      >
         {title}
       </span>
-      <div style={{ flex: 1, height: 1, backgroundColor: '#111', minWidth: isMobile ? 16 : undefined }} />
+      <div
+        style={{ flex: 1, height: 1, backgroundColor: 'var(--divider-black)', minWidth: isMobile ? 16 : undefined }}
+      />
       {right && (
         <span
           style={{
             fontFamily: 'JetBrains Mono',
             fontSize: 9,
-            color: '#292929',
+            color: 'var(--active-gray)',
             letterSpacing: '0.1em',
             flexBasis: isMobile ? '100%' : 'auto',
           }}

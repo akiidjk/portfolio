@@ -96,7 +96,7 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
         position: 'fixed',
         inset: 0,
         zIndex: 100000,
-        backgroundColor: '#080808',
+        backgroundColor: 'var(--void-black)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -123,7 +123,7 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
         style={{
           fontFamily: 'JetBrains Mono',
           fontSize: 10,
-          color: '#3D3D3D',
+          color: 'var(--dim-label)',
           letterSpacing: '0.2em',
           marginBottom: 28,
           textTransform: 'uppercase',
@@ -141,8 +141,8 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
           width: 'min(46vw, 380px)',
           aspectRatio: '1 / 1',
           overflow: 'hidden',
-          border: '1px solid #1a1a1a',
-          backgroundColor: '#0d0d0d',
+          border: '1px solid var(--hairline)',
+          backgroundColor: 'var(--panel-black)',
         }}
       >
         <video
@@ -177,7 +177,7 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
             justifyContent: 'space-between',
             fontFamily: 'JetBrains Mono',
             fontSize: 10,
-            color: '#5D5D5D',
+            color: 'var(--muted-steel)',
             letterSpacing: '0.1em',
             marginBottom: 8,
           }}
@@ -189,15 +189,15 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
           style={{
             width: '100%',
             height: 2,
-            backgroundColor: '#1a1a1a',
+            backgroundColor: 'var(--hairline)',
           }}
         >
           <div
             style={{
               width: `${progress}%`,
               height: '100%',
-              backgroundColor: '#C7FF2E',
-              boxShadow: '0 0 6px #C7FF2E',
+              backgroundColor: 'var(--signal-green)',
+              boxShadow: '0 0 6px var(--signal-green)',
               transition: 'width 0.15s linear',
             }}
           />
@@ -210,7 +210,7 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
           zIndex: 1,
           fontFamily: 'JetBrains Mono',
           fontSize: 9,
-          color: '#292929',
+          color: 'var(--active-gray)',
           letterSpacing: '0.1em',
           marginTop: 16,
         }}

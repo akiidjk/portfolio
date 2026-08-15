@@ -37,7 +37,7 @@ export function NotFound({ path, onNavigateHome }: { path: string; onNavigateHom
           position: 'absolute',
           inset: 0,
           background:
-            'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 4px)',
+            'repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scanline-strong) 2px, var(--scanline-strong) 4px)',
           zIndex: 0,
         }}
       />
@@ -55,7 +55,7 @@ export function NotFound({ path, onNavigateHome }: { path: string; onNavigateHom
           style={{
             fontFamily: 'JetBrains Mono',
             fontSize: isMobile ? 9 : 10,
-            color: '#3D3D3D',
+            color: 'var(--dim-label)',
             letterSpacing: '0.2em',
             marginBottom: isMobile ? 16 : 24,
             textTransform: 'uppercase',
@@ -71,18 +71,18 @@ export function NotFound({ path, onNavigateHome }: { path: string; onNavigateHom
             fontSize: 'clamp(38px, 9vw, 104px)',
             lineHeight: 0.92,
             letterSpacing: '-0.045em',
-            color: '#E8E8E3',
+            color: 'var(--phosphor-white)',
             margin: 0,
           }}
         >
-          404<span style={{ color: '#C7FF2E' }}>_</span>
+          404<span style={{ color: 'var(--signal-green)' }}>_</span>
         </h1>
 
         <p
           style={{
             fontFamily: 'JetBrains Mono',
             fontSize: isMobile ? 12 : 13,
-            color: '#5D5D5D',
+            color: 'var(--muted-steel)',
             letterSpacing: '0.02em',
             margin: isMobile ? '16px 0 28px' : '20px 0 36px',
             maxWidth: 420,
@@ -95,13 +95,13 @@ export function NotFound({ path, onNavigateHome }: { path: string; onNavigateHom
           style={{
             display: 'inline-block',
             textAlign: 'left',
-            border: '1px solid #1a1a1a',
-            backgroundColor: '#0d0d0d',
+            border: '1px solid var(--hairline)',
+            backgroundColor: 'var(--panel-black)',
             padding: isMobile ? '16px 18px' : '18px 24px',
             marginBottom: isMobile ? 28 : 36,
             fontFamily: 'JetBrains Mono',
             fontSize: isMobile ? 10 : 11,
-            color: '#5D5D5D',
+            color: 'var(--muted-steel)',
             lineHeight: 2,
             maxWidth: '90vw',
             overflowWrap: 'break-word',
@@ -116,8 +116,8 @@ export function NotFound({ path, onNavigateHome }: { path: string; onNavigateHom
             onClick={onNavigateHome}
             style={{
               background: 'none',
-              border: '1px solid #1a1a1a',
-              color: '#5D5D5D',
+              border: '1px solid var(--hairline)',
+              color: 'var(--muted-steel)',
               fontFamily: 'JetBrains Mono',
               fontSize: 10,
               padding: isMobile ? '14px 18px' : '10px 18px',
@@ -126,12 +126,12 @@ export function NotFound({ path, onNavigateHome }: { path: string; onNavigateHom
               transition: 'color 0.2s, border-color 0.2s',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.color = '#E8E8E3'
-              e.currentTarget.style.borderColor = '#292929'
+              e.currentTarget.style.color = 'var(--phosphor-white)'
+              e.currentTarget.style.borderColor = 'var(--active-gray)'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = '#5D5D5D'
-              e.currentTarget.style.borderColor = '#1a1a1a'
+              e.currentTarget.style.color = 'var(--muted-steel)'
+              e.currentTarget.style.borderColor = 'var(--hairline)'
             }}
           >
             ← BACK TO INDEX

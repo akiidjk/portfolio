@@ -24,7 +24,7 @@ export function Hero() {
         flexDirection: 'column',
         justifyContent: 'flex-end',
         padding: isMobile ? '0 20px 40px' : '0 40px 56px',
-        borderBottom: '1px solid #1a1a1a',
+        borderBottom: '1px solid var(--hairline)',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -42,7 +42,7 @@ export function Hero() {
           justifyContent: isMobile ? 'center' : 'space-between',
           fontFamily: 'JetBrains Mono',
           fontSize: isMobile ? 9 : 10,
-          color: '#3D3D3D',
+          color: 'var(--dim-label)',
           letterSpacing: '0.1em',
           zIndex: 1,
         }}
@@ -73,7 +73,7 @@ export function Hero() {
           style={{
             fontFamily: 'JetBrains Mono',
             fontSize: isMobile ? 9 : 10,
-            color: '#3D3D3D',
+            color: 'var(--dim-label)',
             letterSpacing: '0.2em',
             marginBottom: isMobile ? 14 : 20,
             textTransform: 'uppercase',
@@ -89,7 +89,7 @@ export function Hero() {
             fontSize: 'clamp(42px, 13vw, 156px)',
             lineHeight: 0.9,
             letterSpacing: '-0.045em',
-            color: '#E8E8E3',
+            color: 'var(--phosphor-white)',
             margin: isMobile ? '0 0 28px' : '0 0 48px',
             overflowWrap: 'break-word',
           }}
@@ -97,7 +97,7 @@ export function Hero() {
           FRANCESCO
           <br />
           MEMOLI
-          <span style={{ color: '#C7FF2E' }}>™</span>
+          <span style={{ color: 'var(--signal-green)' }}>™</span>
         </h1>
 
         <div
@@ -113,7 +113,7 @@ export function Hero() {
               style={{
                 fontFamily: 'JetBrains Mono',
                 fontSize: isMobile ? 12 : 13,
-                color: '#999',
+                color: 'var(--body-gray)',
                 lineHeight: 1.6,
                 margin: 0,
                 maxWidth: 550,
@@ -126,7 +126,7 @@ export function Hero() {
                   display: 'inline-block',
                   width: 8,
                   height: 14,
-                  backgroundColor: '#C7FF2E',
+                  backgroundColor: 'var(--signal-green)',
                   marginLeft: 2,
                   verticalAlign: 'middle',
                   animation: 'blink 1s step-end infinite',
@@ -137,7 +137,7 @@ export function Hero() {
               style={{
                 fontFamily: 'JetBrains Mono',
                 fontSize: 11,
-                color: '#3D3D3D',
+                color: 'var(--dim-label)',
                 margin: '12px 0 0',
                 letterSpacing: '0.05em',
               }}
@@ -157,7 +157,7 @@ export function Hero() {
             right: 40,
             fontFamily: 'JetBrains Mono',
             fontSize: 9,
-            color: '#3D3D3D',
+            color: 'var(--dim-label)',
             letterSpacing: '0.15em',
             writingMode: 'vertical-rl',
             zIndex: 1,

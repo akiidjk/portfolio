@@ -4,12 +4,12 @@ description: A dark, terminal-instrumented portfolio for a CTF player and system
 colors:
   void-black: "#080808"
   panel-black: "#0d0d0d"
-  divider-black: "#111111"
-  hairline: "#1a1a1a"
-  active-gray: "#292929"
-  dim-label: "#3D3D3D"
-  muted-steel: "#5D5D5D"
-  soft-gray: "#666666"
+  divider-black: "#1c1c1c"
+  hairline: "#2a2a2a"
+  active-gray: "#404040"
+  dim-label: "#565656"
+  muted-steel: "#7A7A7A"
+  soft-gray: "#868686"
   body-gray: "#999999"
   phosphor-white: "#E8E8E3"
   signal-green: "#C7FF2E"
@@ -131,12 +131,12 @@ One accent, used sparingly, against a near-black neutral ramp with seven distinc
 ### Neutral
 - **Void Black** (`#080808`): the page background, and the resting fill of small dots/markers meant to look "off"/inactive.
 - **Panel Black** (`#0d0d0d`): elevated surface — cards, status panels, image containers. The one step up from the void.
-- **Divider Black** (`#111111`): thin structural rules (the horizontal fill line inside `SectionHeader`) — reserved for that specific role, not swapped with Hairline.
-- **Hairline** (`#1a1a1a`): the default border and divider color everywhere — the single most-used color in the system after the neutrals it separates.
-- **Active Gray** (`#292929`): the *only* border state change — hairline steps up exactly one shade here on hover/active. Never a color hue-shift, never a thicker border.
-- **Dim Label** (`#3D3D3D`): resting-state mono labels, index numbers, inactive status dots, and the `[ IMAGE UNAVAILABLE ]` text on image-load-failure placeholders.
-- **Muted Steel** (`#5D5D5D`): secondary mono text — nav links at rest, metadata labels, timestamps.
-- **Soft Gray** (`#666666`): a step lighter than Muted Steel, used only for secondary Inter body paragraphs (`About`'s supporting text) below the lead paragraph.
+- **Divider Black** (`#1c1c1c`): thin structural rules (the horizontal fill line inside `SectionHeader`) — reserved for that specific role, not swapped with Hairline.
+- **Hairline** (`#2a2a2a`): the default border and divider color everywhere — the single most-used color in the system after the neutrals it separates.
+- **Active Gray** (`#404040`): the *only* border state change — hairline steps up exactly one shade here on hover/active. Never a color hue-shift, never a thicker border.
+- **Dim Label** (`#565656`): resting-state mono labels, index numbers, inactive status dots, and the `[ IMAGE UNAVAILABLE ]` text on image-load-failure placeholders.
+- **Muted Steel** (`#7A7A7A`): secondary mono text — nav links at rest, metadata labels, timestamps.
+- **Soft Gray** (`#868686`): a step lighter than Muted Steel, used only for secondary Inter body paragraphs (`About`'s supporting text) below the lead paragraph.
 - **Body Gray** (`#999999`): Inter prose color — the primary paragraph color.
 - **Phosphor White** (`#E8E8E3`): primary text — headlines, titles, active nav state, hovered list-row titles. Never pure `#fff`.
 - **Scanline Light** / **Scanline Strong** (`rgba(0,0,0,0.08)` / `rgba(0,0,0,0.12)`): the repeating-gradient scanline texture over images, at two intentional strengths depending on how busy the underlying image is — not a color per se, but the one non-neutral-gray value pair worth naming since it recurs across every image treatment.
@@ -144,7 +144,7 @@ One accent, used sparingly, against a near-black neutral ramp with seven distinc
 ### Named Rules
 **The One Signal Rule.** Signal Green is the only accent color anywhere in the system. It marks exactly one thing at a time — an active state, a live indicator, a hovered link. It never appears twice for two different reasons on the same screen, and it never decorates.
 
-**The One-Shade Hover Rule.** Border-color state changes move exactly one step: Hairline (`#1a1a1a`) → Active Gray (`#292929`). No border ever changes hue, width, or style on interaction — only that one shade step, or a swap to Signal Green when the element is the thing actively selected.
+**The One-Shade Hover Rule.** Border-color state changes move exactly one step: Hairline (`#2a2a2a`) → Active Gray (`#404040`). No border ever changes hue, width, or style on interaction — only that one shade step, or a swap to Signal Green when the element is the thing actively selected.
 
 ## Typography
 

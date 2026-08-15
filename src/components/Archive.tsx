@@ -13,7 +13,10 @@ export function Archive() {
   const isMobile = useIsMobile()
 
   return (
-    <section id="archive" style={{ padding: isMobile ? '56px 20px' : '80px 40px', borderBottom: '1px solid #1a1a1a' }}>
+    <section
+      id="archive"
+      style={{ padding: isMobile ? '56px 20px' : '80px 40px', borderBottom: '1px solid var(--hairline)' }}
+    >
       <SectionHeader index="02" title="ARCHIVE" right="CHRONOLOGICAL" />
 
       <div
@@ -25,7 +28,7 @@ export function Archive() {
         }}
       >
         {/* Timeline */}
-        <div style={{ borderLeft: '1px solid #1a1a1a', paddingLeft: isMobile ? 24 : 36 }}>
+        <div style={{ borderLeft: '1px solid var(--hairline)', paddingLeft: isMobile ? 24 : 36 }}>
           {ARCHIVE_ENTRIES.map((entry, i) => (
             <div
               key={i}
@@ -43,15 +46,15 @@ export function Archive() {
                   top: 5,
                   width: 7,
                   height: 7,
-                  border: '1px solid #292929',
-                  backgroundColor: '#080808',
+                  border: '1px solid var(--active-gray)',
+                  backgroundColor: 'var(--void-black)',
                 }}
               />
               <div
                 style={{
                   fontFamily: 'JetBrains Mono',
                   fontSize: 10,
-                  color: '#3D3D3D',
+                  color: 'var(--dim-label)',
                   minWidth: 40,
                   paddingTop: 1,
                 }}
@@ -64,20 +67,22 @@ export function Archive() {
                     fontFamily: 'Inter',
                     fontSize: 15,
                     fontWeight: 500,
-                    color: '#E8E8E3',
+                    color: 'var(--phosphor-white)',
                     letterSpacing: '-0.01em',
                   }}
                 >
                   {entry.event}
                 </div>
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginTop: 5 }}>
-                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#3D3D3D' }}>{entry.org}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: 'var(--dim-label)' }}>
+                    {entry.org}
+                  </span>
                   <span
                     style={{
                       fontFamily: 'JetBrains Mono',
                       fontSize: 8,
-                      color: '#292929',
-                      border: '1px solid #1a1a1a',
+                      color: 'var(--active-gray)',
+                      border: '1px solid var(--hairline)',
                       padding: '1px 6px',
                       letterSpacing: '0.1em',
                     }}
@@ -93,12 +98,12 @@ export function Archive() {
         {/* Stats */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
           {STATS.map((s) => (
-            <div key={s.label} style={{ borderBottom: '1px solid #1a1a1a', paddingBottom: 28 }}>
+            <div key={s.label} style={{ borderBottom: '1px solid var(--hairline)', paddingBottom: 28 }}>
               <div
                 style={{
                   fontFamily: 'JetBrains Mono',
                   fontSize: 9,
-                  color: '#3D3D3D',
+                  color: 'var(--dim-label)',
                   letterSpacing: '0.18em',
                   marginBottom: 10,
                 }}
@@ -110,7 +115,7 @@ export function Archive() {
                   fontFamily: 'Inter',
                   fontWeight: 700,
                   fontSize: 56,
-                  color: '#E8E8E3',
+                  color: 'var(--phosphor-white)',
                   letterSpacing: '-0.05em',
                   lineHeight: 1,
                 }}

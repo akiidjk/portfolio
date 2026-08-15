@@ -15,14 +15,22 @@ export function ProjectPreviewCard({
   return (
     <div
       style={{
-        border: '1px solid #1a1a1a',
-        backgroundColor: '#0d0d0d',
+        border: '1px solid var(--hairline)',
+        backgroundColor: 'var(--panel-black)',
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
       }}
     >
-      <div style={{ position: 'relative', height: 200, flexShrink: 0, overflow: 'hidden', backgroundColor: '#111' }}>
+      <div
+        style={{
+          position: 'relative',
+          height: 200,
+          flexShrink: 0,
+          overflow: 'hidden',
+          backgroundColor: 'var(--divider-black)',
+        }}
+      >
         {imageError ? (
           <div
             style={{
@@ -33,7 +41,7 @@ export function ProjectPreviewCard({
               justifyContent: 'center',
               fontFamily: 'JetBrains Mono',
               fontSize: 10,
-              color: '#3D3D3D',
+              color: 'var(--dim-label)',
               letterSpacing: '0.12em',
             }}
           >
@@ -59,8 +67,8 @@ export function ProjectPreviewCard({
             top: 10,
             right: 10,
             background: 'rgba(8,8,8,0.85)',
-            border: '1px solid #1a1a1a',
-            color: '#999',
+            border: '1px solid var(--hairline)',
+            color: 'var(--body-gray)',
             width: 26,
             height: 26,
             lineHeight: 1,
@@ -79,11 +87,11 @@ export function ProjectPreviewCard({
             left: 10,
             fontFamily: 'JetBrains Mono',
             fontSize: 9,
-            color: '#5D5D5D',
+            color: 'var(--muted-steel)',
             backgroundColor: 'rgba(8,8,8,0.8)',
             padding: '3px 8px',
             letterSpacing: '0.12em',
-            border: '1px solid #1a1a1a',
+            border: '1px solid var(--hairline)',
           }}
         >
           {project.id}
@@ -95,7 +103,7 @@ export function ProjectPreviewCard({
           style={{
             fontFamily: 'JetBrains Mono',
             fontSize: 9,
-            color: '#3D3D3D',
+            color: 'var(--dim-label)',
             letterSpacing: '0.1em',
             marginBottom: 8,
           }}
@@ -108,16 +116,25 @@ export function ProjectPreviewCard({
             fontWeight: 700,
             fontSize: 24,
             letterSpacing: '-0.03em',
-            color: '#E8E8E3',
+            color: 'var(--phosphor-white)',
             margin: '0 0 6px',
           }}
         >
           {project.title}
         </h3>
-        <div style={{ fontFamily: 'JetBrains Mono', fontSize: 11, color: '#5D5D5D', marginBottom: 16 }}>
+        <div style={{ fontFamily: 'JetBrains Mono', fontSize: 11, color: 'var(--muted-steel)', marginBottom: 16 }}>
           {project.subtitle}
         </div>
-        <p style={{ fontFamily: 'Inter', fontSize: 13, color: '#999', lineHeight: 1.6, margin: '0 0 20px', flex: 1 }}>
+        <p
+          style={{
+            fontFamily: 'Inter',
+            fontSize: 13,
+            color: 'var(--body-gray)',
+            lineHeight: 1.6,
+            margin: '0 0 20px',
+            flex: 1,
+          }}
+        >
           {project.description}
         </p>
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
@@ -127,8 +144,8 @@ export function ProjectPreviewCard({
               style={{
                 fontFamily: 'JetBrains Mono',
                 fontSize: 9,
-                color: '#3D3D3D',
-                border: '1px solid #1a1a1a',
+                color: 'var(--dim-label)',
+                border: '1px solid var(--hairline)',
                 padding: '2px 7px',
                 letterSpacing: '0.1em',
               }}
@@ -140,8 +157,8 @@ export function ProjectPreviewCard({
         <button
           onClick={onOpen}
           style={{
-            backgroundColor: '#C7FF2E',
-            color: '#080808',
+            backgroundColor: 'var(--signal-green)',
+            color: 'var(--void-black)',
             border: 'none',
             padding: '12px 20px',
             fontFamily: 'JetBrains Mono',

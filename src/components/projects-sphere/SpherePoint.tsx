@@ -10,7 +10,9 @@ interface SpherePointProps {
   onClick: () => void
 }
 
-const ACCENT_COLOR = new THREE.Color('#C7FF2E')
+// THREE.Color can't resolve CSS var() — kept as literal hex, mirrored from
+// the --signal-green / --hairline tokens in index.css.
+const ACCENT_COLOR = new THREE.Color('#c7ff2e')
 const MATCH_COLOR = new THREE.Color('#9a9a94')
 const DIM_COLOR = new THREE.Color('#2a2a2a')
 
@@ -75,7 +77,8 @@ export function SpherePoint({ position, isActive, isMatch, onPointerOver, onClic
       {/* Visible dot */}
       <mesh ref={dotRef}>
         <sphereGeometry args={[0.045, 12, 12]} />
-        <meshBasicMaterial ref={dotMaterialRef} color="#5D5D5D" transparent opacity={0.6} toneMapped={false} />
+        {/* THREE.Color can't resolve CSS var() — literal, mirrors --muted-steel; overridden imperatively per-frame below */}
+        <meshBasicMaterial ref={dotMaterialRef} color="#7a7a7a" transparent opacity={0.6} toneMapped={false} />
       </mesh>
     </group>
   )

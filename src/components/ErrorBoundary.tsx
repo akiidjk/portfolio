@@ -40,7 +40,7 @@ export class ErrorBoundary extends Component<Props, State> {
             style={{
               fontFamily: 'JetBrains Mono',
               fontSize: 10,
-              color: '#3D3D3D',
+              color: 'var(--dim-label)',
               letterSpacing: '0.2em',
               marginBottom: 20,
               textTransform: 'uppercase',
@@ -52,7 +52,7 @@ export class ErrorBoundary extends Component<Props, State> {
             style={{
               fontFamily: 'JetBrains Mono',
               fontSize: 13,
-              color: '#5D5D5D',
+              color: 'var(--muted-steel)',
               maxWidth: 420,
               lineHeight: 1.6,
               margin: '0 0 28px',
@@ -64,8 +64,8 @@ export class ErrorBoundary extends Component<Props, State> {
             onClick={() => window.location.reload()}
             style={{
               background: 'none',
-              border: '1px solid #1a1a1a',
-              color: '#5D5D5D',
+              border: '1px solid var(--hairline)',
+              color: 'var(--muted-steel)',
               fontFamily: 'JetBrains Mono',
               fontSize: 10,
               padding: '10px 18px',

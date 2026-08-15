@@ -32,8 +32,12 @@ export function Cursor() {
         mixBlendMode: 'difference',
       }}
     >
-      <div style={{ position: 'absolute', width: 1, height: 14, background: '#E8E8E3', top: 2, left: 8.5 }} />
-      <div style={{ position: 'absolute', width: 14, height: 1, background: '#E8E8E3', left: 2, top: 8.5 }} />
+      <div
+        style={{ position: 'absolute', width: 1, height: 14, background: 'var(--phosphor-white)', top: 2, left: 8.5 }}
+      />
+      <div
+        style={{ position: 'absolute', width: 14, height: 1, background: 'var(--phosphor-white)', left: 2, top: 8.5 }}
+      />
     </div>
   )
 }

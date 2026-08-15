@@ -10,8 +10,8 @@ function StackChip({ label }: { label: string }) {
       style={{
         fontFamily: 'JetBrains Mono',
         fontSize: 9,
-        color: '#5D5D5D',
-        border: '1px solid #1a1a1a',
+        color: 'var(--muted-steel)',
+        border: '1px solid var(--hairline)',
         padding: '2px 8px',
         letterSpacing: '0.08em',
         whiteSpace: 'nowrap',
@@ -29,8 +29,8 @@ function StatusDot({ active }: { active: boolean }) {
         width: 5,
         height: 5,
         borderRadius: '50%',
-        backgroundColor: active ? '#C7FF2E' : '#3D3D3D',
-        boxShadow: active ? '0 0 5px #C7FF2E' : 'none',
+        backgroundColor: active ? 'var(--signal-green)' : 'var(--dim-label)',
+        boxShadow: active ? '0 0 5px var(--signal-green)' : 'none',
         flexShrink: 0,
       }}
     />
@@ -54,8 +54,8 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
         alignItems: 'center',
         gap: isMobile ? 12 : 24,
         padding: isMobile ? '16px 4px 16px 14px' : '20px 20px',
-        borderBottom: '1px solid #1a1a1a',
-        backgroundColor: hovered ? '#0d0d0d' : 'transparent',
+        borderBottom: '1px solid var(--hairline)',
+        backgroundColor: hovered ? 'var(--panel-black)' : 'transparent',
         cursor: 'none',
         transition: 'background-color 0.25s',
       }}
@@ -68,7 +68,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
           top: 0,
           bottom: 0,
           width: 3,
-          backgroundColor: '#C7FF2E',
+          backgroundColor: 'var(--signal-green)',
           transform: hovered ? 'scaleY(1)' : 'scaleY(0)',
           transformOrigin: 'top',
           transition: 'transform 0.3s ease',
@@ -80,7 +80,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
         style={{
           fontFamily: 'JetBrains Mono',
           fontSize: 11,
-          color: hovered ? '#C7FF2E' : '#3D3D3D',
+          color: hovered ? 'var(--signal-green)' : 'var(--dim-label)',
           letterSpacing: '0.05em',
           transition: 'color 0.25s',
         }}
@@ -97,7 +97,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
               fontWeight: 700,
               fontSize: isMobile ? 15 : 17,
               letterSpacing: '-0.02em',
-              color: '#E8E8E3',
+              color: 'var(--phosphor-white)',
               margin: 0,
               whiteSpace: 'nowrap',
               overflow: 'hidden',
@@ -110,7 +110,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
             style={{
               fontFamily: 'JetBrains Mono',
               fontSize: 10,
-              color: '#3D3D3D',
+              color: 'var(--dim-label)',
               letterSpacing: '0.05em',
               whiteSpace: 'nowrap',
             }}
@@ -130,7 +130,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
                 gap: 5,
                 fontFamily: 'JetBrains Mono',
                 fontSize: 9,
-                color: '#5D5D5D',
+                color: 'var(--muted-steel)',
                 letterSpacing: '0.05em',
               }}
             >
@@ -169,7 +169,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
             gap: 8,
             fontFamily: 'JetBrains Mono',
             fontSize: 10,
-            color: '#5D5D5D',
+            color: 'var(--muted-steel)',
             letterSpacing: '0.05em',
             whiteSpace: 'nowrap',
           }}
@@ -184,7 +184,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
         style={{
           fontFamily: 'JetBrains Mono',
           fontSize: 14,
-          color: hovered ? '#E8E8E3' : '#292929',
+          color: hovered ? 'var(--phosphor-white)' : 'var(--active-gray)',
           transform: hovered ? 'translateX(0)' : 'translateX(-4px)',
           opacity: hovered ? 1 : 0.6,
           transition: 'transform 0.25s ease, color 0.25s, opacity 0.25s',
@@ -198,7 +198,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
 
 export function ProjectsList({ projects, onSelect }: { projects: Project[]; onSelect: (project: Project) => void }) {
   return (
-    <div style={{ borderTop: '1px solid #1a1a1a' }}>
+    <div style={{ borderTop: '1px solid var(--hairline)' }}>
       {projects.map((project, i) => (
         <ProjectRow key={project.id} project={project} index={i} onClick={() => onSelect(project)} />
       ))}

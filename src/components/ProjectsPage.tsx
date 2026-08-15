@@ -19,7 +19,7 @@ const earliestYear = years.length ? Math.min(...years) : undefined
 
 function SearchIcon() {
   return (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5D5D5D" strokeWidth="2">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted-steel)" strokeWidth="2">
       <circle cx="11" cy="11" r="7" />
       <line x1="21" y1="21" x2="16.65" y2="16.65" />
     </svg>
@@ -52,7 +52,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
   }, [query, category])
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#080808' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--void-black)' }}>
       {/* Header */}
       <header
         style={{
@@ -63,7 +63,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
           justifyContent: 'space-between',
           alignItems: 'center',
           padding: isMobile ? '14px 16px' : '18px 40px',
-          borderBottom: '1px solid #1a1a1a',
+          borderBottom: '1px solid var(--hairline)',
           backgroundColor: 'rgba(8,8,8,0.96)',
           backdropFilter: 'blur(12px)',
           gap: isMobile ? 12 : 24,
@@ -83,7 +83,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             fontFamily: 'JetBrains Mono',
             fontSize: 11,
             letterSpacing: '0.1em',
-            color: '#5D5D5D',
+            color: 'var(--muted-steel)',
           }}
         >
           ← INDEX
@@ -94,7 +94,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             style={{
               fontFamily: 'JetBrains Mono',
               fontSize: 11,
-              color: '#E8E8E3',
+              color: 'var(--phosphor-white)',
               letterSpacing: '0.15em',
               flexShrink: 0,
             }}
@@ -108,7 +108,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             display: 'flex',
             alignItems: 'center',
             gap: 10,
-            border: '1px solid #1a1a1a',
+            border: '1px solid var(--hairline)',
             padding: '8px 14px',
             flex: isMobile ? 1 : '0 1 auto',
             minWidth: isMobile ? 0 : 200,
@@ -128,7 +128,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
               fontFamily: 'JetBrains Mono',
               fontSize: 10,
               letterSpacing: '0.1em',
-              color: '#E8E8E3',
+              color: 'var(--phosphor-white)',
             }}
           />
         </div>
@@ -138,7 +138,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
       <section
         style={{
           padding: isMobile ? '48px 20px' : '80px 40px',
-          borderBottom: '1px solid #1a1a1a',
+          borderBottom: '1px solid var(--hairline)',
           display: 'grid',
           gridTemplateColumns: isMobile ? '1fr' : '1.1fr 0.9fr',
           gap: isMobile ? 32 : 60,
@@ -150,7 +150,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             style={{
               fontFamily: 'JetBrains Mono',
               fontSize: 10,
-              color: '#3D3D3D',
+              color: 'var(--dim-label)',
               letterSpacing: '0.2em',
               marginBottom: 20,
               textTransform: 'uppercase',
@@ -166,7 +166,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
               fontSize: 'clamp(38px, 9vw, 104px)',
               lineHeight: 0.92,
               letterSpacing: '-0.045em',
-              color: '#E8E8E3',
+              color: 'var(--phosphor-white)',
               margin: '0 0 28px',
               textTransform: 'uppercase',
               overflowWrap: 'break-word',
@@ -176,14 +176,14 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             <br />
             for the
             <br />
-            machine<span style={{ color: '#C7FF2E' }}>.</span>
+            machine<span style={{ color: 'var(--signal-green)' }}>.</span>
           </h1>
 
           <p
             style={{
               fontFamily: 'JetBrains Mono',
               fontSize: 13,
-              color: '#999',
+              color: 'var(--body-gray)',
               lineHeight: 1.7,
               margin: '0 0 32px',
               maxWidth: 460,
@@ -197,8 +197,8 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             <button
               onClick={() => catalogRef.current?.scrollIntoView({ behavior: 'smooth' })}
               style={{
-                backgroundColor: '#C7FF2E',
-                color: '#080808',
+                backgroundColor: 'var(--signal-green)',
+                color: 'var(--void-black)',
                 border: 'none',
                 padding: '14px 28px',
                 fontFamily: 'JetBrains Mono',
@@ -214,7 +214,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
               style={{
                 fontFamily: 'JetBrains Mono',
                 fontSize: 10,
-                color: '#3D3D3D',
+                color: 'var(--dim-label)',
                 letterSpacing: '0.08em',
               }}
             >
@@ -228,8 +228,8 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             position: 'relative',
             aspectRatio: '3 / 4',
             overflow: 'hidden',
-            border: '1px solid #1a1a1a',
-            backgroundColor: '#0d0d0d',
+            border: '1px solid var(--hairline)',
+            backgroundColor: 'var(--panel-black)',
           }}
         >
           <img
@@ -247,7 +247,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
               position: 'absolute',
               inset: 0,
               background:
-                'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 4px)',
+                'repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scanline-strong) 2px, var(--scanline-strong) 4px)',
             }}
           />
 
@@ -271,8 +271,8 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
                 height: 6,
                 borderRadius: '50%',
                 flexShrink: 0,
-                backgroundColor: '#C7FF2E',
-                boxShadow: '0 0 6px #C7FF2E',
+                backgroundColor: 'var(--signal-green)',
+                boxShadow: '0 0 6px var(--signal-green)',
               }}
             />
             <div>
@@ -280,7 +280,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
                 style={{
                   fontFamily: 'JetBrains Mono',
                   fontSize: 10,
-                  color: '#C7FF2E',
+                  color: 'var(--signal-green)',
                   letterSpacing: '0.1em',
                 }}
               >
@@ -290,7 +290,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
                 style={{
                   fontFamily: 'JetBrains Mono',
                   fontSize: 10,
-                  color: '#999',
+                  color: 'var(--body-gray)',
                   letterSpacing: '0.05em',
                 }}
               >
@@ -301,44 +301,13 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
         </div>
       </section>
 
-      {/* Category filters */}
-      <div
-        style={{
-          padding: isMobile ? '16px 20px' : '20px 40px',
-          borderBottom: '1px solid #1a1a1a',
-          display: 'flex',
-          gap: 10,
-          flexWrap: 'wrap',
-        }}
-      >
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setCategory(cat)}
-            style={{
-              background: 'none',
-              border: `1px solid ${category === cat ? '#C7FF2E' : '#1a1a1a'}`,
-              color: category === cat ? '#C7FF2E' : '#5D5D5D',
-              fontFamily: 'JetBrains Mono',
-              fontSize: 10,
-              letterSpacing: '0.08em',
-              padding: '8px 14px',
-              cursor: 'none',
-              transition: 'border-color 0.2s, color 0.2s',
-            }}
-          >
-            {cat.toUpperCase()}
-          </button>
-        ))}
-      </div>
-
       {/* Catalog */}
       <section ref={catalogRef} style={{ padding: isMobile ? '40px 20px 80px' : '60px 40px 140px' }}>
         <div
           style={{
             fontFamily: 'JetBrains Mono',
             fontSize: 10,
-            color: '#292929',
+            color: 'var(--active-gray)',
             letterSpacing: '0.15em',
             marginBottom: 32,
           }}
@@ -349,12 +318,12 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
         {filtered.length === 0 ? (
           <div
             style={{
-              border: '1px solid #1a1a1a',
+              border: '1px solid var(--hairline)',
               padding: '60px 40px',
               textAlign: 'center',
               fontFamily: 'JetBrains Mono',
               fontSize: 12,
-              color: '#3D3D3D',
+              color: 'var(--dim-label)',
               letterSpacing: '0.05em',
             }}
           >

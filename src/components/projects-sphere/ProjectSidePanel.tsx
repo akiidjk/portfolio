@@ -40,7 +40,7 @@ export function ProjectSidePanel({
               style={{
                 fontFamily: 'JetBrains Mono',
                 fontSize: 10,
-                color: '#3D3D3D',
+                color: 'var(--dim-label)',
                 letterSpacing: '0.1em',
                 marginBottom: 16,
                 lineHeight: 1.6,
@@ -49,7 +49,7 @@ export function ProjectSidePanel({
               [ {projects.length} PROJECT{projects.length === 1 ? '' : 'S'} ] — TAP A POINT ON THE SPHERE OR AN ENTRY
               BELOW
             </div>
-            <div style={{ border: '1px solid #1a1a1a', maxHeight: 480, overflowY: 'auto' }}>
+            <div style={{ border: '1px solid var(--hairline)', maxHeight: 480, overflowY: 'auto' }}>
               {projects.map((p, i) => (
                 <button
                   key={p.id}
@@ -60,22 +60,24 @@ export function ProjectSidePanel({
                     textAlign: 'left',
                     background: 'none',
                     border: 'none',
-                    borderBottom: i === projects.length - 1 ? 'none' : '1px solid #111',
+                    borderBottom: i === projects.length - 1 ? 'none' : '1px solid var(--divider-black)',
                     padding: '14px 16px',
                     cursor: 'none',
                     fontFamily: 'Inter',
                     fontSize: 13,
-                    color: '#999',
+                    color: 'var(--body-gray)',
                   }}
                 >
-                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#3D3D3D', marginRight: 10 }}>
+                  <span
+                    style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: 'var(--dim-label)', marginRight: 10 }}
+                  >
                     {p.id}
                   </span>
                   {p.title}
                 </button>
               ))}
               {projects.length === 0 && (
-                <div style={{ padding: 20, fontFamily: 'JetBrains Mono', fontSize: 11, color: '#3D3D3D' }}>
+                <div style={{ padding: 20, fontFamily: 'JetBrains Mono', fontSize: 11, color: 'var(--dim-label)' }}>
                   NO MATCHING PROJECTS.
                 </div>
               )}
