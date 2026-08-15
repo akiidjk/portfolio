@@ -3,10 +3,10 @@ import { useIsMobile } from '../hooks/useBreakpoint'
 import { SectionHeader } from './SectionHeader'
 
 const STATS = [
-  { label: 'CTF WINS', value: '12+' },
-  { label: 'TOOLS SHIPPED', value: '07' },
+  { label: 'CTF PARTICIPATIONS', value: '100+' },
+  { label: 'PROJECT SHIPPED', value: '10+' },
   { label: 'YEARS ACTIVE', value: '04' },
-  { label: 'COFFEE ∞', value: '∞' },
+  { label: 'COFFEE', value: 'A lot' },
 ]
 
 export function Archive() {
@@ -14,7 +14,7 @@ export function Archive() {
 
   return (
     <section id="archive" style={{ padding: isMobile ? '56px 20px' : '80px 40px', borderBottom: '1px solid #1a1a1a' }}>
-      <SectionHeader index="03" title="ARCHIVE" right="CHRONOLOGICAL" />
+      <SectionHeader index="02" title="ARCHIVE" right="CHRONOLOGICAL" />
 
       <div
         style={{

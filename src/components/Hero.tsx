@@ -4,7 +4,7 @@ import { useTypewriter } from '../hooks/useTypewriter'
 import { HeroCanvas } from './HeroCanvas'
 
 export function Hero() {
-  const typed = useTypewriter('Student at UNISA, Dev, CTF player and co-founder of @bytethecookies.', 28)
+  const typed = useTypewriter('Student at UNISA, CTF player and co-founder of @bytethecookies.', 28)
   const [ts, setTs] = useState('')
   const isMobile = useIsMobile()
 
@@ -79,7 +79,7 @@ export function Hero() {
             textTransform: 'uppercase',
           }}
         >
-          SOFTWARE / SECURITY / SYSTEMS
+          SECURITY / MICROSERVICES / DEVOPS
         </div>
 
         <h1
@@ -142,7 +142,7 @@ export function Hero() {
                 letterSpacing: '0.05em',
               }}
             >
-              I build software and break things to understand how they work.
+              Learn, learn, learn — never stop, and get better than yesterday.
             </p>
           </div>
         </div>

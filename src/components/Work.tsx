@@ -56,7 +56,7 @@ export function Work({ onViewAll }: { onViewAll: () => void }) {
           }}
         >
           <div style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#3D3D3D', letterSpacing: '0.2em' }}>
-            [ SYS.STATUS ]
+            [ CURRENT ]
           </div>
           <div>
             <p
@@ -70,18 +70,19 @@ export function Work({ onViewAll }: { onViewAll: () => void }) {
                 letterSpacing: '-0.02em',
               }}
             >
-              Currently deep in TLS 1.3 implementation, binary exploitation research, and compiler internals.
+              Building private client projects, competing in CTFs with ByteTheCookies every week, and leveling up in microservices and DevOps.
             </p>
             <div style={{ fontFamily: 'JetBrains Mono', fontSize: 11, color: '#3D3D3D', lineHeight: 2.4 }}>
-              <div>→ TLS 1.3 in Zig <span style={{ color: '#C7FF2E' }}>WIP</span></div>
-              <div>→ Binary exploitation</div>
-              <div>→ Compiler internals</div>
+              <div>→ Weekly CTFs w/ ByteTheCookies</div>
+              <div>→ Microservices & DevOps <span style={{ color: '#C7FF2E' }}>WIP</span></div>
+              <div>→ Web exploitation</div>
             </div>
           </div>
           <div style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#1a1a1a', letterSpacing: '0.1em' }}>
             ────────────────────
           </div>
         </div>
+
       </div>
 
       <div style={{ display: 'flex', justifyContent: isMobile ? 'stretch' : 'flex-end', marginTop: isMobile ? 20 : 24 }}>

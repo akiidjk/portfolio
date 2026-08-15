@@ -2,10 +2,9 @@ import { useIsMobile } from '../hooks/useBreakpoint'
 import { SectionHeader } from './SectionHeader'
 
 const SOCIAL_LINKS = [
-  { label: 'GITHUB', handle: 'akiidjk' },
-  { label: 'LINKEDIN', handle: 'akiidjk' },
-  { label: 'HACKTHEBOX', handle: 'akiidjk' },
-  { label: 'CTF TEAM', handle: 'ByteTheCookies' },
+  { label: 'GITHUB / INSTAGRAM / X', handle: 'akiidjk' },
+  { label: 'LINKEDIN', handle: 'akiidjk', url: 'https://www.linkedin.com/in/francesco-memoli-b05a542ab/' },
+  { label: 'CTF TEAM', handle: 'ByteTheCookies', url: 'https://bytethecookies.org' },
 ]
 
 export function Contact() {
@@ -13,7 +12,7 @@ export function Contact() {
 
   return (
     <section id="contact" style={{ padding: isMobile ? '56px 20px 60px' : '80px 40px 100px' }}>
-      <SectionHeader index="05" title="CONTACT" />
+      <SectionHeader index="04" title="CONTACT" />
 
       <div
         style={{
@@ -59,7 +58,14 @@ export function Contact() {
               <span style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#3D3D3D', letterSpacing: '0.15em' }}>
                 {link.label}
               </span>
-              <span style={{ fontFamily: 'JetBrains Mono', fontSize: 13, color: '#999' }}>{link.handle}</span>
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none', color: '#999' }}
+              >
+                <span className='hover:underline transition-all animation' style={{ fontFamily: 'JetBrains Mono', fontSize: 13, color: '#999' }}>{link.handle}</span>
+              </a>
             </div>
           ))}
         </div>
@@ -80,8 +86,8 @@ export function Contact() {
           letterSpacing: '0.12em',
         }}
       >
-        <span>akiidjk™ — 2026</span>
-        <span>BUILT CLOSE TO THE MACHINE</span>
+        <span>akiidjk@2026</span>
+        <span>TRYING TO DO BETTER</span>
         <span>SALERNO, ITALY — 41.89° N</span>
       </div>
     </section>
