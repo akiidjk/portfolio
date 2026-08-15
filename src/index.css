@@ -158,6 +158,29 @@ body::before {
     transition: opacity 0.3s;
 }
 
+/* Project detail modal open animation */
+@keyframes overlayFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .project-image::after {
     content: '';
     position: absolute;

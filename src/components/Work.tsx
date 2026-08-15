@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { PROJECTS } from '../data/projects'
 import type { Project } from '../types'
 import { useIsMobile } from '../hooks/useBreakpoint'
-import { ProjectCard } from './ProjectCard'
 import { ProjectDetail } from './ProjectDetail'
 import { SectionHeader } from './SectionHeader'
+import { SurveillanceTile } from './SurveillanceTile'
 
-// Work assumes at least 4 projects to fill the bento-style layout below.
-const [featuredProject, secondProject, thirdProject, fourthProject] = PROJECTS as [Project, Project, Project, Project]
+const FEED_COUNT = 8
+const featuredProjects = PROJECTS.slice(0, FEED_COUNT)
 
 export function Work({ onViewAll }: { onViewAll: () => void }) {
   const [selected, setSelected] = useState<Project | null>(null)
@@ -20,69 +20,64 @@ export function Work({ onViewAll }: { onViewAll: () => void }) {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: isMobile ? '1fr' : 'repeat(12, 1fr)',
-          gap: isMobile ? 16 : 2,
+          gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
+          gap: isMobile ? 10 : 2,
           marginTop: isMobile ? 24 : 40,
         }}
       >
-        {/* Featured large */}
-        <div style={{ gridColumn: isMobile ? 'auto' : '1 / 8' }}>
-          <ProjectCard project={featuredProject} featured onClick={() => setSelected(featuredProject)} />
-        </div>
+        {featuredProjects.map((project, i) => (
+          <SurveillanceTile key={project.id} project={project} index={i} onClick={() => setSelected(project)} />
+        ))}
 
-        {/* Two stacked right */}
-        <div style={{ gridColumn: isMobile ? 'auto' : '8 / 13', display: 'flex', flexDirection: 'column', gap: isMobile ? 16 : 2 }}>
-          <ProjectCard project={secondProject} onClick={() => setSelected(secondProject)} />
-          <ProjectCard project={thirdProject} onClick={() => setSelected(thirdProject)} />
-        </div>
-
-        {/* Bottom half */}
-        <div style={{ gridColumn: isMobile ? 'auto' : '1 / 7', marginTop: isMobile ? 0 : 2 }}>
-          <ProjectCard project={fourthProject} onClick={() => setSelected(fourthProject)} />
-        </div>
-
-        {/* Status block */}
+        {/* Control panel — the one feed that isn't a camera */}
         <div
           style={{
-            gridColumn: isMobile ? 'auto' : '7 / 13',
-            marginTop: isMobile ? 0 : 2,
-            border: '1px solid #1a1a1a',
+            position: 'relative',
+            aspectRatio: '16 / 8',
+            overflow: 'hidden',
             backgroundColor: '#0d0d0d',
-            padding: isMobile ? 24 : 36,
+            border: '1px solid #161616',
+            padding: isMobile ? '14px 16px' : '16px 18px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            gap: isMobile ? 20 : 0,
           }}
         >
-          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#3D3D3D', letterSpacing: '0.2em' }}>
-            [ CURRENT ]
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontFamily: 'JetBrains Mono', fontSize: 9, letterSpacing: '0.1em' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#C7FF2E' }}>
+              <span style={{ width: 5, height: 5, borderRadius: '50%', backgroundColor: 'currentColor' }} />
+              LIVE
+            </span>
+            <span style={{ color: '#5D5D5D' }}>PANEL-00</span>
           </div>
+
           <div>
+            <div style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#3D3D3D', letterSpacing: '0.15em', marginBottom: 10 }}>
+              [ CURRENT ]
+            </div>
             <p
               style={{
                 fontFamily: 'Inter',
                 fontWeight: 300,
-                fontSize: isMobile ? 18 : 22,
-                color: '#E8E8E3',
-                lineHeight: 1.4,
-                margin: '0 0 28px',
-                letterSpacing: '-0.02em',
+                fontSize: isMobile ? 13 : 14,
+                color: '#999',
+                lineHeight: 1.5,
+                margin: '0 0 12px',
               }}
             >
-              Building private client projects, competing in CTFs with ByteTheCookies every week, and leveling up in microservices and DevOps.
+              Building client projects, competing in weekly CTFs, leveling up in microservices &amp; DevOps.
             </p>
-            <div style={{ fontFamily: 'JetBrains Mono', fontSize: 11, color: '#3D3D3D', lineHeight: 2.4 }}>
+            <div style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#5D5D5D', lineHeight: 1.9 }}>
               <div>→ Weekly CTFs w/ ByteTheCookies</div>
-              <div>→ Microservices & DevOps <span style={{ color: '#C7FF2E' }}>WIP</span></div>
+              <div>→ Microservices &amp; DevOps <span style={{ color: '#C7FF2E' }}>WIP</span></div>
               <div>→ Web exploitation</div>
             </div>
           </div>
-          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#1a1a1a', letterSpacing: '0.1em' }}>
-            ────────────────────
+
+          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#1a1a1a', letterSpacing: '0.1em' }}>
+            ──────────────
           </div>
         </div>
-
       </div>
 
       <div style={{ display: 'flex', justifyContent: isMobile ? 'stretch' : 'flex-end', marginTop: isMobile ? 20 : 24 }}>

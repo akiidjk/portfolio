@@ -186,7 +186,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
               maxWidth: 460,
             }}
           >
-            Every tool, experiment and system I've shipped — from CTF infrastructure to emulators
+            Every tool, experiment and system I've shipped from CTF infrastructure to emulators
             and low-level utilities. Filter by domain or search to find something specific.
           </p>
 

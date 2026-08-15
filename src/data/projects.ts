@@ -112,35 +112,59 @@ export const PROJECTS: Project[] = [{
      "Created a flexible alternative to services such as webhook.site, localtunnel, and ngrok for self-managed environments.",
    featured: true,
    image: "https://opengraph.githubassets.com/1/akiidjk/adh"
- },
-
- {
-   id: "styx",
-   slug: "styx",
-   title: "Styx",
-   subtitle: "A next-generation firewall research project",
-   stack: ["Go", "eBPF", "XDP", "Linux", "Networking"],
-   year: "2024",
-   status: "Research project",
-   domain: "Cybersecurity / Network security",
-   description:
-     "A next-generation firewall concept focused on host-level and application-level protection using eBPF and XDP.",
-   detail: [
-     { label: "Repository", value: "akiidjk/Styx" },
-     { label: "Language", value: "Go" },
-     { label: "Technologies", value: "eBPF and XDP" },
-     { label: "License", value: "MIT" },
-     { label: "Stars", value: "7" }
-   ],
-   problem:
-     "Traditional firewall architectures can make it difficult to combine high-performance packet processing with flexible application-aware security policies.",
-   approach:
-     "Explored a modular firewall architecture based on eBPF and XDP to move security enforcement closer to the host and network stack.",
-   outcome:
-     "Established a strong systems-security prototype demonstrating interest in high-performance Linux networking and modern packet-processing techniques.",
-   featured: true,
-   image: "https://opengraph.githubassets.com/1/akiidjk/Styx"
- },
+  },
+  {
+    id: "project-armonia",
+    slug: "project-armonia",
+    title: "ProjectArmonia",
+    subtitle: "Armonia is a single-tenant funeral-management product.",
+    stack: ["Typescript", "NextJS", "Bun"," PostgreSQL", "TailwindCSS", "Elysia"],
+    year: "2026",
+    status: "Active development",
+    domain: "Web application / SaaS",
+    description:
+      "A single-tenant funeral-management product designed to streamline operations, scheduling, and client interactions for funeral service providers.",
+    detail: [
+      { label: "Language", value: "Typescript" },
+      { label: "Type", value: "SaaS" },
+      { label: "License", value: "Close source" },
+    ],
+    problem:
+      "Funeral service providers require a dedicated platform to manage operations, scheduling, and client interactions efficiently.",
+    approach:
+      "Developed a web application using modern technologies to provide a comprehensive solution for funeral management, focusing on user experience and operational efficiency.",
+    outcome:
+      "Created a specialized SaaS product that addresses the unique needs of funeral service providers, enhancing their ability to manage services and client relationships effectively.",
+    featured: true,
+    image: "/assets/armonia.png"
+  },
+  {
+    id: "chip-8",
+    slug: "chip-8",
+    title: "CHIP-8",
+    subtitle: "A CHIP-8 virtual machine implemented in Zig",
+    stack: ["Zig", "Emulation", "Virtual machines", "Low-level programming"],
+    year: "2026",
+    status: "Completed",
+    domain: "Emulation / Systems programming",
+    description:
+      "A standard CHIP-8 implementation in Zig created to explore emulation, instruction sets, memory, and low-level program execution.",
+    detail: [
+      { label: "Repository", value: "akiidjk/chip-8" },
+      { label: "Language", value: "Zig" },
+      { label: "Type", value: "Virtual machine emulator" },
+      { label: "License", value: "Not specified" },
+      { label: "Stars", value: "2" }
+    ],
+    problem:
+      "Emulators provide a compact way to understand how instruction sets, memory, registers, and execution cycles work together.",
+    approach:
+      "Implemented the CHIP-8 virtual machine in Zig, modeling its instruction set and runtime behavior at a low level.",
+    outcome:
+      "Produced a concise emulator project that highlights interest in computer architecture and systems programming.",
+    featured: true,
+    image: "https://opengraph.githubassets.com/1/akiidjk/chip-8"
+  },
 
  {
    id: "zinjector",
@@ -168,6 +192,33 @@ export const PROJECTS: Project[] = [{
      "Demonstrated practical low-level security research and the ability to work with Zig beyond conventional application development.",
    featured: true,
    image: "https://opengraph.githubassets.com/1/akiidjk/ZInjector"
+ },
+ {
+   id: "styx",
+   slug: "styx",
+   title: "Styx",
+   subtitle: "A next-generation firewall research project",
+   stack: ["Go", "eBPF", "XDP", "Linux", "Networking"],
+   year: "2024",
+   status: "Research project",
+   domain: "Cybersecurity / Network security",
+   description:
+     "A next-generation firewall concept focused on host-level and application-level protection using eBPF and XDP.",
+   detail: [
+     { label: "Repository", value: "akiidjk/Styx" },
+     { label: "Language", value: "Go" },
+     { label: "Technologies", value: "eBPF and XDP" },
+     { label: "License", value: "MIT" },
+     { label: "Stars", value: "7" }
+   ],
+   problem:
+     "Traditional firewall architectures can make it difficult to combine high-performance packet processing with flexible application-aware security policies.",
+   approach:
+     "Explored a modular firewall architecture based on eBPF and XDP to move security enforcement closer to the host and network stack.",
+   outcome:
+     "Established a strong systems-security prototype demonstrating interest in high-performance Linux networking and modern packet-processing techniques.",
+   featured: true,
+   image: "https://opengraph.githubassets.com/1/akiidjk/Styx"
  },
 
  {
@@ -224,34 +275,6 @@ export const PROJECTS: Project[] = [{
      "Created a practical systems tool that demonstrates Rust proficiency and an interest in performance-oriented software.",
    featured: true,
    image: "https://opengraph.githubassets.com/1/akiidjk/SysScope"
- },
-
- {
-   id: "chip-8",
-   slug: "chip-8",
-   title: "CHIP-8",
-   subtitle: "A CHIP-8 virtual machine implemented in Zig",
-   stack: ["Zig", "Emulation", "Virtual machines", "Low-level programming"],
-   year: "2026",
-   status: "Completed",
-   domain: "Emulation / Systems programming",
-   description:
-     "A standard CHIP-8 implementation in Zig created to explore emulation, instruction sets, memory, and low-level program execution.",
-   detail: [
-     { label: "Repository", value: "akiidjk/chip-8" },
-     { label: "Language", value: "Zig" },
-     { label: "Type", value: "Virtual machine emulator" },
-     { label: "License", value: "Not specified" },
-     { label: "Stars", value: "2" }
-   ],
-   problem:
-     "Emulators provide a compact way to understand how instruction sets, memory, registers, and execution cycles work together.",
-   approach:
-     "Implemented the CHIP-8 virtual machine in Zig, modeling its instruction set and runtime behavior at a low level.",
-   outcome:
-     "Produced a concise emulator project that highlights interest in computer architecture and systems programming.",
-   featured: true,
-   image: "https://opengraph.githubassets.com/1/akiidjk/chip-8"
  },
 
  {
