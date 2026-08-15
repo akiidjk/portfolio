@@ -7,7 +7,7 @@ services:
     image: ${IMAGE_NAME:-akiidjk-portfolio}:${IMAGE_TAG:-latest}
     container_name: ${CONTAINER_NAME:-akiidjk-portfolio}
     ports:
-      - "127.0.0.1:${PORT:-3000}:${PORT:-3000}"
+      - '127.0.0.1:${PORT:-3000}:${PORT:-3000}'
     environment:
       PORT: ${PORT:-3000}
     restart: unless-stopped
