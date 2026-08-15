@@ -3,10 +3,9 @@ import { useIsMobile } from '../hooks/useBreakpoint'
 const LINKS = [
   { id: 'index', label: '[00]' },
   { id: 'work', label: '[01]' },
-  { id: 'lab', label: '[02]' },
-  { id: 'archive', label: '[03]' },
-  { id: 'about', label: '[04]' },
-  { id: 'contact', label: '[05]' },
+  { id: 'archive', label: '[02]' },
+  { id: 'about', label: '[03]' },
+  { id: 'contact', label: '[04]' },
 ]
 
 export function Nav({ active }: { active: string }) {
