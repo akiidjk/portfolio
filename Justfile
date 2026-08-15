@@ -1,5 +1,5 @@
 # Load PORT / IMAGE_NAME / etc. from .env if present.
-set dotenv-load := true
+set dotenv-load
 
 image_name := env_var_or_default("IMAGE_NAME", "akiidjk-portfolio")
 image_tag := env_var_or_default("IMAGE_TAG", "latest")
@@ -66,7 +66,7 @@ docker-run-detached:
 
 # Build then run — the one-shot local shortcut.
 [group('docker')]
-up: docker-build docker-run
+up: docker-build docker-run-detached
 
 # Stop the detached container, if running.
 [group('docker')]
