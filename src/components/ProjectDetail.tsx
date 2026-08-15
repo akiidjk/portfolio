@@ -15,6 +15,7 @@ const CLOSE_DURATION = 220
 export function ProjectDetail({ project, onClose }: { project: Project; onClose: () => void }) {
   const isMobile = useIsMobile()
   const [imageHovered, setImageHovered] = useState(false)
+  const [imageError, setImageError] = useState(false)
   const [isClosing, setIsClosing] = useState(false)
   const repoPath = project.detail.find((d) => d.label === 'Repository')?.value
   const githubUrl = repoPath ? `https://github.com/${repoPath}` : undefined
@@ -139,27 +140,49 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
             transition: 'border-color 0.3s',
           }}
         >
-          <img
-            src={project.image}
-            alt={project.title}
-            style={{
-              width: '100%',
-              height: isMobile ? 200 : 320,
-              objectFit: 'cover',
-              display: 'block',
-              filter: imageHovered ? 'grayscale(60%) contrast(1.15) brightness(0.95)' : 'grayscale(100%) contrast(1.3)',
-              transform: imageHovered ? 'scale(1.03)' : 'scale(1)',
-              transition: 'filter 0.4s, transform 0.5s',
-            }}
-          />
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 6px)',
-              pointerEvents: 'none',
-            }}
-          />
+          {imageError ? (
+            <div
+              style={{
+                width: '100%',
+                height: isMobile ? 200 : 320,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#0d0d0d',
+                fontFamily: 'JetBrains Mono',
+                fontSize: 11,
+                color: '#3D3D3D',
+                letterSpacing: '0.15em',
+              }}
+            >
+              [ IMAGE UNAVAILABLE ]
+            </div>
+          ) : (
+            <>
+              <img
+                src={project.image}
+                alt={project.title}
+                onError={() => setImageError(true)}
+                style={{
+                  width: '100%',
+                  height: isMobile ? 200 : 320,
+                  objectFit: 'cover',
+                  display: 'block',
+                  filter: imageHovered ? 'grayscale(60%) contrast(1.15) brightness(0.95)' : 'grayscale(100%) contrast(1.3)',
+                  transform: imageHovered ? 'scale(1.03)' : 'scale(1)',
+                  transition: 'filter 0.4s, transform 0.5s',
+                }}
+              />
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 6px)',
+                  pointerEvents: 'none',
+                }}
+              />
+            </>
+          )}
 
           {/* Hover overlay */}
           <div

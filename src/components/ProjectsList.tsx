@@ -4,6 +4,39 @@ import { useIsMobile } from '../hooks/useBreakpoint'
 
 const STACK_PREVIEW_COUNT = 3
 
+function StackChip({ label }: { label: string }) {
+  return (
+    <span
+      style={{
+        fontFamily: 'JetBrains Mono',
+        fontSize: 9,
+        color: '#5D5D5D',
+        border: '1px solid #1a1a1a',
+        padding: '2px 8px',
+        letterSpacing: '0.08em',
+        whiteSpace: 'nowrap',
+      }}
+    >
+      {label}
+    </span>
+  )
+}
+
+function StatusDot({ active }: { active: boolean }) {
+  return (
+    <span
+      style={{
+        width: 5,
+        height: 5,
+        borderRadius: '50%',
+        backgroundColor: active ? '#C7FF2E' : '#3D3D3D',
+        boxShadow: active ? '0 0 5px #C7FF2E' : 'none',
+        flexShrink: 0,
+      }}
+    />
+  )
+}
+
 function ProjectRow({ project, index, onClick }: { project: Project; index: number; onClick: () => void }) {
   const [hovered, setHovered] = useState(false)
   const isMobile = useIsMobile()
@@ -86,7 +119,19 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
           </span>
         </div>
 
-        {!isMobile && (
+        {isMobile ? (
+          // Mobile has no hover, so status + stack are always on — a
+          // second compact line instead of the desktop hover-reveal.
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginTop: 6 }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontFamily: 'JetBrains Mono', fontSize: 9, color: '#5D5D5D', letterSpacing: '0.05em' }}>
+              <StatusDot active={isActive} />
+              {project.year}
+            </span>
+            {project.stack.slice(0, 2).map((s) => (
+              <StackChip key={s} label={s} />
+            ))}
+          </div>
+        ) : (
           <div
             style={{
               display: 'flex',
@@ -99,38 +144,16 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
             }}
           >
             {project.stack.slice(0, STACK_PREVIEW_COUNT).map((s) => (
-              <span
-                key={s}
-                style={{
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 9,
-                  color: '#5D5D5D',
-                  border: '1px solid #1a1a1a',
-                  padding: '2px 8px',
-                  letterSpacing: '0.08em',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {s}
-              </span>
+              <StackChip key={s} label={s} />
             ))}
           </div>
         )}
       </div>
 
-      {/* Status + year */}
+      {/* Status + year — desktop only; mobile shows this inline above */}
       {!isMobile && (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'JetBrains Mono', fontSize: 10, color: '#5D5D5D', letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>
-          <span
-            style={{
-              width: 5,
-              height: 5,
-              borderRadius: '50%',
-              backgroundColor: isActive ? '#C7FF2E' : '#3D3D3D',
-              boxShadow: isActive ? '0 0 5px #C7FF2E' : 'none',
-              flexShrink: 0,
-            }}
-          />
+          <StatusDot active={isActive} />
           {project.year}
         </div>
       )}

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { Project } from '../../types'
 
 export function ProjectPreviewCard({
@@ -9,6 +10,8 @@ export function ProjectPreviewCard({
   onOpen: () => void
   onDismiss: () => void
 }) {
+  const [imageError, setImageError] = useState(false)
+
   return (
     <div
       style={{
@@ -20,16 +23,35 @@ export function ProjectPreviewCard({
       }}
     >
       <div style={{ position: 'relative', height: 200, flexShrink: 0, overflow: 'hidden', backgroundColor: '#111' }}>
-        <img
-          src={project.image}
-          alt={project.title}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            filter: 'grayscale(100%) contrast(1.3) brightness(0.8)',
-          }}
-        />
+        {imageError ? (
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontFamily: 'JetBrains Mono',
+              fontSize: 10,
+              color: '#3D3D3D',
+              letterSpacing: '0.12em',
+            }}
+          >
+            [ IMAGE UNAVAILABLE ]
+          </div>
+        ) : (
+          <img
+            src={project.image}
+            alt={project.title}
+            onError={() => setImageError(true)}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              filter: 'grayscale(100%) contrast(1.3) brightness(0.8)',
+            }}
+          />
+        )}
         <button
           onClick={onDismiss}
           style={{

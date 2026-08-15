@@ -1,13 +1,40 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 const MIN_DISPLAY_MS = 1800
 const EXIT_DURATION_MS = 600
+const VISITED_KEY = 'akiidjk-visited'
+
+// sessionStorage can throw in restrictive contexts (Safari private mode,
+// some sandboxed iframes) — this is a mood-setting ritual, not a critical
+// feature, so failing open (always show it) beats crashing the app.
+function hasVisited(): boolean {
+  try {
+    return sessionStorage.getItem(VISITED_KEY) !== null
+  } catch {
+    return false
+  }
+}
+
+function markVisited(): void {
+  try {
+    sessionStorage.setItem(VISITED_KEY, '1')
+  } catch {
+    // ignore — worst case the ritual replays next load
+  }
+}
 
 export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
   const [progress, setProgress] = useState(0)
   const [isVideoReady, setIsVideoReady] = useState(false)
   const [isExiting, setIsExiting] = useState(false)
   const startRef = useRef(Date.now())
+
+  // Repeat visits within the same session skip the ritual entirely — this
+  // runs before paint so a returning visitor never sees it flash in.
+  useLayoutEffect(() => {
+    if (hasVisited()) onFinish()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // Lock scroll while the loading screen is up.
   useEffect(() => {
@@ -16,6 +43,13 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
     return () => {
       document.body.style.overflow = prev
     }
+  }, [])
+
+  // Let an impatient visitor skip straight to the exit animation.
+  useEffect(() => {
+    const skip = (e: KeyboardEvent) => { if (e.key === 'Escape') setProgress(100) }
+    window.addEventListener('keydown', skip)
+    return () => window.removeEventListener('keydown', skip)
   }, [])
 
   // Ease progress up to 90% while assets are still loading.
@@ -41,6 +75,7 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
   // Trigger the fade-out once the bar completes.
   useEffect(() => {
     if (progress < 100) return
+    markVisited()
     const timeout = setTimeout(() => setIsExiting(true), 250)
     return () => clearTimeout(timeout)
   }, [progress])
@@ -54,6 +89,7 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
 
   return (
     <div
+      onClick={() => setProgress(100)}
       style={{
         position: 'fixed',
         inset: 0,
@@ -66,6 +102,7 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
         opacity: isExiting ? 0 : 1,
         transition: `opacity ${EXIT_DURATION_MS}ms ease`,
         pointerEvents: isExiting ? 'none' : 'auto',
+        cursor: 'none',
       }}
     >
       {/* Noise texture overlay */}
@@ -163,6 +200,20 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
             }}
           />
         </div>
+      </div>
+
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 1,
+          fontFamily: 'JetBrains Mono',
+          fontSize: 9,
+          color: '#292929',
+          letterSpacing: '0.1em',
+          marginTop: 16,
+        }}
+      >
+        [ ESC OR CLICK TO SKIP ]
       </div>
     </div>
   )
