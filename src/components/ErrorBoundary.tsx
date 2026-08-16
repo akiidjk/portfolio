@@ -39,7 +39,7 @@ export class ErrorBoundary extends Component<Props, State> {
           <div
             style={{
               fontFamily: 'JetBrains Mono',
-              fontSize: 10,
+              fontSize: 'var(--fs-10)',
               color: 'var(--dim-label)',
               letterSpacing: '0.2em',
               marginBottom: 20,
@@ -51,7 +51,7 @@ export class ErrorBoundary extends Component<Props, State> {
           <p
             style={{
               fontFamily: 'JetBrains Mono',
-              fontSize: 13,
+              fontSize: 'var(--fs-13)',
               color: 'var(--muted-steel)',
               maxWidth: 420,
               lineHeight: 1.6,
@@ -67,7 +67,7 @@ export class ErrorBoundary extends Component<Props, State> {
               border: '1px solid var(--hairline)',
               color: 'var(--muted-steel)',
               fontFamily: 'JetBrains Mono',
-              fontSize: 10,
+              fontSize: 'var(--fs-10)',
               padding: '10px 18px',
               cursor: 'none',
               letterSpacing: '0.1em',

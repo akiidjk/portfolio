@@ -53,7 +53,7 @@ export function Archive() {
               <div
                 style={{
                   fontFamily: 'JetBrains Mono',
-                  fontSize: 10,
+                  fontSize: 'var(--fs-13)',
                   color: 'var(--dim-label)',
                   minWidth: 40,
                   paddingTop: 1,
@@ -65,7 +65,7 @@ export function Archive() {
                 <div
                   style={{
                     fontFamily: 'Inter',
-                    fontSize: 15,
+                    fontSize: 'var(--fs-15)',
                     fontWeight: 500,
                     color: 'var(--phosphor-white)',
                     letterSpacing: '-0.01em',
@@ -74,13 +74,13 @@ export function Archive() {
                   {entry.event}
                 </div>
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginTop: 5 }}>
-                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: 'var(--dim-label)' }}>
+                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-10)', color: 'var(--dim-label)' }}>
                     {entry.org}
                   </span>
                   <span
                     style={{
                       fontFamily: 'JetBrains Mono',
-                      fontSize: 8,
+                      fontSize: 'var(--fs-8)',
                       color: 'var(--active-gray)',
                       border: '1px solid var(--hairline)',
                       padding: '1px 6px',
@@ -102,7 +102,7 @@ export function Archive() {
               <div
                 style={{
                   fontFamily: 'JetBrains Mono',
-                  fontSize: 9,
+                  fontSize: 'var(--fs-9)',
                   color: 'var(--dim-label)',
                   letterSpacing: '0.18em',
                   marginBottom: 10,
@@ -114,7 +114,7 @@ export function Archive() {
                 style={{
                   fontFamily: 'Inter',
                   fontWeight: 700,
-                  fontSize: 56,
+                  fontSize: 'var(--fs-56)',
                   color: 'var(--phosphor-white)',
                   letterSpacing: '-0.05em',
                   lineHeight: 1,

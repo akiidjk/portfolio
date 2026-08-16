@@ -9,7 +9,7 @@ function StackChip({ label }: { label: string }) {
     <span
       style={{
         fontFamily: 'JetBrains Mono',
-        fontSize: 9,
+        fontSize: 'var(--fs-9)',
         color: 'var(--muted-steel)',
         border: '1px solid var(--hairline)',
         padding: '2px 8px',
@@ -79,7 +79,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
       <span
         style={{
           fontFamily: 'JetBrains Mono',
-          fontSize: 11,
+          fontSize: 'var(--fs-11)',
           color: hovered ? 'var(--signal-green)' : 'var(--dim-label)',
           letterSpacing: '0.05em',
           transition: 'color 0.25s',
@@ -95,7 +95,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
             style={{
               fontFamily: 'Inter',
               fontWeight: 700,
-              fontSize: isMobile ? 15 : 17,
+              fontSize: isMobile ? 'var(--fs-15)' : 'var(--fs-17)',
               letterSpacing: '-0.02em',
               color: 'var(--phosphor-white)',
               margin: 0,
@@ -109,7 +109,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
           <span
             style={{
               fontFamily: 'JetBrains Mono',
-              fontSize: 10,
+              fontSize: 'var(--fs-10)',
               color: 'var(--dim-label)',
               letterSpacing: '0.05em',
               whiteSpace: 'nowrap',
@@ -129,7 +129,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
                 alignItems: 'center',
                 gap: 5,
                 fontFamily: 'JetBrains Mono',
-                fontSize: 9,
+                fontSize: 'var(--fs-9)',
                 color: 'var(--muted-steel)',
                 letterSpacing: '0.05em',
               }}
@@ -168,7 +168,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
             alignItems: 'center',
             gap: 8,
             fontFamily: 'JetBrains Mono',
-            fontSize: 10,
+            fontSize: 'var(--fs-10)',
             color: 'var(--muted-steel)',
             letterSpacing: '0.05em',
             whiteSpace: 'nowrap',
@@ -183,7 +183,7 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
       <span
         style={{
           fontFamily: 'JetBrains Mono',
-          fontSize: 14,
+          fontSize: 'var(--fs-14)',
           color: hovered ? 'var(--phosphor-white)' : 'var(--active-gray)',
           transform: hovered ? 'translateX(0)' : 'translateX(-4px)',
           opacity: hovered ? 1 : 0.6,

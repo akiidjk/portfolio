@@ -39,7 +39,7 @@ export function ProjectSidePanel({
             <div
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: 10,
+                fontSize: 'var(--fs-10)',
                 color: 'var(--dim-label)',
                 letterSpacing: '0.1em',
                 marginBottom: 16,
@@ -64,12 +64,12 @@ export function ProjectSidePanel({
                     padding: '14px 16px',
                     cursor: 'none',
                     fontFamily: 'Inter',
-                    fontSize: 13,
+                    fontSize: 'var(--fs-13)',
                     color: 'var(--body-gray)',
                   }}
                 >
                   <span
-                    style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: 'var(--dim-label)', marginRight: 10 }}
+                    style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-9)', color: 'var(--dim-label)', marginRight: 10 }}
                   >
                     {p.id}
                   </span>
@@ -77,7 +77,7 @@ export function ProjectSidePanel({
                 </button>
               ))}
               {projects.length === 0 && (
-                <div style={{ padding: 20, fontFamily: 'JetBrains Mono', fontSize: 11, color: 'var(--dim-label)' }}>
+                <div style={{ padding: 20, fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-11)', color: 'var(--dim-label)' }}>
                   NO MATCHING PROJECTS.
                 </div>
               )}

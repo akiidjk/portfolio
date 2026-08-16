@@ -61,7 +61,7 @@ export function ProjectsSphere({
             bottom: 14,
             left: 14,
             fontFamily: 'JetBrains Mono',
-            fontSize: 9,
+            fontSize: 'var(--fs-9)',
             color: 'var(--dim-label)',
             letterSpacing: '0.1em',
             pointerEvents: 'none',

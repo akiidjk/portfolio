@@ -40,7 +40,7 @@ export function ProjectPreviewCard({
               alignItems: 'center',
               justifyContent: 'center',
               fontFamily: 'JetBrains Mono',
-              fontSize: 10,
+              fontSize: 'var(--fs-10)',
               color: 'var(--dim-label)',
               letterSpacing: '0.12em',
             }}
@@ -74,7 +74,7 @@ export function ProjectPreviewCard({
             lineHeight: 1,
             cursor: 'none',
             fontFamily: 'JetBrains Mono',
-            fontSize: 13,
+            fontSize: 'var(--fs-13)',
           }}
           aria-label="Close preview"
         >
@@ -86,7 +86,7 @@ export function ProjectPreviewCard({
             top: 10,
             left: 10,
             fontFamily: 'JetBrains Mono',
-            fontSize: 9,
+            fontSize: 'var(--fs-9)',
             color: 'var(--muted-steel)',
             backgroundColor: 'rgba(8,8,8,0.8)',
             padding: '3px 8px',
@@ -102,7 +102,7 @@ export function ProjectPreviewCard({
         <div
           style={{
             fontFamily: 'JetBrains Mono',
-            fontSize: 9,
+            fontSize: 'var(--fs-9)',
             color: 'var(--dim-label)',
             letterSpacing: '0.1em',
             marginBottom: 8,
@@ -114,7 +114,7 @@ export function ProjectPreviewCard({
           style={{
             fontFamily: 'Inter',
             fontWeight: 700,
-            fontSize: 24,
+            fontSize: 'var(--fs-24)',
             letterSpacing: '-0.03em',
             color: 'var(--phosphor-white)',
             margin: '0 0 6px',
@@ -122,13 +122,13 @@ export function ProjectPreviewCard({
         >
           {project.title}
         </h3>
-        <div style={{ fontFamily: 'JetBrains Mono', fontSize: 11, color: 'var(--muted-steel)', marginBottom: 16 }}>
+        <div style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-11)', color: 'var(--muted-steel)', marginBottom: 16 }}>
           {project.subtitle}
         </div>
         <p
           style={{
             fontFamily: 'Inter',
-            fontSize: 13,
+            fontSize: 'var(--fs-13)',
             color: 'var(--body-gray)',
             lineHeight: 1.6,
             margin: '0 0 20px',
@@ -143,7 +143,7 @@ export function ProjectPreviewCard({
               key={s}
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: 9,
+                fontSize: 'var(--fs-9)',
                 color: 'var(--dim-label)',
                 border: '1px solid var(--hairline)',
                 padding: '2px 7px',
@@ -162,7 +162,7 @@ export function ProjectPreviewCard({
             border: 'none',
             padding: '12px 20px',
             fontFamily: 'JetBrains Mono',
-            fontSize: 11,
+            fontSize: 'var(--fs-11)',
             fontWeight: 700,
             letterSpacing: '0.1em',
             cursor: 'none',

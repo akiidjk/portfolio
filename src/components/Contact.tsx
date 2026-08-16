@@ -28,7 +28,7 @@ export function Contact() {
             style={{
               fontFamily: 'Inter',
               fontWeight: 700,
-              fontSize: 'clamp(36px, 12vw, 96px)',
+              fontSize: 'clamp(2.25rem, 12vw, 6rem)',
               letterSpacing: '-0.045em',
               color: 'var(--phosphor-white)',
               margin: '0 0 24px',
@@ -41,7 +41,7 @@ export function Contact() {
             href="mailto:akiidjk@proton.me"
             style={{
               fontFamily: 'JetBrains Mono',
-              fontSize: 14,
+              fontSize: 'var(--fs-14)',
               color: 'var(--signal-green)',
               textDecoration: 'none',
               letterSpacing: '0.03em',
@@ -66,7 +66,7 @@ export function Contact() {
               <span
                 style={{
                   fontFamily: 'JetBrains Mono',
-                  fontSize: 9,
+                  fontSize: 'var(--fs-9)',
                   color: 'var(--dim-label)',
                   letterSpacing: '0.15em',
                 }}
@@ -81,7 +81,7 @@ export function Contact() {
               >
                 <span
                   className="hover:underline transition-all animation"
-                  style={{ fontFamily: 'JetBrains Mono', fontSize: 13, color: 'var(--body-gray)' }}
+                  style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-13)', color: 'var(--body-gray)' }}
                 >
                   {link.handle}
                 </span>
@@ -101,7 +101,7 @@ export function Contact() {
           gap: isMobile ? 8 : 0,
           justifyContent: 'space-between',
           fontFamily: 'JetBrains Mono',
-          fontSize: 9,
+          fontSize: 'var(--fs-9)',
           color: 'var(--active-gray)',
           letterSpacing: '0.12em',
         }}

@@ -54,7 +54,7 @@ export function NotFound({ path, onNavigateHome }: { path: string; onNavigateHom
         <div
           style={{
             fontFamily: 'JetBrains Mono',
-            fontSize: isMobile ? 9 : 10,
+            fontSize: isMobile ? 'var(--fs-9)' : 'var(--fs-10)',
             color: 'var(--dim-label)',
             letterSpacing: '0.2em',
             marginBottom: isMobile ? 16 : 24,
@@ -68,7 +68,7 @@ export function NotFound({ path, onNavigateHome }: { path: string; onNavigateHom
           style={{
             fontFamily: 'Inter',
             fontWeight: 700,
-            fontSize: 'clamp(38px, 9vw, 104px)',
+            fontSize: 'clamp(2.375rem, 9vw, 6.5rem)',
             lineHeight: 0.92,
             letterSpacing: '-0.045em',
             color: 'var(--phosphor-white)',
@@ -81,7 +81,7 @@ export function NotFound({ path, onNavigateHome }: { path: string; onNavigateHom
         <p
           style={{
             fontFamily: 'JetBrains Mono',
-            fontSize: isMobile ? 12 : 13,
+            fontSize: isMobile ? 'var(--fs-12)' : 'var(--fs-13)',
             color: 'var(--muted-steel)',
             letterSpacing: '0.02em',
             margin: isMobile ? '16px 0 28px' : '20px 0 36px',
@@ -100,7 +100,7 @@ export function NotFound({ path, onNavigateHome }: { path: string; onNavigateHom
             padding: isMobile ? '16px 18px' : '18px 24px',
             marginBottom: isMobile ? 28 : 36,
             fontFamily: 'JetBrains Mono',
-            fontSize: isMobile ? 10 : 11,
+            fontSize: isMobile ? 'var(--fs-10)' : 'var(--fs-11)',
             color: 'var(--muted-steel)',
             lineHeight: 2,
             maxWidth: '90vw',
@@ -119,7 +119,7 @@ export function NotFound({ path, onNavigateHome }: { path: string; onNavigateHom
               border: '1px solid var(--hairline)',
               color: 'var(--muted-steel)',
               fontFamily: 'JetBrains Mono',
-              fontSize: 10,
+              fontSize: 'var(--fs-10)',
               padding: isMobile ? '14px 18px' : '10px 18px',
               cursor: 'none',
               letterSpacing: '0.1em',

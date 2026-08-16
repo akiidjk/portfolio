@@ -122,7 +122,7 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
       <div
         style={{
           fontFamily: 'JetBrains Mono',
-          fontSize: 10,
+          fontSize: 'var(--fs-10)',
           color: 'var(--dim-label)',
           letterSpacing: '0.2em',
           marginBottom: 28,
@@ -176,7 +176,7 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
             display: 'flex',
             justifyContent: 'space-between',
             fontFamily: 'JetBrains Mono',
-            fontSize: 10,
+            fontSize: 'var(--fs-10)',
             color: 'var(--muted-steel)',
             letterSpacing: '0.1em',
             marginBottom: 8,
@@ -209,7 +209,7 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
           position: 'relative',
           zIndex: 1,
           fontFamily: 'JetBrains Mono',
-          fontSize: 9,
+          fontSize: 'var(--fs-9)',
           color: 'var(--active-gray)',
           letterSpacing: '0.1em',
           marginTop: 16,

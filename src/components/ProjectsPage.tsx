@@ -81,7 +81,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             gap: 10,
             flexShrink: 0,
             fontFamily: 'JetBrains Mono',
-            fontSize: 11,
+            fontSize: 'var(--fs-11)',
             letterSpacing: '0.1em',
             color: 'var(--muted-steel)',
           }}
@@ -93,7 +93,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
           <span
             style={{
               fontFamily: 'JetBrains Mono',
-              fontSize: 11,
+              fontSize: 'var(--fs-11)',
               color: 'var(--phosphor-white)',
               letterSpacing: '0.15em',
               flexShrink: 0,
@@ -126,7 +126,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
               flex: 1,
               minWidth: 0,
               fontFamily: 'JetBrains Mono',
-              fontSize: 10,
+              fontSize: 'var(--fs-10)',
               letterSpacing: '0.1em',
               color: 'var(--phosphor-white)',
             }}
@@ -149,7 +149,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
           <div
             style={{
               fontFamily: 'JetBrains Mono',
-              fontSize: 10,
+              fontSize: 'var(--fs-10)',
               color: 'var(--dim-label)',
               letterSpacing: '0.2em',
               marginBottom: 20,
@@ -163,7 +163,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             style={{
               fontFamily: 'Inter',
               fontWeight: 700,
-              fontSize: 'clamp(38px, 9vw, 104px)',
+              fontSize: 'clamp(2.375rem, 9vw, 6.5rem)',
               lineHeight: 0.92,
               letterSpacing: '-0.045em',
               color: 'var(--phosphor-white)',
@@ -182,7 +182,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
           <p
             style={{
               fontFamily: 'JetBrains Mono',
-              fontSize: 13,
+              fontSize: 'var(--fs-13)',
               color: 'var(--body-gray)',
               lineHeight: 1.7,
               margin: '0 0 32px',
@@ -202,7 +202,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
                 border: 'none',
                 padding: '14px 28px',
                 fontFamily: 'JetBrains Mono',
-                fontSize: 11,
+                fontSize: 'var(--fs-11)',
                 fontWeight: 700,
                 letterSpacing: '0.1em',
                 cursor: 'none',
@@ -213,7 +213,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             <span
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: 10,
+                fontSize: 'var(--fs-10)',
                 color: 'var(--dim-label)',
                 letterSpacing: '0.08em',
               }}
@@ -279,7 +279,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
               <div
                 style={{
                   fontFamily: 'JetBrains Mono',
-                  fontSize: 10,
+                  fontSize: 'var(--fs-10)',
                   color: 'var(--signal-green)',
                   letterSpacing: '0.1em',
                 }}
@@ -289,7 +289,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
               <div
                 style={{
                   fontFamily: 'JetBrains Mono',
-                  fontSize: 10,
+                  fontSize: 'var(--fs-10)',
                   color: 'var(--body-gray)',
                   letterSpacing: '0.05em',
                 }}
@@ -306,7 +306,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
         <div
           style={{
             fontFamily: 'JetBrains Mono',
-            fontSize: 10,
+            fontSize: 'var(--fs-10)',
             color: 'var(--active-gray)',
             letterSpacing: '0.15em',
             marginBottom: 32,
@@ -322,7 +322,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
               padding: '60px 40px',
               textAlign: 'center',
               fontFamily: 'JetBrains Mono',
-              fontSize: 12,
+              fontSize: 'var(--fs-12)',
               color: 'var(--dim-label)',
               letterSpacing: '0.05em',
             }}

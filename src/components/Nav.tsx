@@ -80,7 +80,7 @@ export function Nav({ active }: { active: string }) {
             aria-label={l.aria}
             style={{
               fontFamily: 'JetBrains Mono',
-              fontSize: isMobile ? 9 : 10,
+              fontSize: isMobile ? 'var(--fs-9)' : 'var(--fs-10)',
               letterSpacing: isMobile ? '0.02em' : '0.1em',
               textDecoration: 'none',
               color: active === l.id ? 'var(--phosphor-white)' : 'var(--dim-label)',

@@ -59,7 +59,7 @@ export function CookieBanner() {
         <div
           style={{
             fontFamily: 'JetBrains Mono',
-            fontSize: 9,
+            fontSize: 'var(--fs-9)',
             color: 'var(--dim-label)',
             letterSpacing: '0.2em',
             marginBottom: 8,
@@ -71,7 +71,7 @@ export function CookieBanner() {
         <p
           style={{
             fontFamily: 'JetBrains Mono',
-            fontSize: isMobile ? 11 : 12,
+            fontSize: isMobile ? 'var(--fs-11)' : 'var(--fs-12)',
             color: 'var(--muted-steel)',
             lineHeight: 1.6,
             margin: 0,
@@ -91,7 +91,7 @@ export function CookieBanner() {
             border: '1px solid var(--hairline)',
             color: 'var(--muted-steel)',
             fontFamily: 'JetBrains Mono',
-            fontSize: 10,
+            fontSize: 'var(--fs-10)',
             padding: isMobile ? '14px 16px' : '10px 16px',
             cursor: 'none',
             letterSpacing: '0.08em',
@@ -118,7 +118,7 @@ export function CookieBanner() {
             border: '1px solid var(--hairline)',
             color: 'var(--muted-steel)',
             fontFamily: 'JetBrains Mono',
-            fontSize: 10,
+            fontSize: 'var(--fs-10)',
             padding: isMobile ? '14px 16px' : '10px 16px',
             cursor: 'none',
             letterSpacing: '0.08em',

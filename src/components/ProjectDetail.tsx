@@ -62,7 +62,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
           border: '1px solid var(--hairline)',
           color: 'var(--muted-steel)',
           fontFamily: 'JetBrains Mono',
-          fontSize: 11,
+          fontSize: 'var(--fs-11)',
           padding: isMobile ? '8px 12px' : '8px 16px',
           cursor: 'none',
           letterSpacing: '0.1em',
@@ -87,7 +87,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
           <div
             style={{
               fontFamily: 'JetBrains Mono',
-              fontSize: 10,
+              fontSize: 'var(--fs-10)',
               color: 'var(--dim-label)',
               letterSpacing: '0.15em',
               marginBottom: 12,
@@ -99,7 +99,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
             style={{
               fontFamily: 'Inter',
               fontWeight: 700,
-              fontSize: 'clamp(28px, 8vw, 64px)',
+              fontSize: 'clamp(1.75rem, 8vw, 4rem)',
               letterSpacing: '-0.045em',
               color: 'var(--phosphor-white)',
               margin: 0,
@@ -109,7 +109,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
           >
             {project.title}
           </h2>
-          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 12, color: 'var(--muted-steel)', marginTop: 8 }}>
+          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-12)', color: 'var(--muted-steel)', marginTop: 8 }}>
             {project.subtitle}
           </div>
         </div>
@@ -129,7 +129,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
               <span
                 style={{
                   fontFamily: 'JetBrains Mono',
-                  fontSize: 10,
+                  fontSize: 'var(--fs-10)',
                   color: 'var(--dim-label)',
                   letterSpacing: '0.12em',
                 }}
@@ -139,7 +139,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
               <span
                 style={{
                   fontFamily: 'JetBrains Mono',
-                  fontSize: 11,
+                  fontSize: 'var(--fs-11)',
                   color: 'var(--phosphor-white)',
                   letterSpacing: '0.05em',
                 }}
@@ -172,7 +172,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
                 justifyContent: 'center',
                 backgroundColor: 'var(--panel-black)',
                 fontFamily: 'JetBrains Mono',
-                fontSize: 11,
+                fontSize: 'var(--fs-11)',
                 color: 'var(--dim-label)',
                 letterSpacing: '0.15em',
               }}
@@ -227,7 +227,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
             <div
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: 10,
+                fontSize: 'var(--fs-10)',
                 color: 'var(--signal-green)',
                 lineHeight: 2,
                 letterSpacing: '0.1em',
@@ -278,7 +278,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
             <div
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: 10,
+                fontSize: 'var(--fs-10)',
                 color: 'var(--dim-label)',
                 letterSpacing: '0.2em',
                 marginBottom: 16,
@@ -289,7 +289,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
             <p
               style={{
                 fontFamily: 'Inter',
-                fontSize: 16,
+                fontSize: 'var(--fs-16)',
                 color: 'var(--body-gray)',
                 lineHeight: 1.7,
                 margin: 0,
@@ -317,7 +317,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
               key={s}
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: 10,
+                fontSize: 'var(--fs-10)',
                 color: 'var(--muted-steel)',
                 border: '1px solid var(--active-gray)',
                 padding: '4px 12px',

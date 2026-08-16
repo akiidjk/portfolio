@@ -41,7 +41,7 @@ export function Hero() {
           display: 'flex',
           justifyContent: isMobile ? 'center' : 'space-between',
           fontFamily: 'JetBrains Mono',
-          fontSize: isMobile ? 9 : 10,
+          fontSize: isMobile ? 'var(--fs-9)' : 'var(--fs-10)',
           color: 'var(--dim-label)',
           letterSpacing: '0.1em',
           zIndex: 1,
@@ -72,7 +72,7 @@ export function Hero() {
         <div
           style={{
             fontFamily: 'JetBrains Mono',
-            fontSize: isMobile ? 9 : 10,
+            fontSize: isMobile ? 'var(--fs-9)' : 'var(--fs-10)',
             color: 'var(--dim-label)',
             letterSpacing: '0.2em',
             marginBottom: isMobile ? 14 : 20,
@@ -86,7 +86,7 @@ export function Hero() {
           style={{
             fontFamily: 'Inter',
             fontWeight: 700,
-            fontSize: 'clamp(42px, 13vw, 156px)',
+            fontSize: 'clamp(2.625rem, 13vw, 9.75rem)',
             lineHeight: 0.9,
             letterSpacing: '-0.045em',
             color: 'var(--phosphor-white)',
@@ -112,11 +112,11 @@ export function Hero() {
             <p
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: isMobile ? 12 : 13,
+                fontSize: isMobile ? 'var(--fs-14)' : 'var(--fs-15)',
                 color: 'var(--body-gray)',
                 lineHeight: 1.6,
                 margin: 0,
-                maxWidth: 550,
+                maxWidth: 700,
                 minHeight: 22,
               }}
             >
@@ -136,7 +136,7 @@ export function Hero() {
             <p
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: 11,
+                fontSize: 'var(--fs-11)',
                 color: 'var(--dim-label)',
                 margin: '12px 0 0',
                 letterSpacing: '0.05em',
@@ -156,7 +156,7 @@ export function Hero() {
             bottom: 56,
             right: 40,
             fontFamily: 'JetBrains Mono',
-            fontSize: 9,
+            fontSize: 'var(--fs-9)',
             color: 'var(--dim-label)',
             letterSpacing: '0.15em',
             writingMode: 'vertical-rl',

@@ -30,7 +30,7 @@ export function About() {
             style={{
               fontFamily: 'Inter',
               fontWeight: 300,
-              fontSize: 'clamp(17px, 5vw, 21px)',
+              fontSize: 'clamp(1.0625rem, 5vw, 1.3125rem)',
               color: 'var(--phosphor-white)',
               lineHeight: 1.5,
               letterSpacing: '-0.025em',
@@ -43,7 +43,7 @@ export function About() {
           <p
             style={{
               fontFamily: 'Inter',
-              fontSize: 14,
+              fontSize: 'var(--fs-14)',
               color: 'var(--soft-gray)',
               lineHeight: 1.75,
               margin: '0 0 16px',
@@ -54,7 +54,7 @@ export function About() {
             growing interest in microservices, scalability, DevOps and distributed systems architecture: service
             decomposition, API design, event-driven systems, deployment pipelines and observability.
           </p>
-          <p style={{ fontFamily: 'Inter', fontSize: 14, color: 'var(--soft-gray)', lineHeight: 1.75, margin: 0 }}>
+          <p style={{ fontFamily: 'Inter', fontSize: 'var(--fs-14)', color: 'var(--soft-gray)', lineHeight: 1.75, margin: 0 }}>
             My goal is simple: learn, learn, learn, never stop learning, and become better than yesterday.
           </p>
         </div>
@@ -63,7 +63,7 @@ export function About() {
           <div
             style={{
               fontFamily: 'JetBrains Mono',
-              fontSize: 9,
+              fontSize: 'var(--fs-9)',
               color: 'var(--active-gray)',
               letterSpacing: '0.18em',
               marginBottom: 24,
@@ -83,10 +83,10 @@ export function About() {
                 borderBottom: '1px solid var(--divider-black)',
               }}
             >
-              <span style={{ fontFamily: 'Inter', fontSize: 13, color: 'var(--phosphor-white)', fontWeight: 500 }}>
+              <span style={{ fontFamily: 'Inter', fontSize: 'var(--fs-13)', color: 'var(--phosphor-white)', fontWeight: 500 }}>
                 {item.area}
               </span>
-              <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: 'var(--dim-label)' }}>
+              <span style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-10)', color: 'var(--dim-label)' }}>
                 {item.tools}
               </span>
             </div>
