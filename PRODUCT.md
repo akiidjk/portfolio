@@ -40,7 +40,7 @@ A visitor browses the project catalog (currently 17 real projects, each linked t
 ## Evidence on Hand
 
 - Real project list with real GitHub links (CookieFarm, Discord CTF Helper, zdiff, ADH, Styx, and others), each with actual repo/stack/status metadata in `src/data/projects.ts`.
-- Real contact channels: `akiidjk@proton.me`, `github.com/akiidjk`, `linkedin.com/in/akiidjk`.
+- Real contact channels: `me@akiidjk.dev`, `github.com/akiidjk`, `linkedin.com/in/akiidjk`.
 - **Absent, and must not be fabricated by future work:** testimonials, client case studies, employer history/resume, press mentions, or usage/traffic numbers. None exist; don't invent placeholders that look real.
 
 ## Product Principles

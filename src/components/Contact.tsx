@@ -38,7 +38,7 @@ export function Contact() {
             LET'S TALK.
           </h2>
           <a
-            href="mailto:akiidjk@proton.me"
+            href="mailto:me@akiidjk.dev"
             style={{
               fontFamily: 'JetBrains Mono',
               fontSize: 'var(--fs-14)',
@@ -48,7 +48,7 @@ export function Contact() {
               display: 'inline-block',
             }}
           >
-            akiidjk@proton.me ↗
+            me@akiidjk.dev ↗
           </a>
         </div>
 
