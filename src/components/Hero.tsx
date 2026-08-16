@@ -112,7 +112,7 @@ export function Hero() {
             <p
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: isMobile ? 'var(--fs-14)' : 'var(--fs-15)',
+                fontSize: isMobile ? 'var(--fs-9)' : 'var(--fs-13)',
                 color: 'var(--body-gray)',
                 lineHeight: 1.6,
                 margin: 0,
