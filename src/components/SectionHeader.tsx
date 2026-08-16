@@ -15,7 +15,12 @@ export function SectionHeader({ index, title, right }: { index: string; title: s
       }}
     >
       <span
-        style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-14)', color: 'var(--dim-label)', letterSpacing: '0.12em' }}
+        style={{
+          fontFamily: 'JetBrains Mono',
+          fontSize: 'var(--fs-14)',
+          color: 'var(--dim-label)',
+          letterSpacing: '0.12em',
+        }}
       >
         [{index}]
       </span>

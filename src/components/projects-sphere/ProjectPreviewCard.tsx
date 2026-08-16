@@ -122,7 +122,14 @@ export function ProjectPreviewCard({
         >
           {project.title}
         </h3>
-        <div style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-11)', color: 'var(--muted-steel)', marginBottom: 16 }}>
+        <div
+          style={{
+            fontFamily: 'JetBrains Mono',
+            fontSize: 'var(--fs-11)',
+            color: 'var(--muted-steel)',
+            marginBottom: 16,
+          }}
+        >
           {project.subtitle}
         </div>
         <p

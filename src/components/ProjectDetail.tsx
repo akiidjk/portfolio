@@ -109,7 +109,14 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
           >
             {project.title}
           </h2>
-          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-12)', color: 'var(--muted-steel)', marginTop: 8 }}>
+          <div
+            style={{
+              fontFamily: 'JetBrains Mono',
+              fontSize: 'var(--fs-12)',
+              color: 'var(--muted-steel)',
+              marginTop: 8,
+            }}
+          >
             {project.subtitle}
           </div>
         </div>

@@ -54,7 +54,15 @@ export function About() {
             growing interest in microservices, scalability, DevOps and distributed systems architecture: service
             decomposition, API design, event-driven systems, deployment pipelines and observability.
           </p>
-          <p style={{ fontFamily: 'Inter', fontSize: 'var(--fs-14)', color: 'var(--soft-gray)', lineHeight: 1.75, margin: 0 }}>
+          <p
+            style={{
+              fontFamily: 'Inter',
+              fontSize: 'var(--fs-14)',
+              color: 'var(--soft-gray)',
+              lineHeight: 1.75,
+              margin: 0,
+            }}
+          >
             My goal is simple: learn, learn, learn, never stop learning, and become better than yesterday.
           </p>
         </div>
@@ -83,7 +91,14 @@ export function About() {
                 borderBottom: '1px solid var(--divider-black)',
               }}
             >
-              <span style={{ fontFamily: 'Inter', fontSize: 'var(--fs-13)', color: 'var(--phosphor-white)', fontWeight: 500 }}>
+              <span
+                style={{
+                  fontFamily: 'Inter',
+                  fontSize: 'var(--fs-13)',
+                  color: 'var(--phosphor-white)',
+                  fontWeight: 500,
+                }}
+              >
                 {item.area}
               </span>
               <span style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-10)', color: 'var(--dim-label)' }}>

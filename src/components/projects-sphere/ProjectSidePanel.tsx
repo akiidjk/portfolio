@@ -68,17 +68,28 @@ export function ProjectSidePanel({
                     color: 'var(--body-gray)',
                   }}
                 >
-
                   {p.title}
                   <span
-                    style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-9)', color: 'var(--dim-label)', marginLeft: 10 }}
+                    style={{
+                      fontFamily: 'JetBrains Mono',
+                      fontSize: 'var(--fs-9)',
+                      color: 'var(--dim-label)',
+                      marginLeft: 10,
+                    }}
                   >
                     {p.domain}
                   </span>
                 </button>
               ))}
               {projects.length === 0 && (
-                <div style={{ padding: 20, fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-11)', color: 'var(--dim-label)' }}>
+                <div
+                  style={{
+                    padding: 20,
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: 'var(--fs-11)',
+                    color: 'var(--dim-label)',
+                  }}
+                >
                   NO MATCHING PROJECTS.
                 </div>
               )}
