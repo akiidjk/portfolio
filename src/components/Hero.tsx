@@ -133,17 +133,6 @@ export function Hero() {
                 }}
               />
             </p>
-            <p
-              style={{
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'var(--fs-11)',
-                color: 'var(--dim-label)',
-                margin: '12px 0 0',
-                letterSpacing: '0.05em',
-              }}
-            >
-              Learn, learn, learn — never stop, and get better than yesterday.
-            </p>
           </div>
         </div>
       </div>
