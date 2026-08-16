@@ -102,7 +102,7 @@ export function Contact() {
           justifyContent: 'space-between',
           fontFamily: 'JetBrains Mono',
           fontSize: 'var(--fs-9)',
-          color: 'var(--active-gray)',
+          color: 'var(--dim-label)',
           letterSpacing: '0.12em',
         }}
       >

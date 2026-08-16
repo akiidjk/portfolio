@@ -307,7 +307,7 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
           style={{
             fontFamily: 'JetBrains Mono',
             fontSize: 'var(--fs-10)',
-            color: 'var(--active-gray)',
+            color: 'var(--dim-label)',
             letterSpacing: '0.15em',
             marginBottom: 32,
           }}

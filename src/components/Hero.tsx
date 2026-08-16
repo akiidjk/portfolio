@@ -116,7 +116,7 @@ export function Hero() {
                 color: 'var(--body-gray)',
                 lineHeight: 1.6,
                 margin: 0,
-                maxWidth: 700,
+                maxWidth: 820,
                 minHeight: 22,
               }}
             >

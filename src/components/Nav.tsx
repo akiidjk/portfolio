@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useIsMobile } from '../hooks/useBreakpoint'
 
 const LINKS = [
@@ -30,6 +31,62 @@ function ReticleCorner({ position }: { position: 'tl' | 'tr' | 'bl' | 'br' }) {
     },
   }
   return <div style={{ ...base, ...sides[position] }} />
+}
+
+// Bracket codes ([00]-[04]) are the resting state; the real section name
+// surfaces only on hover/focus, so sighted first-time visitors get a label
+// without the nav losing its terminal-readout look at rest.
+function NavLink({ link, active, isMobile }: { link: (typeof LINKS)[number]; active: boolean; isMobile: boolean }) {
+  const [revealed, setRevealed] = useState(false)
+
+  return (
+    <div
+      style={{ position: 'relative' }}
+      onMouseEnter={() => setRevealed(true)}
+      onMouseLeave={() => setRevealed(false)}
+    >
+      <a
+        href={`#${link.id}`}
+        aria-label={link.aria}
+        onFocus={() => setRevealed(true)}
+        onBlur={() => setRevealed(false)}
+        style={{
+          fontFamily: 'JetBrains Mono',
+          fontSize: isMobile ? 'var(--fs-9)' : 'var(--fs-10)',
+          letterSpacing: isMobile ? '0.02em' : '0.1em',
+          textDecoration: 'none',
+          color: active ? 'var(--phosphor-white)' : 'var(--dim-label)',
+          transition: 'color 0.2s',
+        }}
+      >
+        {link.label}
+      </a>
+      <span
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: '100%',
+          left: '50%',
+          transform: `translateX(-50%) translateY(${revealed ? '4px' : '0px'})`,
+          marginTop: 6,
+          padding: '3px 6px',
+          whiteSpace: 'nowrap',
+          fontFamily: 'JetBrains Mono',
+          fontSize: 'var(--fs-8)',
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          color: 'var(--phosphor-white)',
+          backgroundColor: 'var(--panel-black)',
+          border: '1px solid var(--hairline)',
+          pointerEvents: 'none',
+          opacity: revealed ? 1 : 0,
+          transition: 'opacity 0.15s, transform 0.15s',
+        }}
+      >
+        {link.aria}
+      </span>
+    </div>
+  )
 }
 
 export function Nav({ active }: { active: string }) {
@@ -74,21 +131,7 @@ export function Nav({ active }: { active: string }) {
 
       <div style={{ display: 'flex', gap: isMobile ? 8 : 28, alignItems: 'center' }}>
         {LINKS.map((l) => (
-          <a
-            key={l.id}
-            href={`#${l.id}`}
-            aria-label={l.aria}
-            style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: isMobile ? 'var(--fs-9)' : 'var(--fs-10)',
-              letterSpacing: isMobile ? '0.02em' : '0.1em',
-              textDecoration: 'none',
-              color: active === l.id ? 'var(--phosphor-white)' : 'var(--dim-label)',
-              transition: 'color 0.2s',
-            }}
-          >
-            {l.label}
-          </a>
+          <NavLink key={l.id} link={l} active={active === l.id} isMobile={isMobile} />
         ))}
       </div>
     </nav>

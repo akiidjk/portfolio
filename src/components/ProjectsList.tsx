@@ -144,18 +144,18 @@ function ProjectRow({ project, index, onClick }: { project: Project; index: numb
         ) : (
           <div
             style={{
-              display: 'flex',
-              gap: 8,
+              display: 'grid',
+              gridTemplateRows: hovered ? '1fr' : '0fr',
               marginTop: 8,
-              maxHeight: hovered ? 24 : 0,
               opacity: hovered ? 1 : 0,
-              overflow: 'hidden',
-              transition: 'max-height 0.3s ease, opacity 0.25s ease',
+              transition: 'grid-template-rows 0.3s ease, opacity 0.25s ease',
             }}
           >
-            {project.stack.slice(0, STACK_PREVIEW_COUNT).map((s) => (
-              <StackChip key={s} label={s} />
-            ))}
+            <div style={{ display: 'flex', gap: 8, overflow: 'hidden' }}>
+              {project.stack.slice(0, STACK_PREVIEW_COUNT).map((s) => (
+                <StackChip key={s} label={s} />
+              ))}
+            </div>
           </div>
         )}
       </div>

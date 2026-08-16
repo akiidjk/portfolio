@@ -25,17 +25,20 @@
   --scanline-strong: rgba(0, 0, 0, 0.12);
 
   /* Font-size scale — rem, not px, so text stays coherent with the root/
-     screen font size instead of being pinned to fixed pixel values. */
-  --fs-8: 0.5625rem;
+     screen font size instead of being pinned to fixed pixel values.
+     Token names are historical IDs, not literal px anymore: values are
+     grouped into 6 tiers with a real ~15-20% step between each, so
+     adjacent roles are actually distinguishable instead of 1px apart. */
+  --fs-8: 0.625rem;
   --fs-9: 0.625rem;
-  --fs-10: 0.6875rem;
-  --fs-11: 0.75rem;
-  --fs-12: 0.8125rem;
-  --fs-13: 0.875rem;
-  --fs-14: 0.9375rem;
-  --fs-15: 1rem;
-  --fs-16: 1.0625rem;
-  --fs-17: 1.125rem;
+  --fs-10: 0.75rem;
+  --fs-11: 0.875rem;
+  --fs-12: 1rem;
+  --fs-13: 1rem;
+  --fs-14: 1.125rem;
+  --fs-15: 1.3125rem;
+  --fs-16: 1.3125rem;
+  --fs-17: 1.3125rem;
   --fs-24: 1.625rem;
   --fs-56: 3.75rem;
 }

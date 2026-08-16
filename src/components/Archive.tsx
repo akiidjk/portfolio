@@ -81,7 +81,7 @@ export function Archive() {
                     style={{
                       fontFamily: 'JetBrains Mono',
                       fontSize: 'var(--fs-8)',
-                      color: 'var(--active-gray)',
+                      color: 'var(--dim-label)',
                       border: '1px solid var(--hairline)',
                       padding: '1px 6px',
                       letterSpacing: '0.1em',

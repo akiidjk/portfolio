@@ -64,7 +64,7 @@ export function About() {
             style={{
               fontFamily: 'JetBrains Mono',
               fontSize: 'var(--fs-9)',
-              color: 'var(--active-gray)',
+              color: 'var(--dim-label)',
               letterSpacing: '0.18em',
               marginBottom: 24,
             }}

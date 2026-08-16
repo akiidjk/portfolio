@@ -15,7 +15,7 @@ export function SectionHeader({ index, title, right }: { index: string; title: s
       }}
     >
       <span
-        style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-14)', color: 'var(--active-gray)', letterSpacing: '0.12em' }}
+        style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-14)', color: 'var(--dim-label)', letterSpacing: '0.12em' }}
       >
         [{index}]
       </span>
@@ -38,7 +38,7 @@ export function SectionHeader({ index, title, right }: { index: string; title: s
           style={{
             fontFamily: 'JetBrains Mono',
             fontSize: 'var(--fs-9)',
-            color: 'var(--active-gray)',
+            color: 'var(--dim-label)',
             letterSpacing: '0.1em',
             flexBasis: isMobile ? '100%' : 'auto',
           }}

@@ -194,11 +194,13 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
         >
           <div
             style={{
-              width: `${progress}%`,
+              width: '100%',
               height: '100%',
               backgroundColor: 'var(--signal-green)',
               boxShadow: '0 0 6px var(--signal-green)',
-              transition: 'width 0.15s linear',
+              transform: `scaleX(${progress / 100})`,
+              transformOrigin: 'left',
+              transition: 'transform 0.15s linear',
             }}
           />
         </div>
@@ -210,7 +212,7 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
           zIndex: 1,
           fontFamily: 'JetBrains Mono',
           fontSize: 'var(--fs-9)',
-          color: 'var(--active-gray)',
+          color: 'var(--dim-label)',
           letterSpacing: '0.1em',
           marginTop: 16,
         }}

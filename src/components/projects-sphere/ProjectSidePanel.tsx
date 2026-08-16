@@ -68,12 +68,13 @@ export function ProjectSidePanel({
                     color: 'var(--body-gray)',
                   }}
                 >
-                  <span
-                    style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-9)', color: 'var(--dim-label)', marginRight: 10 }}
-                  >
-                    {p.id}
-                  </span>
+
                   {p.title}
+                  <span
+                    style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-9)', color: 'var(--dim-label)', marginLeft: 10 }}
+                  >
+                    {p.domain}
+                  </span>
                 </button>
               ))}
               {projects.length === 0 && (
