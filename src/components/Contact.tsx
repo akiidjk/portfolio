@@ -36,7 +36,7 @@ export function Contact() {
 
           <div className="flex flex-wrap gap-3">
             <CalBookingButton className="cursor-none  border-none bg-signal-green px-6 py-3 font-mono text-fs-11 font-bold tracking-[0.1em] text-void-black" />
-            <a href="/cv.pdf" download className={GHOST_BUTTON}>
+            <a href="/assets/cv.pdf" download className={GHOST_BUTTON}>
               DOWNLOAD CV ↓
             </a>
           </div>
