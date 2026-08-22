@@ -140,6 +140,13 @@ const server = serve({
         'Cache-Control': 'public, max-age=3600',
       }),
     }),
+    '/cv.pdf': new Response(Bun.file('public/cv.pdf'), {
+      headers: withSecurityHeaders({
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': 'inline; filename="francesco-memoli-cv.pdf"',
+        'Cache-Control': 'public, max-age=3600',
+      }),
+    }),
 
     [INTERNAL_HTML_ROUTE]: indexHtml,
 
