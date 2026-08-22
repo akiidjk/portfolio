@@ -50,13 +50,13 @@ const DEFAULT_LABELS: Labels = {
   weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 }
 
-// Ported from muted-foreground/N opacity steps — same ramp, our own token.
+// Ported from muted-foreground/N opacity steps — same ramp, our signal color.
 const THEME = cn(
   'data-[level="0"]:fill-dim-label/5',
-  'data-[level="1"]:fill-dim-label/20',
-  'data-[level="2"]:fill-dim-label/40',
-  'data-[level="3"]:fill-dim-label/60',
-  'data-[level="4"]:fill-dim-label/80',
+  'data-[level="1"]:fill-signal-green/25',
+  'data-[level="2"]:fill-signal-green/50',
+  'data-[level="3"]:fill-signal-green/75',
+  'data-[level="4"]:fill-signal-green',
 )
 
 interface ContributionGraphContextType {
