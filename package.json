@@ -13,7 +13,7 @@
   },
   "scripts": {
     "dev": "bun --hot src/index.tsx",
-    "build": "bun build --target=bun --production --splitting --outdir=dist ./src/index.tsx",
+    "build": "bun run scripts/build.ts",
     "start": "NODE_ENV=production bun src/index.tsx",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
@@ -32,8 +32,8 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
     "@types/three": "^0.185.4",
     "prettier": "^3.9.6"
   }
