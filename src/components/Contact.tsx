@@ -1,5 +1,4 @@
 import { useIsMobile } from '../hooks/useBreakpoint'
-import { SectionHeader } from './SectionHeader'
 
 const SOCIAL_LINKS = [
   { label: 'GITHUB / INSTAGRAM / X', handle: 'akiidjk' },
@@ -11,8 +10,19 @@ export function Contact() {
   const isMobile = useIsMobile()
 
   return (
-    <section id="contact" style={{ padding: isMobile ? '56px 20px 60px' : '80px 40px 100px' }}>
-      <SectionHeader index="04" title="CONTACT" />
+    <section id="contact" style={{ padding: isMobile ? '48px 20px 60px' : '80px 40px 100px' }}>
+      <div
+        style={{
+          fontFamily: 'JetBrains Mono',
+          fontSize: isMobile ? 'var(--fs-9)' : 'var(--fs-10)',
+          color: 'var(--dim-label)',
+          letterSpacing: '0.2em',
+          marginBottom: isMobile ? 16 : 24,
+          textTransform: 'uppercase',
+        }}
+      >
+        [ SEND SIGNAL ]
+      </div>
 
       <div
         style={{
@@ -89,26 +99,6 @@ export function Contact() {
             </div>
           ))}
         </div>
-      </div>
-
-      <div
-        style={{
-          marginTop: isMobile ? 48 : 80,
-          paddingTop: 24,
-          borderTop: '1px solid var(--hairline)',
-          display: 'flex',
-          flexDirection: isMobile ? 'column' : 'row',
-          gap: isMobile ? 8 : 0,
-          justifyContent: 'space-between',
-          fontFamily: 'JetBrains Mono',
-          fontSize: 'var(--fs-9)',
-          color: 'var(--dim-label)',
-          letterSpacing: '0.12em',
-        }}
-      >
-        <span>akiidjk@2026</span>
-        <span>TRYING TO DO BETTER</span>
-        <span>SALERNO, ITALY — 41.89° N</span>
       </div>
     </section>
   )

@@ -14,6 +14,20 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     description:
       'Catalog of open-source projects by Francesco Memoli (akiidjk): CTF infrastructure, tooling, and distributed-systems experiments including CookieFarm and Discord CTF Helper.',
   },
+  '/experience': {
+    title: 'Experience — Francesco Memoli (akiidjk)',
+    description:
+      'Timeline of CTF competitions, teams, and milestones for Francesco Memoli (akiidjk), co-founder of ByteTheCookies.',
+  },
+  '/about': {
+    title: 'About — Francesco Memoli (akiidjk)',
+    description:
+      'Francesco Memoli (akiidjk), CS student at UNISA focused on web exploitation, microservices, and DevOps.',
+  },
+  '/contact': {
+    title: 'Contact — Francesco Memoli (akiidjk)',
+    description: 'Get in touch with Francesco Memoli (akiidjk).',
+  },
 }
 
 export const NOT_FOUND_META: RouteMeta = {

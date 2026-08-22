@@ -24,7 +24,6 @@ export function Hero() {
         flexDirection: 'column',
         justifyContent: 'flex-end',
         padding: isMobile ? '0 20px 40px' : '0 40px 56px',
-        borderBottom: '1px solid var(--hairline)',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -136,25 +135,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-
-      {/* Scroll hint */}
-      {!isMobile && (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 56,
-            right: 40,
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'var(--fs-9)',
-            color: 'var(--dim-label)',
-            letterSpacing: '0.15em',
-            writingMode: 'vertical-rl',
-            zIndex: 1,
-          }}
-        >
-          SCROLL ↓
-        </div>
-      )}
     </section>
   )
 }

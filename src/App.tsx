@@ -1,40 +1,51 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { About } from './components/About'
-import { Archive } from './components/Archive'
 import { Contact } from './components/Contact'
 import { CookieBanner } from './components/CookieBanner'
 import { Cursor } from './components/Cursor'
 import { ErrorBoundary } from './components/ErrorBoundary'
+import { Experience } from './components/Experience'
+import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
 import { LoadingScreen } from './components/LoadingScreen'
 import { Nav } from './components/Nav'
 import { NotFound } from './components/NotFound'
 import { ProjectsPage } from './components/ProjectsPage'
-import { Work } from './components/Work'
 import { useIsMobile } from './hooks/useBreakpoint'
 import { useRoute } from './hooks/useRoute'
 import { canonicalUrl, getRouteMeta, isKnownRoute } from './route-meta'
 
+// One fade + slight rise per page, kept short so navigating between the
+// five pages reads as instant rather than as a slideshow.
+const pageTransition = {
+  initial: { opacity: 0, y: 8 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -8 },
+  transition: { duration: 0.25, ease: 'easeInOut' as const },
+}
+
+function renderPage(path: string) {
+  switch (path) {
+    case '/':
+      return <Hero />
+    case '/about':
+      return <About />
+    case '/experience':
+      return <Experience />
+    case '/contact':
+      return <Contact />
+    default:
+      return null
+  }
+}
+
 export default function App({ initialPath = '/' }: { initialPath?: string }) {
-  const [active, setActive] = useState('index')
   const [isLoading, setIsLoading] = useState(true)
   const { path, navigate } = useRoute(initialPath)
   const isProjectsPage = path === '/projects'
   const isNotFound = !isKnownRoute(path)
   const isMobile = useIsMobile()
-
-  useEffect(() => {
-    if (isProjectsPage || isNotFound) return
-    const obs = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id)
-        }),
-      { threshold: 0.25 },
-    )
-    document.querySelectorAll('section[id]').forEach((s) => obs.observe(s))
-    return () => obs.disconnect()
-  }, [isProjectsPage, isNotFound])
 
   // The initial <head> for each route is rendered server-side straight into
   // the static template (see index.tsx) — SSR streams into #root only, and
@@ -58,39 +69,35 @@ export default function App({ initialPath = '/' }: { initialPath?: string }) {
   }, [path])
 
   return (
-    <div style={{ margin: '0 auto', position: 'relative' }}>
+    <div
+      style={{ margin: '0 auto', position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
+    >
       {isLoading && <LoadingScreen onFinish={() => setIsLoading(false)} />}
 
       <Cursor />
       <CookieBanner />
 
-      {isProjectsPage ? (
-        <ErrorBoundary>
-          <ProjectsPage onNavigateHome={() => navigate('/')} />
-        </ErrorBoundary>
-      ) : isNotFound ? (
-        <>
-          <Nav active={active} />
-          <div style={{ paddingTop: isMobile ? 52 : 57 }}>
+      <Nav active={path} navigate={navigate} />
+      <div style={{ paddingTop: isMobile ? 52 : 57, flex: '1 0 auto', display: 'flex', flexDirection: 'column' }}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={path}
+            {...pageTransition}
+            style={{ flex: '1 0 auto', display: 'flex', flexDirection: 'column' }}
+          >
             <ErrorBoundary>
-              <NotFound path={path} onNavigateHome={() => navigate('/')} />
+              {isProjectsPage ? (
+                <ProjectsPage />
+              ) : isNotFound ? (
+                <NotFound path={path} onNavigateHome={() => navigate('/')} />
+              ) : (
+                renderPage(path)
+              )}
             </ErrorBoundary>
-          </div>
-        </>
-      ) : (
-        <>
-          <Nav active={active} />
-          <div style={{ paddingTop: isMobile ? 52 : 57 }}>
-            <ErrorBoundary>
-              <Hero />
-              <Work onViewAll={() => navigate('/projects')} />
-              <Archive />
-              <About />
-              <Contact />
-            </ErrorBoundary>
-          </div>
-        </>
-      )}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+      <Footer />
     </div>
   )
 }

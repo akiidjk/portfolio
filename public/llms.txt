@@ -4,8 +4,11 @@
 
 ## Pages
 
-- [Home](https://akiidjk.dev/): Hero intro, featured work, lab experiments, competition archive, about, and contact.
+- [Home](https://akiidjk.dev/): Hero intro.
 - [Projects](https://akiidjk.dev/projects): Full catalog of open-source projects and tools, including CookieFarm (attack-defense CTF framework) and Discord CTF Helper.
+- [Experience](https://akiidjk.dev/experience): CTF competition timeline and milestones.
+- [About](https://akiidjk.dev/about): Background, focus areas, and what I'm currently working on.
+- [Contact](https://akiidjk.dev/contact): Email and social links.
 
 ## Contact
 

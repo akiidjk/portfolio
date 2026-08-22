@@ -7,7 +7,7 @@ export function NotFound({ path, onNavigateHome }: { path: string; onNavigateHom
     <section
       style={{
         position: 'relative',
-        minHeight: '100vh',
+        flex: 1,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

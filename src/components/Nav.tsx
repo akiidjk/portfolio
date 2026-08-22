@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { useIsMobile } from '../hooks/useBreakpoint'
 
 const LINKS = [
-  { id: 'index', label: '[00]', aria: 'Home' },
-  { id: 'work', label: '[01]', aria: 'Selected Work' },
-  { id: 'archive', label: '[02]', aria: 'Archive' },
-  { id: 'about', label: '[03]', aria: 'About' },
-  { id: 'contact', label: '[04]', aria: 'Contact' },
+  { path: '/', label: '[00]', aria: 'Home' },
+  { path: '/projects', label: '[01]', aria: 'Projects' },
+  { path: '/experience', label: '[02]', aria: 'Experience' },
+  { path: '/about', label: '[03]', aria: 'About' },
+  { path: '/contact', label: '[04]', aria: 'Contact' },
 ]
 
 // DESIGN.md's signature corner-bracket "reticle" device — a target-lock
@@ -36,7 +36,17 @@ function ReticleCorner({ position }: { position: 'tl' | 'tr' | 'bl' | 'br' }) {
 // Bracket codes ([00]-[04]) are the resting state; the real section name
 // surfaces only on hover/focus, so sighted first-time visitors get a label
 // without the nav losing its terminal-readout look at rest.
-function NavLink({ link, active, isMobile }: { link: (typeof LINKS)[number]; active: boolean; isMobile: boolean }) {
+function NavLink({
+  link,
+  active,
+  isMobile,
+  navigate,
+}: {
+  link: (typeof LINKS)[number]
+  active: boolean
+  isMobile: boolean
+  navigate: (to: string) => void
+}) {
   const [revealed, setRevealed] = useState(false)
 
   return (
@@ -46,10 +56,16 @@ function NavLink({ link, active, isMobile }: { link: (typeof LINKS)[number]; act
       onMouseLeave={() => setRevealed(false)}
     >
       <a
-        href={`#${link.id}`}
+        href={link.path}
         aria-label={link.aria}
+        aria-current={active ? 'page' : undefined}
         onFocus={() => setRevealed(true)}
         onBlur={() => setRevealed(false)}
+        onClick={(e) => {
+          if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
+          e.preventDefault()
+          navigate(link.path)
+        }}
         style={{
           fontFamily: 'JetBrains Mono',
           fontSize: isMobile ? 'var(--fs-9)' : 'var(--fs-10)',
@@ -89,8 +105,9 @@ function NavLink({ link, active, isMobile }: { link: (typeof LINKS)[number]; act
   )
 }
 
-export function Nav({ active }: { active: string }) {
+export function Nav({ active, navigate }: { active: string; navigate: (to: string) => void }) {
   const isMobile = useIsMobile()
+  const current = LINKS.find((l) => l.path === active)
 
   return (
     <nav
@@ -109,29 +126,45 @@ export function Nav({ active }: { active: string }) {
         backdropFilter: 'blur(12px)',
       }}
     >
-      <div style={{ position: 'relative', flexShrink: 0 }}>
-        <img
-          src="/assets/spidy.jpg"
-          alt="Logo"
-          style={{
-            width: isMobile ? 32 : 48,
-            height: isMobile ? 32 : 48,
-            borderRadius: '50%',
-            objectFit: 'cover',
-            border: '1px solid var(--hairline)',
-            transform: 'scaleX(-1)',
-            display: 'block',
-          }}
-        />
-        <ReticleCorner position="tl" />
-        <ReticleCorner position="tr" />
-        <ReticleCorner position="bl" />
-        <ReticleCorner position="br" />
+      <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 12 : 18, minWidth: 0 }}>
+        <div style={{ position: 'relative', flexShrink: 0 }}>
+          <img
+            src="/assets/spidy.jpg"
+            alt="Logo"
+            style={{
+              width: isMobile ? 32 : 48,
+              height: isMobile ? 32 : 48,
+              borderRadius: '50%',
+              objectFit: 'cover',
+              border: '1px solid var(--hairline)',
+              transform: 'scaleX(-1)',
+              display: 'block',
+            }}
+          />
+          <ReticleCorner position="tl" />
+          <ReticleCorner position="tr" />
+          <ReticleCorner position="bl" />
+          <ReticleCorner position="br" />
+        </div>
+
+        {current && !isMobile && (
+          <span
+            style={{
+              fontFamily: 'JetBrains Mono',
+              fontSize: 'var(--fs-11)',
+              color: 'var(--phosphor-white)',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+            }}
+          >
+            {current.aria}
+          </span>
+        )}
       </div>
 
       <div style={{ display: 'flex', gap: isMobile ? 8 : 28, alignItems: 'center' }}>
         {LINKS.map((l) => (
-          <NavLink key={l.id} link={l} active={active === l.id} isMobile={isMobile} />
+          <NavLink key={l.path} link={l} active={active === l.path} isMobile={isMobile} navigate={navigate} />
         ))}
       </div>
     </nav>
