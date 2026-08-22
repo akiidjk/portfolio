@@ -1,5 +1,5 @@
+import { GithubActivity } from './github/GithubActivity'
 import { useIsMobile } from '../hooks/useBreakpoint'
-import { SectionHeader } from './SectionHeader'
 
 const FOCUS_AREAS = [
   { area: 'Web Exploitation', tools: 'Burp Suite · CTF' },
@@ -11,15 +11,10 @@ export function About() {
   const isMobile = useIsMobile()
 
   return (
-    <section
-      id="about"
-      style={{ padding: isMobile ? '56px 20px' : '80px 40px', borderBottom: '1px solid var(--hairline)' }}
-    >
-      <SectionHeader index="03" title="ABOUT" />
-
+    <section id="about">
       <div
         style={{
-          marginTop: isMobile ? 32 : 48,
+          padding: isMobile ? '56px 20px' : '80px 40px',
           display: 'grid',
           gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
           gap: isMobile ? 40 : 80,
@@ -49,9 +44,21 @@ export function About() {
               margin: 0,
             }}
           >
-            I know Python and Go well and I've picked up bits of everything else along the way. Most of my time goes to CTFs,
-            mainly web exploitation, and to microservices: API design, event-driven pipelines, deployment,
+            I know Python and Go well and I've picked up bits of everything else along the way. Most of my time goes to
+            CTFs, mainly web exploitation, and to microservices: API design, event-driven pipelines, deployment,
             observability.
+          </p>
+          <p
+            style={{
+              fontFamily: 'Inter',
+              fontSize: 'var(--fs-14)',
+              color: 'var(--soft-gray)',
+              lineHeight: 1.75,
+              margin: '16px 0 0',
+            }}
+          >
+            Right now: client projects, weekly CTFs with ByteTheCookies, and{' '}
+            <span style={{ color: 'var(--signal-green)' }}>WIP</span> microservices.
           </p>
         </div>
 
@@ -95,6 +102,16 @@ export function About() {
             </div>
           ))}
         </div>
+      </div>
+
+      <div
+        style={{
+          padding: isMobile ? '0 20px 56px' : '0 40px 80px',
+          borderTop: '1px solid var(--hairline)',
+          paddingTop: isMobile ? 48 : 56,
+        }}
+      >
+        <GithubActivity />
       </div>
     </section>
   )
