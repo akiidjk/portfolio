@@ -20,7 +20,7 @@ export function About() {
       <img
         src="/assets/hand.jpg"
         alt="Hand with universal access"
-        className="ml-auto absolute bottom-64 right-0 opacity-10 grayscale contrast-[1.2] brightness-[0.85] scale-200 object-cover"
+        className="pointer-events-none ml-auto absolute bottom-64 right-0 opacity-10 grayscale contrast-[1.2] brightness-[0.85] scale-200 object-cover"
       />
       <div className="grid gap-10 px-5 py-14 sm:grid-cols-2 sm:gap-20 sm:px-10 sm:pt-20 sm:pb-12">
         <div>
