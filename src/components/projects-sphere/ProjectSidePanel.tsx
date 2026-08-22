@@ -39,12 +39,12 @@ export function ProjectSidePanel({
             <div className="mb-4 font-mono text-fs-10 leading-[1.6] tracking-[0.1em] text-dim-label">
               TAP A POINT ON THE SPHERE OR AN ENTRY
             </div>
-            <div className="max-h-[480px] overflow-y-auto border border-hairline">
+            <div className="group/list max-h-[480px] overflow-y-auto border border-hairline">
               {projects.map((p, i) => (
                 <button
                   key={p.id}
                   onClick={() => onSelectList(p)}
-                  className={`block w-full cursor-none border-none bg-transparent px-4 py-3.5 text-left text-fs-13 text-body-gray ${
+                  className={`block w-full cursor-none border-none bg-transparent px-4 py-3.5 text-left text-fs-13 text-body-gray opacity-100 transition-opacity duration-200 group-hover/list:not-hover:opacity-40 ${
                     i === projects.length - 1 ? '' : 'border-b border-divider-black'
                   }`}
                 >

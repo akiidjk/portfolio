@@ -35,7 +35,7 @@ function NavLink({
   navigate: (to: string) => void
 }) {
   return (
-    <div className="group relative">
+    <div className="group relative opacity-100 transition-opacity duration-200 group-hover/links:not-hover:opacity-40">
       <a
         href={link.path}
         aria-label={link.aria}
@@ -137,7 +137,7 @@ export function Nav({ active, navigate }: { active: string; navigate: (to: strin
         )}
       </div>
 
-      <div className="hidden items-center gap-7 sm:flex">
+      <div className="group/links hidden items-center gap-7 sm:flex">
         {LINKS.map((l) => (
           <NavLink key={l.path} link={l} active={active === l.path} navigate={navigate} />
         ))}

@@ -14,11 +14,11 @@ export function Experience() {
         <div className="mb-6 font-mono text-fs-10 tracking-[0.15em] text-dim-label sm:mb-8">[ CHRONOLOGICAL ]</div>
         <div className="grid gap-10 sm:grid-cols-[1fr_260px] sm:gap-15">
           {/* Timeline */}
-          <div className="border-l border-hairline pl-6 sm:pl-9">
+          <div className="group/timeline border-l border-hairline pl-6 sm:pl-9">
             {ARCHIVE_ENTRIES.map((entry, i) => (
               <div
                 key={i}
-                className={`relative flex gap-5 sm:gap-9 ${i < ARCHIVE_ENTRIES.length - 1 ? 'pb-9' : 'pb-0'}`}
+                className={`relative flex gap-5 opacity-100 transition-opacity duration-200 group-hover/timeline:not-hover:opacity-40 sm:gap-9 ${i < ARCHIVE_ENTRIES.length - 1 ? 'pb-9' : 'pb-0'}`}
               >
                 <div className="absolute top-[5px] left-[-29px] h-[7px] w-[7px] border border-active-gray bg-void-black sm:left-[-41px]" />
                 <div className="min-w-10 pt-px font-mono text-fs-13 text-dim-label">{entry.year}</div>
