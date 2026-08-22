@@ -1,7 +1,10 @@
 import { GithubActivity } from './github/GithubActivity'
 
 const FOCUS_AREAS = [
-  { area: 'Web Exploitation & CTF', tools: 'Pwntools, Binary Analysis, Android RE (Smali), Attack/Defense, Web Explotation' },
+  {
+    area: 'Web Exploitation & CTF',
+    tools: 'Pwntools, Binary Analysis, Android RE (Smali), Attack/Defense, Web Explotation',
+  },
   { area: 'Systems Programming', tools: 'Zig, C, Emulators (NES / Chip-8), Algorithms' },
   { area: 'Offensive Security & Maldev', tools: 'Zig, Process Injection, WebRTC' },
   { area: 'Network Security', tools: 'Go, eBPF, XDP, NGFW' },
