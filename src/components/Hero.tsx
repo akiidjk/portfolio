@@ -16,7 +16,7 @@ export function Hero() {
   return (
     <section
       id="index"
-      className="relative flex min-h-[95vh] flex-col justify-end overflow-hidden px-5 pb-10 sm:px-10 sm:pb-14"
+      className="relative flex min-h-[85vh] flex-col justify-end overflow-hidden px-5 pb-10 sm:px-10 sm:pb-14"
     >
       <HeroCanvas />
 

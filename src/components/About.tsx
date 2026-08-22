@@ -11,7 +11,7 @@ export function About() {
     <section id="about">
       <div className="grid gap-10 px-5 py-14 sm:grid-cols-2 sm:gap-20 sm:px-10 sm:py-20">
         <div>
-          <p className="mb-7 text-[clamp(1.0625rem,5vw,1.3125rem)] leading-[1.5] font-light tracking-[-0.025em] text-phosphor-white">
+          <p className="mb-7 text-[clamp(1.0625rem,5vw,1.3125rem)] leading-normal font-light tracking-tight text-phosphor-white">
             First-year Computer Science student at UNISA, split between breaking web applications in CTFs and studying
             how large-scale systems are designed, deployed, and kept alive.
           </p>
@@ -28,7 +28,7 @@ export function About() {
 
         <div>
           <div className="mb-6 font-mono text-fs-9 tracking-[0.18em] text-dim-label">
-            ── TECHNICAL FOCUS ──────────────
+            SKILLS
           </div>
           {FOCUS_AREAS.map((item) => (
             <div
@@ -42,8 +42,13 @@ export function About() {
         </div>
       </div>
 
-      <div className="border-t border-hairline px-5 pt-12 pb-14 sm:px-10 sm:pt-14 sm:pb-20">
+      <div className="flex border-hairline px-5 pt-12 pb-14 sm:px-10 sm:pt-14 sm:pb-20">
         <GithubActivity />
+        <img
+          src="/assets/hand.jpg"
+          alt="Hand with universal access"
+          className="ml-auto opacity-10 grayscale contrast-[1.2] brightness-[0.85] scale-200 object-cover"
+        />
       </div>
     </section>
   )

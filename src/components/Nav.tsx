@@ -45,18 +45,11 @@ function NavLink({
           e.preventDefault()
           navigate(link.path)
         }}
-        className={`font-mono text-fs-9 tracking-[0.02em] no-underline transition-colors duration-200 sm:text-fs-10 sm:tracking-[0.1em] ${
-          active ? 'text-phosphor-white' : 'text-dim-label'
-        }`}
+        className={`font-mono text-fs-9 tracking-[0.02em] no-underline transition-colors duration-200 sm:text-fs-10 sm:tracking-[0.1em] ${active ? 'text-phosphor-white' : 'text-dim-label'
+          }`}
       >
         {link.label}
       </a>
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute top-full left-1/2 mt-1.5 -translate-x-1/2 translate-y-0 border border-hairline bg-panel-black px-1.5 py-[3px] font-mono text-fs-8 tracking-[0.1em] text-phosphor-white uppercase opacity-0 whitespace-nowrap transition duration-150 group-hover:translate-y-1 group-hover:opacity-100 group-focus-within:translate-y-1 group-focus-within:opacity-100"
-      >
-        {link.aria}
-      </span>
     </div>
   )
 }
@@ -185,9 +178,8 @@ export function Nav({ active, navigate }: { active: string; navigate: (to: strin
                     e.preventDefault()
                     handleMobileNavigate(l.path)
                   }}
-                  className={`px-5 py-4 font-mono text-fs-13 tracking-[0.05em] uppercase no-underline ${
-                    active === l.path ? 'text-phosphor-white' : 'text-dim-label'
-                  }`}
+                  className={`px-5 py-4 font-mono text-fs-13 tracking-[0.05em] uppercase no-underline ${active === l.path ? 'text-phosphor-white' : 'text-dim-label'
+                    }`}
                 >
                   {l.label}
                 </a>
