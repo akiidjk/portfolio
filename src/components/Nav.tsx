@@ -1,13 +1,16 @@
+import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+
 const LINKS = [
-  { path: '/', label: '[00]', aria: 'Home' },
-  { path: '/projects', label: '[01]', aria: 'Projects' },
-  { path: '/experience', label: '[02]', aria: 'Experience' },
-  { path: '/about', label: '[03]', aria: 'About' },
-  { path: '/contact', label: '[04]', aria: 'Contact' },
+  { path: '/', label: '[Home]', aria: 'Home' },
+  { path: '/projects', label: '[Projects]', aria: 'Projects' },
+  { path: '/experience', label: '[Experience]', aria: 'Experience' },
+  { path: '/about', label: '[About]', aria: 'About' },
+  { path: '/contact', label: '[Contact]', aria: 'Contact' },
 ]
 
 // DESIGN.md's signature corner-bracket "reticle" device — a target-lock
-// frame around the one focal, personal element on the page.
+// frame around the one focal, personal element on the page
 function ReticleCorner({ position }: { position: 'tl' | 'tr' | 'bl' | 'br' }) {
   const sideClasses: Record<typeof position, string> = {
     tl: '-top-1 -left-1 border-t border-l',
@@ -58,8 +61,59 @@ function NavLink({
   )
 }
 
+// Morphs between three stacked bars and an X — one small, established
+// micro-interaction, not a whole animated scene.
+function MenuToggle({ open }: { open: boolean }) {
+  return (
+    <div className="flex h-3.5 w-5 flex-col justify-between">
+      <motion.span
+        className="h-px w-full bg-phosphor-white"
+        animate={open ? { rotate: 45, y: 6.5 } : { rotate: 0, y: 0 }}
+        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      />
+      <motion.span
+        className="h-px w-full bg-phosphor-white"
+        animate={{ opacity: open ? 0 : 1 }}
+        transition={{ duration: 0.15 }}
+      />
+      <motion.span
+        className="h-px w-full bg-phosphor-white"
+        animate={open ? { rotate: -45, y: -6.5 } : { rotate: 0, y: 0 }}
+        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      />
+    </div>
+  )
+}
+
 export function Nav({ active, navigate }: { active: string; navigate: (to: string) => void }) {
   const current = LINKS.find((l) => l.path === active)
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  // Menu is mobile-only chrome — if the viewport grows past sm while it's
+  // open (or a link navigates), don't leave it stuck open.
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [active])
+
+  useEffect(() => {
+    if (!menuOpen) return
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      document.body.style.overflow = prevOverflow
+    }
+  }, [menuOpen])
+
+  const handleMobileNavigate = (path: string) => {
+    navigate(path)
+    setMenuOpen(false)
+  }
 
   return (
     <nav className="fixed inset-x-0 top-0 z-[1000] flex items-center justify-between border-b border-hairline bg-[rgba(8,8,8,0.96)] px-4 py-3 backdrop-blur-md sm:px-10 sm:py-[18px]">
@@ -83,11 +137,65 @@ export function Nav({ active, navigate }: { active: string; navigate: (to: strin
         )}
       </div>
 
-      <div className="flex items-center gap-2 sm:gap-7">
+      <div className="hidden items-center gap-7 sm:flex">
         {LINKS.map((l) => (
           <NavLink key={l.path} link={l} active={active === l.path} navigate={navigate} />
         ))}
       </div>
+
+      <button
+        type="button"
+        onClick={() => setMenuOpen((o) => !o)}
+        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={menuOpen}
+        aria-controls="mobile-nav-menu"
+        className="cursor-none p-1 sm:hidden"
+      >
+        <MenuToggle open={menuOpen} />
+      </button>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            key="mobile-nav-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setMenuOpen(false)}
+            className="fixed inset-x-0 top-13 bottom-0 z-[999] bg-[rgba(8,8,8,0.92)] backdrop-blur-sm sm:hidden"
+          >
+            <motion.nav
+              id="mobile-nav-menu"
+              aria-label="Mobile navigation"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="flex flex-col divide-y divide-hairline border-b border-hairline bg-panel-black"
+            >
+              {LINKS.map((l) => (
+                <a
+                  key={l.path}
+                  href={l.path}
+                  aria-current={active === l.path ? 'page' : undefined}
+                  onClick={(e) => {
+                    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
+                    e.preventDefault()
+                    handleMobileNavigate(l.path)
+                  }}
+                  className={`px-5 py-4 font-mono text-fs-13 tracking-[0.05em] uppercase no-underline ${
+                    active === l.path ? 'text-phosphor-white' : 'text-dim-label'
+                  }`}
+                >
+                  {l.label}
+                </a>
+              ))}
+            </motion.nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   )
 }
