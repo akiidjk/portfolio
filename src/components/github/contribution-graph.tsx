@@ -10,6 +10,7 @@ import {
   parseISO,
   subWeeks,
 } from 'date-fns'
+import { motion } from 'framer-motion'
 import { createContext, Fragment, useContext, useMemo } from 'react'
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react'
 
@@ -286,8 +287,8 @@ export const ContributionGraphBlock = ({
   }
 
   return (
-    <rect
-      className={cn(THEME, className)}
+    <motion.rect
+      className={cn(THEME, '[transform-box:fill-box] [transform-origin:center]', className)}
       data-count={activity.count}
       data-date={activity.date}
       data-level={activity.level}
@@ -297,7 +298,9 @@ export const ContributionGraphBlock = ({
       width={blockSize}
       x={(blockSize + blockMargin) * weekIndex}
       y={labelHeight + (blockSize + blockMargin) * dayIndex}
-      {...props}
+      whileHover={{ scale: 1.35 }}
+      transition={{ duration: 0.12 }}
+      {...(props as Record<string, unknown>)}
     />
   )
 }
