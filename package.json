@@ -20,12 +20,16 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@base-ui-components/react": "^1.0.0-rc.0",
     "@react-three/drei": "^10.7.8",
     "@react-three/fiber": "^9.7.0",
     "bun-plugin-tailwind": "^0.1.2",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.4.0",
     "framer-motion": "^13.1.0",
     "react": "^19",
     "react-dom": "^19",
+    "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.3",
     "three": "^0.185.1",
     "typescript": "^7.0.2"

@@ -2,6 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
 @import 'tailwindcss';
 
+/* Used by the GitHub contribution calendar's horizontal scroll strip —
+   the strip's own edges already communicate "more to scroll", a visible
+   scrollbar underneath would just add noise. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* DESIGN.md "The Black Site" palette — single source of truth. Namespaced
    under the color, font, text and animate theme keys so Tailwind generates
    real utilities (bg-void-black, text-fs-14, animate-blink, ...) instead of
