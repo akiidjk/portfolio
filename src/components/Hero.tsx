@@ -19,7 +19,7 @@ export function Hero() {
     <section
       id="index"
       style={{
-        minHeight: '100vh',
+        minHeight: '95vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',

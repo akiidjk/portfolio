@@ -16,7 +16,7 @@ export function Work({ onViewAll }: { onViewAll: () => void }) {
   return (
     <section
       id="work"
-      style={{ padding: isMobile ? '56px 20px' : '80px 40px', borderBottom: '1px solid var(--hairline)' }}
+      style={{ padding: isMobile ? '56px 20px' : '80px 40px' }}
     >
       <SectionHeader index="01" title="SELECTED WORK" right={`${PROJECTS.length} PROJECTS`} />
 

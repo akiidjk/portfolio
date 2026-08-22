@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-08-15T16:19:31.902Z",
+        "reason": "Same finding, Google Fonts import line (lowercase family= value) — same Two-Voice Rule pairing as above."
+      }
+    ]
+  }
+}

@@ -10,8 +10,6 @@ export function SectionHeader({ index, title, right }: { index: string; title: s
         alignItems: 'center',
         flexWrap: isMobile ? 'wrap' : 'nowrap',
         gap: isMobile ? 10 : 20,
-        paddingBottom: 18,
-        borderBottom: '1px solid var(--hairline)',
       }}
     >
       <span
