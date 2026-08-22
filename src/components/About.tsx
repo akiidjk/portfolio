@@ -1,9 +1,15 @@
 import { GithubActivity } from './github/GithubActivity'
 
 const FOCUS_AREAS = [
-  { area: 'Web Exploitation', tools: 'Burp Suite · CTF' },
-  { area: 'Microservices & Distributed Systems', tools: 'Go · Python · TypeScript' },
-  { area: 'DevOps & Scalability', tools: 'Docker · Linux · Postgres' },
+  { area: 'Web Exploitation & CTF', tools: 'Python, pwntools, Binary Analysis, Android RE (Smali), Attack/Defense' },
+  { area: 'Systems Programming', tools: 'Zig, C, Rust, Emulators (NES / Chip-8), Algorithms' },
+  { area: 'Offensive Security & Maldev', tools: 'Zig, Windows Internals, Process Injection, WebRTC' },
+  { area: 'Network Security', tools: 'Go, eBPF, XDP, NGFW' },
+  { area: 'Backend & APIs', tools: 'Go (Gin), FastAPI, Webhooks, PostgreSQL, SQLite' },
+  { area: 'Full-Stack Web', tools: 'TypeScript, Next.js, React, Nuxt, Svelte, Astro, Bun, Tailwind' },
+  { area: 'DevTools & CLI', tools: 'Rust, Python, VS Code / Zed Extensions' },
+  { area: 'Linux & DevOps', tools: 'Arch, Hyprland, Docker, Bash, Git, VPS' },
+  { area: 'Automation & Scraping', tools: 'Python, yt-dlp, Spotify API, Data Extraction' },
 ]
 
 export function About() {
@@ -27,9 +33,7 @@ export function About() {
         </div>
 
         <div>
-          <div className="mb-6 font-mono text-fs-9 tracking-[0.18em] text-dim-label">
-            SKILLS
-          </div>
+          <div className="mb-6 font-mono text-fs-9 tracking-[0.18em] text-dim-label">SKILLS</div>
           {FOCUS_AREAS.map((item) => (
             <div
               key={item.area}
@@ -42,13 +46,15 @@ export function About() {
         </div>
       </div>
 
-      <div className="flex border-hairline px-5 pt-12 pb-14 sm:px-10 sm:pt-14 sm:pb-20">
-        <GithubActivity />
+      <div className="relative overflow-hidden px-5 pt-12 pb-14 sm:px-10 sm:pt-14 sm:pb-20">
         <img
           src="/assets/hand.jpg"
-          alt="Hand with universal access"
-          className="ml-auto opacity-10 grayscale contrast-[1.2] brightness-[0.85] scale-200 object-cover"
+          alt=""
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-10 grayscale contrast-[1.2] brightness-[0.85]"
         />
+        <div className="relative z-10">
+          <GithubActivity />
+        </div>
       </div>
     </section>
   )
