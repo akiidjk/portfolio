@@ -2,29 +2,13 @@ import { LEVEL_COLORS } from './contribution-utils'
 
 export function ContributionLegend() {
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 5,
-        fontFamily: 'JetBrains Mono',
-        fontSize: 'var(--fs-8)',
-        color: 'var(--dim-label)',
-        letterSpacing: '0.08em',
-        textTransform: 'uppercase',
-      }}
-    >
+    <div className="flex items-center gap-[5px] font-mono text-fs-8 tracking-[0.08em] text-dim-label uppercase">
       <span>Less</span>
       {LEVEL_COLORS.map((color, level) => (
         <span
           key={level}
-          style={{
-            width: 10,
-            height: 10,
-            borderRadius: 2,
-            backgroundColor: color,
-            border: level === 0 ? '1px solid var(--hairline)' : 'none',
-          }}
+          className={`h-2.5 w-2.5 rounded-sm ${level === 0 ? 'border border-hairline' : ''}`}
+          style={{ backgroundColor: color }}
         />
       ))}
       <span>More</span>

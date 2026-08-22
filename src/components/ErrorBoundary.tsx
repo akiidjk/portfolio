@@ -25,53 +25,16 @@ export class ErrorBoundary extends Component<Props, State> {
   override render() {
     if (this.state.error) {
       return (
-        <div
-          style={{
-            minHeight: '60vh',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            textAlign: 'center',
-            padding: '40px 20px',
-          }}
-        >
-          <div
-            style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: 'var(--fs-10)',
-              color: 'var(--dim-label)',
-              letterSpacing: '0.2em',
-              marginBottom: 20,
-              textTransform: 'uppercase',
-            }}
-          >
+        <div className="flex min-h-[60vh] flex-col items-center justify-center px-5 py-10 text-center">
+          <div className="mb-5 font-mono text-fs-10 tracking-[0.2em] text-dim-label uppercase">
             [ ERR_UNCAUGHT_EXCEPTION ]
           </div>
-          <p
-            style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: 'var(--fs-13)',
-              color: 'var(--muted-steel)',
-              maxWidth: 420,
-              lineHeight: 1.6,
-              margin: '0 0 28px',
-            }}
-          >
+          <p className="mb-7 max-w-[420px] font-mono text-fs-13 leading-[1.6] text-muted-steel">
             Something broke rendering this part of the page. It's on us, not you.
           </p>
           <button
             onClick={() => window.location.reload()}
-            style={{
-              background: 'none',
-              border: '1px solid var(--hairline)',
-              color: 'var(--muted-steel)',
-              fontFamily: 'JetBrains Mono',
-              fontSize: 'var(--fs-10)',
-              padding: '10px 18px',
-              cursor: 'none',
-              letterSpacing: '0.1em',
-            }}
+            className="cursor-none border border-hairline px-[18px] py-2.5 font-mono text-fs-10 tracking-[0.1em] text-muted-steel"
           >
             RELOAD
           </button>

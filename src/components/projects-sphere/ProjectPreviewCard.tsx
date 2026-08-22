@@ -13,38 +13,10 @@ export function ProjectPreviewCard({
   const [imageError, setImageError] = useState(false)
 
   return (
-    <div
-      style={{
-        border: '1px solid var(--hairline)',
-        backgroundColor: 'var(--panel-black)',
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-      }}
-    >
-      <div
-        style={{
-          position: 'relative',
-          height: 200,
-          flexShrink: 0,
-          overflow: 'hidden',
-          backgroundColor: 'var(--divider-black)',
-        }}
-      >
+    <div className="flex h-full flex-col border border-hairline bg-panel-black">
+      <div className="relative h-[200px] shrink-0 overflow-hidden bg-divider-black">
         {imageError ? (
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: 'JetBrains Mono',
-              fontSize: 'var(--fs-10)',
-              color: 'var(--dim-label)',
-              letterSpacing: '0.12em',
-            }}
-          >
+          <div className="flex h-full w-full items-center justify-center font-mono text-fs-10 tracking-[0.12em] text-dim-label">
             [ IMAGE UNAVAILABLE ]
           </div>
         ) : (
@@ -52,110 +24,31 @@ export function ProjectPreviewCard({
             src={project.image}
             alt={project.title}
             onError={() => setImageError(true)}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              filter: 'grayscale(100%) contrast(1.3) brightness(0.8)',
-            }}
+            className="h-full w-full object-cover grayscale contrast-[1.3] brightness-80"
           />
         )}
         <button
           onClick={onDismiss}
-          style={{
-            position: 'absolute',
-            top: 10,
-            right: 10,
-            background: 'rgba(8,8,8,0.85)',
-            border: '1px solid var(--hairline)',
-            color: 'var(--body-gray)',
-            width: 26,
-            height: 26,
-            lineHeight: 1,
-            cursor: 'none',
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'var(--fs-13)',
-          }}
           aria-label="Close preview"
+          className="absolute top-2.5 right-2.5 flex h-[26px] w-[26px] cursor-none items-center justify-center border border-hairline bg-[rgba(8,8,8,0.85)] font-mono text-fs-13 leading-none text-body-gray"
         >
           ×
         </button>
-        <div
-          style={{
-            position: 'absolute',
-            top: 10,
-            left: 10,
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'var(--fs-9)',
-            color: 'var(--muted-steel)',
-            backgroundColor: 'rgba(8,8,8,0.8)',
-            padding: '3px 8px',
-            letterSpacing: '0.12em',
-            border: '1px solid var(--hairline)',
-          }}
-        >
+        <div className="absolute top-2.5 left-2.5 border border-hairline bg-[rgba(8,8,8,0.8)] px-2 py-[3px] font-mono text-fs-9 tracking-[0.12em] text-muted-steel">
           {project.id}
         </div>
       </div>
 
-      <div style={{ padding: 24, display: 'flex', flexDirection: 'column', flex: 1 }}>
-        <div
-          style={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'var(--fs-9)',
-            color: 'var(--dim-label)',
-            letterSpacing: '0.1em',
-            marginBottom: 8,
-          }}
-        >
-          {project.domain}
-        </div>
-        <h3
-          style={{
-            fontFamily: 'Inter',
-            fontWeight: 700,
-            fontSize: 'var(--fs-24)',
-            letterSpacing: '-0.03em',
-            color: 'var(--phosphor-white)',
-            margin: '0 0 6px',
-          }}
-        >
-          {project.title}
-        </h3>
-        <div
-          style={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'var(--fs-11)',
-            color: 'var(--muted-steel)',
-            marginBottom: 16,
-          }}
-        >
-          {project.subtitle}
-        </div>
-        <p
-          style={{
-            fontFamily: 'Inter',
-            fontSize: 'var(--fs-13)',
-            color: 'var(--body-gray)',
-            lineHeight: 1.6,
-            margin: '0 0 20px',
-            flex: 1,
-          }}
-        >
-          {project.description}
-        </p>
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
+      <div className="flex flex-1 flex-col p-6">
+        <div className="mb-2 font-mono text-fs-9 tracking-[0.1em] text-dim-label">{project.domain}</div>
+        <h3 className="mb-1.5 text-fs-24 font-bold tracking-[-0.03em] text-phosphor-white">{project.title}</h3>
+        <div className="mb-4 font-mono text-fs-11 text-muted-steel">{project.subtitle}</div>
+        <p className="mb-5 flex-1 text-fs-13 leading-[1.6] text-body-gray">{project.description}</p>
+        <div className="mb-5 flex flex-wrap gap-1.5">
           {project.stack.slice(0, 4).map((s) => (
             <span
               key={s}
-              style={{
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'var(--fs-9)',
-                color: 'var(--dim-label)',
-                border: '1px solid var(--hairline)',
-                padding: '2px 7px',
-                letterSpacing: '0.1em',
-              }}
+              className="border border-hairline px-[7px] py-0.5 font-mono text-fs-9 tracking-[0.1em] text-dim-label"
             >
               {s}
             </span>
@@ -163,17 +56,7 @@ export function ProjectPreviewCard({
         </div>
         <button
           onClick={onOpen}
-          style={{
-            backgroundColor: 'var(--signal-green)',
-            color: 'var(--void-black)',
-            border: 'none',
-            padding: '12px 20px',
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'var(--fs-11)',
-            fontWeight: 700,
-            letterSpacing: '0.1em',
-            cursor: 'none',
-          }}
+          className="cursor-none border-none bg-signal-green px-5 py-3 font-mono text-fs-11 font-bold tracking-[0.1em] text-void-black"
         >
           OPEN PROJECT ↗
         </button>

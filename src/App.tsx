@@ -12,7 +12,6 @@ import { LoadingScreen } from './components/LoadingScreen'
 import { Nav } from './components/Nav'
 import { NotFound } from './components/NotFound'
 import { ProjectsPage } from './components/ProjectsPage'
-import { useIsMobile } from './hooks/useBreakpoint'
 import { useRoute } from './hooks/useRoute'
 import { canonicalUrl, getRouteMeta, isKnownRoute } from './route-meta'
 
@@ -45,7 +44,6 @@ export default function App({ initialPath = '/' }: { initialPath?: string }) {
   const { path, navigate } = useRoute(initialPath)
   const isProjectsPage = path === '/projects'
   const isNotFound = !isKnownRoute(path)
-  const isMobile = useIsMobile()
 
   // The initial <head> for each route is rendered server-side straight into
   // the static template (see index.tsx) — SSR streams into #root only, and
@@ -69,22 +67,16 @@ export default function App({ initialPath = '/' }: { initialPath?: string }) {
   }, [path])
 
   return (
-    <div
-      style={{ margin: '0 auto', position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
-    >
+    <div className="relative flex min-h-screen flex-col">
       {isLoading && <LoadingScreen onFinish={() => setIsLoading(false)} />}
 
       <Cursor />
       <CookieBanner />
 
       <Nav active={path} navigate={navigate} />
-      <div style={{ paddingTop: isMobile ? 52 : 57, flex: '1 0 auto', display: 'flex', flexDirection: 'column' }}>
+      <div className="flex flex-[1_0_auto] flex-col pt-13 sm:pt-[57px]">
         <AnimatePresence mode="wait">
-          <motion.div
-            key={path}
-            {...pageTransition}
-            style={{ flex: '1 0 auto', display: 'flex', flexDirection: 'column' }}
-          >
+          <motion.div key={path} {...pageTransition} className="flex flex-[1_0_auto] flex-col">
             <ErrorBoundary>
               {isProjectsPage ? (
                 <ProjectsPage />

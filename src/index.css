@@ -2,45 +2,59 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
 @import 'tailwindcss';
 
-@theme inline {
+/* DESIGN.md "The Black Site" palette — single source of truth. Namespaced
+   under the color, font, text and animate theme keys so Tailwind generates
+   real utilities (bg-void-black, text-fs-14, animate-blink, ...) instead of
+   every component reaching for an arbitrary var(--x) value. */
+@theme {
+  --color-void-black: #080808;
+  --color-panel-black: #0d0d0d;
+  --color-divider-black: #1c1c1c;
+  --color-hairline: #2a2a2a;
+  --color-active-gray: #404040;
+  --color-dim-label: #999797;
+  --color-muted-steel: #7a7a7a;
+  --color-soft-gray: #868686;
+  --color-body-gray: #999999;
+  --color-phosphor-white: #e8e8e3;
+  --color-signal-green: #c7ff2e;
+
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-}
-
-/* DESIGN.md "The Black Site" palette — single source of truth, referenced
-   via var() from every component's inline styles. */
-:root {
-  --void-black: #080808;
-  --panel-black: #0d0d0d;
-  --divider-black: #1c1c1c;
-  --hairline: #2a2a2a;
-  --active-gray: #404040;
-  --dim-label: #999797;
-  --muted-steel: #7a7a7a;
-  --soft-gray: #868686;
-  --body-gray: #999999;
-  --phosphor-white: #e8e8e3;
-  --signal-green: #c7ff2e;
-  --scanline-light: rgba(0, 0, 0, 0.08);
-  --scanline-strong: rgba(0, 0, 0, 0.12);
 
   /* Font-size scale — rem, not px, so text stays coherent with the root/
      screen font size instead of being pinned to fixed pixel values.
      Token names are historical IDs, not literal px anymore: values are
      grouped into 6 tiers with a real ~15-20% step between each, so
      adjacent roles are actually distinguishable instead of 1px apart. */
-  --fs-8: 0.625rem;
-  --fs-9: 0.625rem;
-  --fs-10: 0.75rem;
-  --fs-11: 0.875rem;
-  --fs-12: 1rem;
-  --fs-13: 1rem;
-  --fs-14: 1.125rem;
-  --fs-15: 1.3125rem;
-  --fs-16: 1.3125rem;
-  --fs-17: 1.3125rem;
-  --fs-24: 1.625rem;
-  --fs-56: 3.75rem;
+  --text-fs-8: 0.625rem;
+  --text-fs-9: 0.625rem;
+  --text-fs-10: 0.75rem;
+  --text-fs-11: 0.875rem;
+  --text-fs-12: 1rem;
+  --text-fs-13: 1rem;
+  --text-fs-14: 1.125rem;
+  --text-fs-15: 1.3125rem;
+  --text-fs-16: 1.3125rem;
+  --text-fs-17: 1.3125rem;
+  --text-fs-24: 1.625rem;
+  --text-fs-56: 3.75rem;
+
+  /* The projects-sphere two-column layout (sphere + 360px side panel) only
+     has room to go side-by-side from here up — narrower than that it
+     collapses to one column regardless of the sm: mobile/desktop split. */
+  --breakpoint-wide: 900px;
+
+  --animate-blink: blink 1s step-end infinite;
+  --animate-overlay-fade-in: overlayFadeIn 0.25s ease;
+  --animate-modal-slide-up: modalSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Non-color overlay values used only inside repeating-linear-gradient()
+   scanline textures — not a fit for any Tailwind utility namespace. */
+:root {
+  --scanline-light: rgba(0, 0, 0, 0.08);
+  --scanline-strong: rgba(0, 0, 0, 0.12);
 }
 
 *,
@@ -61,8 +75,8 @@ html::-webkit-scrollbar {
 }
 
 body {
-  background-color: var(--void-black);
-  color: var(--phosphor-white);
+  background-color: var(--color-void-black);
+  color: var(--color-phosphor-white);
   font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
@@ -85,7 +99,7 @@ body {
 
 ::selection {
   background: rgba(199, 255, 46, 0.2);
-  color: var(--phosphor-white);
+  color: var(--color-phosphor-white);
 }
 
 @keyframes blink {

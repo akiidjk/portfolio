@@ -1,24 +1,6 @@
-import { useIsMobile } from '../hooks/useBreakpoint'
-
 export function Footer() {
-  const isMobile = useIsMobile()
-
   return (
-    <footer
-      style={{
-        flexShrink: 0,
-        padding: isMobile ? '20px 20px' : '24px 40px',
-        borderTop: '1px solid var(--hairline)',
-        display: 'flex',
-        flexDirection: isMobile ? 'column' : 'row',
-        gap: isMobile ? 8 : 0,
-        justifyContent: 'space-between',
-        fontFamily: 'JetBrains Mono',
-        fontSize: 'var(--fs-9)',
-        color: 'var(--dim-label)',
-        letterSpacing: '0.12em',
-      }}
-    >
+    <footer className="flex shrink-0 flex-col justify-between gap-2 border-t border-hairline p-5 font-mono text-fs-9 tracking-[0.12em] text-dim-label sm:flex-row sm:gap-0 sm:px-10 sm:py-6">
       <span>akiidjk@2026</span>
       <span>TRYING TO DO BETTER</span>
       <span>SALERNO, ITALY — 41.89° N</span>

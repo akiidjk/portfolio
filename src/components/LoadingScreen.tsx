@@ -92,59 +92,24 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
   return (
     <div
       onClick={() => setProgress(100)}
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 100000,
-        backgroundColor: 'var(--void-black)',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        opacity: isExiting ? 0 : 1,
-        transition: `opacity ${EXIT_DURATION_MS}ms ease`,
-        pointerEvents: isExiting ? 'none' : 'auto',
-        cursor: 'none',
-      }}
+      className={`fixed inset-0 z-[100000] flex cursor-none flex-col items-center justify-center bg-void-black transition-opacity duration-[600ms] ease-in-out ${
+        isExiting ? 'pointer-events-none opacity-0' : 'pointer-events-auto opacity-100'
+      }`}
     >
       {/* Noise texture overlay */}
       <div
+        className="pointer-events-none absolute inset-0 opacity-5"
         style={{
-          position: 'absolute',
-          inset: 0,
           backgroundImage:
             "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E\")",
-          opacity: 0.05,
-          pointerEvents: 'none',
         }}
       />
 
-      <div
-        style={{
-          fontFamily: 'JetBrains Mono',
-          fontSize: 'var(--fs-10)',
-          color: 'var(--dim-label)',
-          letterSpacing: '0.2em',
-          marginBottom: 28,
-          textTransform: 'uppercase',
-          position: 'relative',
-          zIndex: 1,
-        }}
-      >
+      <div className="relative z-[1] mb-7 font-mono text-fs-10 tracking-[0.2em] text-dim-label uppercase">
         [ INITIALIZING SYSTEM ]
       </div>
 
-      <div
-        style={{
-          position: 'relative',
-          zIndex: 1,
-          width: 'min(46vw, 380px)',
-          aspectRatio: '1 / 1',
-          overflow: 'hidden',
-          border: '1px solid var(--hairline)',
-          backgroundColor: 'var(--panel-black)',
-        }}
-      >
+      <div className="relative z-[1] aspect-square w-[min(46vw,380px)] overflow-hidden border border-hairline bg-panel-black">
         <video
           src="/assets/video_eye.mp4"
           autoPlay
@@ -154,69 +119,24 @@ export function LoadingScreen({ onFinish }: { onFinish: () => void }) {
           onLoadedData={() => setIsVideoReady(true)}
           onCanPlay={() => setIsVideoReady(true)}
           onError={() => setIsVideoReady(true)}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            filter: 'grayscale(100%) contrast(1.15) brightness(0.9)',
-          }}
+          className="h-full w-full object-cover grayscale contrast-[1.15] brightness-90"
         />
       </div>
 
-      <div
-        style={{
-          position: 'relative',
-          zIndex: 1,
-          width: 'min(46vw, 380px)',
-          marginTop: 20,
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'var(--fs-10)',
-            color: 'var(--muted-steel)',
-            letterSpacing: '0.1em',
-            marginBottom: 8,
-          }}
-        >
+      <div className="relative z-[1] mt-5 w-[min(46vw,380px)]">
+        <div className="mb-2 flex justify-between font-mono text-fs-10 tracking-[0.1em] text-muted-steel">
           <span>LOADING</span>
           <span>{Math.floor(progress).toString().padStart(3, '0')}%</span>
         </div>
-        <div
-          style={{
-            width: '100%',
-            height: 2,
-            backgroundColor: 'var(--hairline)',
-          }}
-        >
+        <div className="h-0.5 w-full bg-hairline">
           <div
-            style={{
-              width: '100%',
-              height: '100%',
-              backgroundColor: 'var(--signal-green)',
-              boxShadow: '0 0 6px var(--signal-green)',
-              transform: `scaleX(${progress / 100})`,
-              transformOrigin: 'left',
-              transition: 'transform 0.15s linear',
-            }}
+            className="h-full w-full origin-left bg-signal-green shadow-[0_0_6px_var(--color-signal-green)] transition-transform duration-150 ease-linear"
+            style={{ transform: `scaleX(${progress / 100})` }}
           />
         </div>
       </div>
 
-      <div
-        style={{
-          position: 'relative',
-          zIndex: 1,
-          fontFamily: 'JetBrains Mono',
-          fontSize: 'var(--fs-9)',
-          color: 'var(--dim-label)',
-          letterSpacing: '0.1em',
-          marginTop: 16,
-        }}
-      >
+      <div className="relative z-[1] mt-4 font-mono text-fs-9 tracking-[0.1em] text-dim-label">
         [ ESC OR CLICK TO SKIP ]
       </div>
     </div>

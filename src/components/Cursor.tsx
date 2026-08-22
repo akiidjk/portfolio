@@ -22,22 +22,10 @@ export function Cursor() {
   return (
     <div
       ref={ref}
-      style={{
-        position: 'fixed',
-        width: 18,
-        height: 18,
-        pointerEvents: 'none',
-        zIndex: 99999,
-        transform: 'translate(-50%,-50%)',
-        mixBlendMode: 'difference',
-      }}
+      className="pointer-events-none fixed z-[99999] size-[18px] -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
     >
-      <div
-        style={{ position: 'absolute', width: 1, height: 14, background: 'var(--phosphor-white)', top: 2, left: 8.5 }}
-      />
-      <div
-        style={{ position: 'absolute', width: 14, height: 1, background: 'var(--phosphor-white)', left: 2, top: 8.5 }}
-      />
+      <div className="absolute top-0.5 left-[8.5px] h-3.5 w-px bg-phosphor-white" />
+      <div className="absolute top-[8.5px] left-0.5 h-px w-3.5 bg-phosphor-white" />
     </div>
   )
 }

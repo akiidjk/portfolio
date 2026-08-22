@@ -1,6 +1,5 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { PROJECTS } from '../data/projects'
-import { useIsMobile } from '../hooks/useBreakpoint'
 import { isWebGLAvailable } from '../lib/webgl-support'
 import type { Project } from '../types'
 import { ProjectDetail } from './ProjectDetail'
@@ -20,149 +19,51 @@ export function ProjectsPage() {
   // Starts false to match SSR (no WebGL there), upgraded after mount.
   const [supportsWebGL, setSupportsWebGL] = useState(false)
   const catalogRef = useRef<HTMLDivElement>(null)
-  const isMobile = useIsMobile()
 
   useEffect(() => setSupportsWebGL(isWebGLAvailable()), [])
 
   return (
-    <div style={{ backgroundColor: 'var(--void-black)' }}>
+    <div className="bg-void-black">
       {/* Hero */}
-      <section
-        style={{
-          padding: isMobile ? '48px 20px' : '80px 40px',
-          borderBottom: '1px solid var(--hairline)',
-          display: 'grid',
-          gridTemplateColumns: isMobile ? '1fr' : '1.1fr 0.9fr',
-          gap: isMobile ? 32 : 60,
-          alignItems: 'center',
-        }}
-      >
+      <section className="grid items-center gap-8 border-b border-hairline px-5 py-12 sm:grid-cols-[1.1fr_0.9fr] sm:gap-15 sm:px-10 sm:py-20">
         <div>
-          <h1
-            style={{
-              fontFamily: 'Inter',
-              fontWeight: 700,
-              fontSize: 'clamp(2.375rem, 9vw, 6.5rem)',
-              lineHeight: 0.92,
-              letterSpacing: '-0.045em',
-              color: 'var(--phosphor-white)',
-              margin: '0 0 28px',
-              textTransform: 'uppercase',
-              overflowWrap: 'break-word',
-            }}
-          >
+          <h1 className="mb-7 text-[clamp(2.375rem,9vw,6.5rem)] leading-[0.92] font-bold tracking-[-0.045em] break-words text-phosphor-white uppercase">
             Built
             <br />
             for the
             <br />
-            machine<span style={{ color: 'var(--signal-green)' }}>.</span>
+            machine<span className="text-signal-green">.</span>
           </h1>
 
-          <p
-            style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: 'var(--fs-13)',
-              color: 'var(--body-gray)',
-              lineHeight: 1.7,
-              margin: '0 0 32px',
-              maxWidth: 460,
-            }}
-          >
+          <p className="mb-8 max-w-[460px] font-mono text-fs-13 leading-[1.7] text-body-gray">
             Every tool, experiment and system I've shipped from CTF infrastructure to emulators and low-level utilities.
             Filter by domain or search to find something specific.
           </p>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+          <div className="flex items-center gap-5">
             <button
               onClick={() => catalogRef.current?.scrollIntoView({ behavior: 'smooth' })}
-              style={{
-                backgroundColor: 'var(--signal-green)',
-                color: 'var(--void-black)',
-                border: 'none',
-                padding: '14px 28px',
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'var(--fs-11)',
-                fontWeight: 700,
-                letterSpacing: '0.1em',
-                cursor: 'none',
-              }}
+              className="cursor-none border-none bg-signal-green px-7 py-3.5 font-mono text-fs-11 font-bold tracking-[0.1em] text-void-black"
             >
               OPEN CATALOG ↓
             </button>
           </div>
         </div>
 
-        <div
-          style={{
-            position: 'relative',
-            aspectRatio: '3 / 4',
-            overflow: 'hidden',
-            border: '1px solid var(--hairline)',
-            backgroundColor: 'var(--panel-black)',
-          }}
-        >
+        <div className="relative aspect-[3/4] overflow-hidden border border-hairline bg-panel-black">
           <img
             src="/assets/hands.jpg"
             alt=""
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              filter: 'grayscale(100%) contrast(1.2) brightness(0.85)',
-            }}
+            className="h-full w-full object-cover grayscale contrast-[1.2] brightness-[0.85]"
           />
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background:
-                'repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scanline-strong) 2px, var(--scanline-strong) 4px)',
-            }}
-          />
+          <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,var(--scanline-strong)_2px,var(--scanline-strong)_4px)]" />
 
           {/* Annotation callout */}
-          <div
-            style={{
-              position: 'absolute',
-              top: 24,
-              left: 24,
-              right: 24,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 10,
-              backgroundColor: 'rgba(8,8,8,0.75)',
-              padding: '10px 12px',
-            }}
-          >
-            <div
-              style={{
-                width: 6,
-                height: 6,
-                borderRadius: '50%',
-                flexShrink: 0,
-                backgroundColor: 'var(--signal-green)',
-                boxShadow: '0 0 6px var(--signal-green)',
-              }}
-            />
+          <div className="absolute top-6 right-6 left-6 flex items-center gap-2.5 bg-[rgba(8,8,8,0.75)] px-3 py-2.5">
+            <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-signal-green shadow-[0_0_6px_var(--color-signal-green)]" />
             <div>
-              <div
-                style={{
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'var(--fs-10)',
-                  color: 'var(--signal-green)',
-                  letterSpacing: '0.1em',
-                }}
-              >
-                ACTIVELY MAINTAINED
-              </div>
-              <div
-                style={{
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'var(--fs-10)',
-                  color: 'var(--body-gray)',
-                  letterSpacing: '0.05em',
-                }}
-              >
+              <div className="font-mono text-fs-10 tracking-[0.1em] text-signal-green">ACTIVELY MAINTAINED</div>
+              <div className="font-mono text-fs-10 tracking-[0.05em] text-body-gray">
                 {activeCount} project{activeCount === 1 ? '' : 's'} still evolving
               </div>
             </div>
@@ -171,16 +72,8 @@ export function ProjectsPage() {
       </section>
 
       {/* Catalog */}
-      <section ref={catalogRef} style={{ padding: isMobile ? '40px 20px 80px' : '60px 40px 140px' }}>
-        <div
-          style={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'var(--fs-10)',
-            color: 'var(--dim-label)',
-            letterSpacing: '0.15em',
-            marginBottom: 32,
-          }}
-        >
+      <section ref={catalogRef} className="px-5 pt-10 pb-20 sm:px-10 sm:pt-15 sm:pb-35">
+        <div className="mb-8 font-mono text-fs-10 tracking-[0.15em] text-dim-label">
           [ {PROJECTS.length} RESULT{PROJECTS.length === 1 ? '' : 'S'} ]
         </div>
 

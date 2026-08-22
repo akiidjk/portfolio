@@ -19,8 +19,8 @@ export function ContributionGrid({
   if (weeks.length === 0) return null
 
   return (
-    <div style={{ overflowX: 'auto' }}>
-      <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} style={{ display: 'block' }}>
+    <div className="overflow-x-auto">
+      <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="block">
         <title>GitHub contribution activity</title>
 
         {monthLabels.map(({ label, weekIndex }) => (
@@ -29,7 +29,7 @@ export function ContributionGrid({
             x={(blockSize + gap) * weekIndex}
             y={0}
             dominantBaseline="hanging"
-            style={{ fontFamily: 'JetBrains Mono', fontSize: 9, fill: 'var(--dim-label)', letterSpacing: '0.05em' }}
+            className="fill-dim-label font-mono text-fs-8 tracking-[0.05em]"
           >
             {label}
           </text>
@@ -50,8 +50,8 @@ export function ContributionGrid({
                 rx={2}
                 ry={2}
                 fill={color}
-                stroke={activity.level === 0 ? 'var(--hairline)' : 'none'}
-                style={activity.level === 4 ? { filter: 'drop-shadow(0 0 3px var(--signal-green))' } : undefined}
+                stroke={activity.level === 0 ? 'var(--color-hairline)' : 'none'}
+                style={activity.level === 4 ? { filter: 'drop-shadow(0 0 3px var(--color-signal-green))' } : undefined}
               >
                 <title>
                   {activity.count} contribution{activity.count === 1 ? '' : 's'} on {formatActivityDate(activity.date)}

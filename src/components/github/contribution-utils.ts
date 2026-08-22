@@ -16,11 +16,11 @@ export interface MonthLabel {
 // 1-4 climb the same ramp and peak in signal green — the busiest days are
 // the one thing on this widget that earns the accent.
 export const LEVEL_COLORS = [
-  'var(--void-black)',
-  'var(--hairline)',
-  'var(--active-gray)',
-  'var(--muted-steel)',
-  'var(--signal-green)',
+  'var(--color-void-black)',
+  'var(--color-hairline)',
+  'var(--color-active-gray)',
+  'var(--color-muted-steel)',
+  'var(--color-signal-green)',
 ]
 
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']

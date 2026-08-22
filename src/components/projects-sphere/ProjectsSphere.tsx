@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import type { Project } from '../../types'
 import { useIsMobile } from '../../hooks/useBreakpoint'
-import { useMediaQuery } from '../../hooks/useMediaQuery'
 import { ProjectSidePanel } from './ProjectSidePanel'
 import { SphereScene } from './SphereScene'
 
@@ -15,7 +14,8 @@ export function ProjectsSphere({
 }) {
   const [activeId, setActiveId] = useState<string | null>(null)
   const [isDragging, setIsDragging] = useState(false)
-  const isCompact = useMediaQuery('(max-width: 900px)')
+  // Still needed: the sphere/panel caption text differs by input mode
+  // (tap vs drag), which is real content, not just layout.
   const isMobile = useIsMobile()
 
   const matchingIds = useMemo(() => new Set(projects.map((p) => p.id)), [projects])
@@ -25,22 +25,8 @@ export function ProjectsSphere({
   const handleSelect = (project: Project) => setActiveId(project.id)
 
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: isCompact ? '1fr' : 'minmax(0, 1fr) 360px',
-        gap: isMobile ? 24 : 40,
-        alignItems: 'start',
-      }}
-    >
-      <div
-        style={{
-          height: isMobile ? 320 : isCompact ? 420 : 560,
-          border: '1px solid var(--hairline)',
-          backgroundColor: '#050505',
-          position: 'relative',
-        }}
-      >
+    <div className="grid grid-cols-1 items-start gap-6 sm:gap-10 wide:grid-cols-[minmax(0,1fr)_360px]">
+      <div className="relative h-[320px] border border-hairline bg-[#050505] sm:h-[420px] wide:h-[560px]">
         <SphereScene
           projects={projects}
           matchingIds={matchingIds}
@@ -52,18 +38,7 @@ export function ProjectsSphere({
           onDragStart={() => setIsDragging(true)}
           onDragEnd={() => setIsDragging(false)}
         />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 14,
-            left: 14,
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'var(--fs-9)',
-            color: 'var(--dim-label)',
-            letterSpacing: '0.1em',
-            pointerEvents: 'none',
-          }}
-        >
+        <div className="pointer-events-none absolute bottom-3.5 left-3.5 font-mono text-fs-9 tracking-[0.1em] text-dim-label">
           {isMobile ? 'TAP A POINT' : 'DRAG TO ROTATE'}
         </div>
       </div>

@@ -16,7 +16,7 @@ export function ProjectSidePanel({
   onDismiss: () => void
 }) {
   return (
-    <div style={{ position: 'relative', minHeight: 420 }}>
+    <div className="relative min-h-[420px]">
       <AnimatePresence mode="wait" initial={false}>
         {activeProject ? (
           <motion.div
@@ -36,61 +36,24 @@ export function ProjectSidePanel({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <div
-              style={{
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'var(--fs-10)',
-                color: 'var(--dim-label)',
-                letterSpacing: '0.1em',
-                marginBottom: 16,
-                lineHeight: 1.6,
-              }}
-            >
+            <div className="mb-4 font-mono text-fs-10 leading-[1.6] tracking-[0.1em] text-dim-label">
               TAP A POINT ON THE SPHERE OR AN ENTRY
             </div>
-            <div style={{ border: '1px solid var(--hairline)', maxHeight: 480, overflowY: 'auto' }}>
+            <div className="max-h-[480px] overflow-y-auto border border-hairline">
               {projects.map((p, i) => (
                 <button
                   key={p.id}
                   onClick={() => onSelectList(p)}
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                    textAlign: 'left',
-                    background: 'none',
-                    border: 'none',
-                    borderBottom: i === projects.length - 1 ? 'none' : '1px solid var(--divider-black)',
-                    padding: '14px 16px',
-                    cursor: 'none',
-                    fontFamily: 'Inter',
-                    fontSize: 'var(--fs-13)',
-                    color: 'var(--body-gray)',
-                  }}
+                  className={`block w-full cursor-none border-none bg-transparent px-4 py-3.5 text-left text-fs-13 text-body-gray ${
+                    i === projects.length - 1 ? '' : 'border-b border-divider-black'
+                  }`}
                 >
                   {p.title}
-                  <span
-                    style={{
-                      fontFamily: 'JetBrains Mono',
-                      fontSize: 'var(--fs-9)',
-                      color: 'var(--dim-label)',
-                      marginLeft: 10,
-                    }}
-                  >
-                    {p.domain}
-                  </span>
+                  <span className="ml-2.5 font-mono text-fs-9 text-dim-label">{p.domain}</span>
                 </button>
               ))}
               {projects.length === 0 && (
-                <div
-                  style={{
-                    padding: 20,
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: 'var(--fs-11)',
-                    color: 'var(--dim-label)',
-                  }}
-                >
-                  NO MATCHING PROJECTS.
-                </div>
+                <div className="p-5 font-mono text-fs-11 text-dim-label">NO MATCHING PROJECTS.</div>
               )}
             </div>
           </motion.div>

@@ -185,16 +185,5 @@ export function HeroCanvas() {
     }
   }, [])
 
-  return (
-    <canvas
-      ref={ref}
-      style={{
-        position: 'absolute',
-        inset: 0,
-        width: '100%',
-        height: '100%',
-        opacity: 0.75,
-      }}
-    />
-  )
+  return <canvas ref={ref} className="absolute inset-0 h-full w-full opacity-75" />
 }

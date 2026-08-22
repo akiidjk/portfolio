@@ -1,5 +1,4 @@
 import { ARCHIVE_ENTRIES } from '../data/archive-entries'
-import { useIsMobile } from '../hooks/useBreakpoint'
 
 const STATS = [
   { label: 'CTF PARTICIPATIONS', value: '100+' },
@@ -9,89 +8,25 @@ const STATS = [
 ]
 
 export function Experience() {
-  const isMobile = useIsMobile()
-
   return (
     <section id="experience">
-      <div style={{ padding: isMobile ? '40px 20px 56px' : '56px 40px 80px' }}>
-        <div
-          style={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'var(--fs-10)',
-            color: 'var(--dim-label)',
-            letterSpacing: '0.15em',
-            marginBottom: isMobile ? 24 : 32,
-          }}
-        >
-          [ CHRONOLOGICAL ]
-        </div>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : '1fr 260px',
-            gap: isMobile ? 40 : 60,
-          }}
-        >
+      <div className="px-5 pt-10 pb-14 sm:px-10 sm:pt-14 sm:pb-20">
+        <div className="mb-6 font-mono text-fs-10 tracking-[0.15em] text-dim-label sm:mb-8">[ CHRONOLOGICAL ]</div>
+        <div className="grid gap-10 sm:grid-cols-[1fr_260px] sm:gap-15">
           {/* Timeline */}
-          <div style={{ borderLeft: '1px solid var(--hairline)', paddingLeft: isMobile ? 24 : 36 }}>
+          <div className="border-l border-hairline pl-6 sm:pl-9">
             {ARCHIVE_ENTRIES.map((entry, i) => (
               <div
                 key={i}
-                style={{
-                  position: 'relative',
-                  display: 'flex',
-                  gap: isMobile ? 20 : 36,
-                  paddingBottom: i < ARCHIVE_ENTRIES.length - 1 ? 36 : 0,
-                }}
+                className={`relative flex gap-5 sm:gap-9 ${i < ARCHIVE_ENTRIES.length - 1 ? 'pb-9' : 'pb-0'}`}
               >
-                <div
-                  style={{
-                    position: 'absolute',
-                    left: isMobile ? -29 : -41,
-                    top: 5,
-                    width: 7,
-                    height: 7,
-                    border: '1px solid var(--active-gray)',
-                    backgroundColor: 'var(--void-black)',
-                  }}
-                />
-                <div
-                  style={{
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: 'var(--fs-13)',
-                    color: 'var(--dim-label)',
-                    minWidth: 40,
-                    paddingTop: 1,
-                  }}
-                >
-                  {entry.year}
-                </div>
+                <div className="absolute top-[5px] left-[-29px] h-[7px] w-[7px] border border-active-gray bg-void-black sm:left-[-41px]" />
+                <div className="min-w-10 pt-px font-mono text-fs-13 text-dim-label">{entry.year}</div>
                 <div>
-                  <div
-                    style={{
-                      fontFamily: 'Inter',
-                      fontSize: 'var(--fs-15)',
-                      fontWeight: 500,
-                      color: 'var(--phosphor-white)',
-                      letterSpacing: '-0.01em',
-                    }}
-                  >
-                    {entry.event}
-                  </div>
-                  <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginTop: 5 }}>
-                    <span style={{ fontFamily: 'JetBrains Mono', fontSize: 'var(--fs-10)', color: 'var(--dim-label)' }}>
-                      {entry.org}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: 'JetBrains Mono',
-                        fontSize: 'var(--fs-8)',
-                        color: 'var(--dim-label)',
-                        border: '1px solid var(--hairline)',
-                        padding: '1px 6px',
-                        letterSpacing: '0.1em',
-                      }}
-                    >
+                  <div className="text-fs-15 font-medium tracking-[-0.01em] text-phosphor-white">{entry.event}</div>
+                  <div className="mt-[5px] flex items-center gap-3">
+                    <span className="font-mono text-fs-10 text-dim-label">{entry.org}</span>
+                    <span className="border border-hairline px-1.5 py-px font-mono text-fs-8 tracking-[0.1em] text-dim-label">
                       {entry.type}
                     </span>
                   </div>
@@ -101,30 +36,11 @@ export function Experience() {
           </div>
 
           {/* Stats */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
+          <div className="flex flex-col gap-10">
             {STATS.map((s) => (
-              <div key={s.label} style={{ borderBottom: '1px solid var(--hairline)', paddingBottom: 28 }}>
-                <div
-                  style={{
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: 'var(--fs-9)',
-                    color: 'var(--dim-label)',
-                    letterSpacing: '0.18em',
-                    marginBottom: 10,
-                  }}
-                >
-                  {s.label}
-                </div>
-                <div
-                  style={{
-                    fontFamily: 'Inter',
-                    fontWeight: 700,
-                    fontSize: 'var(--fs-56)',
-                    color: 'var(--phosphor-white)',
-                    letterSpacing: '-0.05em',
-                    lineHeight: 1,
-                  }}
-                >
+              <div key={s.label} className="border-b border-hairline pb-7">
+                <div className="mb-2.5 font-mono text-fs-9 tracking-[0.18em] text-dim-label">{s.label}</div>
+                <div className="text-fs-56 leading-none font-bold tracking-[-0.05em] text-phosphor-white">
                   {s.value}
                 </div>
               </div>

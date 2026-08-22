@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import type { Project } from '../types'
-import { useIsMobile } from '../hooks/useBreakpoint'
 
 function GitHubIcon() {
   return (
@@ -13,8 +12,6 @@ function GitHubIcon() {
 const CLOSE_DURATION = 220
 
 export function ProjectDetail({ project, onClose }: { project: Project; onClose: () => void }) {
-  const isMobile = useIsMobile()
-  const [imageHovered, setImageHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
   const [isClosing, setIsClosing] = useState(false)
   const repoPath = project.detail.find((d) => d.label === 'Repository')?.value
@@ -41,149 +38,50 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
   return (
     <div
       onClick={handleClose}
-      style={{
-        position: 'fixed',
-        inset: 0,
-        backgroundColor: 'rgba(8,8,8,0.96)',
-        zIndex: 5000,
-        overflowY: 'auto',
-        cursor: 'none',
-        animation: isClosing ? `overlayFadeIn ${CLOSE_DURATION}ms ease reverse forwards` : 'overlayFadeIn 0.25s ease',
-      }}
+      className={`fixed inset-0 z-[5000] cursor-none overflow-y-auto bg-[rgba(8,8,8,0.96)] ${
+        isClosing ? 'animate-[overlayFadeIn_220ms_ease_reverse_forwards]' : 'animate-[overlayFadeIn_0.25s_ease]'
+      }`}
     >
       <button
         onClick={handleClose}
-        style={{
-          position: 'fixed',
-          top: isMobile ? 16 : 24,
-          right: isMobile ? 16 : 24,
-          zIndex: 1,
-          background: 'rgba(8,8,8,0.9)',
-          border: '1px solid var(--hairline)',
-          color: 'var(--muted-steel)',
-          fontFamily: 'JetBrains Mono',
-          fontSize: 'var(--fs-11)',
-          padding: isMobile ? '8px 12px' : '8px 16px',
-          cursor: 'none',
-          letterSpacing: '0.1em',
-        }}
+        className="fixed top-4 right-4 z-[1] cursor-none border border-hairline bg-[rgba(8,8,8,0.9)] px-3 py-2 font-mono text-fs-11 tracking-[0.1em] text-muted-steel sm:top-6 sm:right-6 sm:px-4"
       >
         × CLOSE
       </button>
 
       <div
         onClick={(e) => e.stopPropagation()}
-        style={{
-          maxWidth: 860,
-          margin: '0 auto',
-          padding: isMobile ? '90px 20px 60px' : '80px 40px 120px',
-          animation: isClosing
-            ? `modalSlideUp ${CLOSE_DURATION}ms cubic-bezier(0.16, 1, 0.3, 1) reverse forwards`
-            : 'modalSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
-        }}
+        className={`mx-auto max-w-[860px] px-5 pt-[90px] pb-15 sm:px-10 sm:pt-20 sm:pb-30 ${
+          isClosing
+            ? 'animate-[modalSlideUp_220ms_cubic-bezier(0.16,1,0.3,1)_reverse_forwards]'
+            : 'animate-modal-slide-up'
+        }`}
       >
         {/* Header */}
-        <div style={{ marginBottom: isMobile ? 32 : 48, paddingRight: isMobile ? 90 : 120 }}>
-          <div
-            style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: 'var(--fs-10)',
-              color: 'var(--dim-label)',
-              letterSpacing: '0.15em',
-              marginBottom: 12,
-            }}
-          >
+        <div className="mb-8 pr-[90px] sm:mb-12 sm:pr-30">
+          <div className="mb-3 font-mono text-fs-10 tracking-[0.15em] text-dim-label">
             {project.id} ──────────────────────── {project.year}
           </div>
-          <h2
-            style={{
-              fontFamily: 'Inter',
-              fontWeight: 700,
-              fontSize: 'clamp(1.75rem, 8vw, 4rem)',
-              letterSpacing: '-0.045em',
-              color: 'var(--phosphor-white)',
-              margin: 0,
-              lineHeight: 1.05,
-              overflowWrap: 'break-word',
-            }}
-          >
+          <h2 className="text-[clamp(1.75rem,8vw,4rem)] leading-[1.05] font-bold tracking-[-0.045em] break-words text-phosphor-white">
             {project.title}
           </h2>
-          <div
-            style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: 'var(--fs-12)',
-              color: 'var(--muted-steel)',
-              marginTop: 8,
-            }}
-          >
-            {project.subtitle}
-          </div>
+          <div className="mt-2 font-mono text-fs-12 text-muted-steel">{project.subtitle}</div>
         </div>
 
         {/* Meta table */}
-        <div style={{ borderTop: '1px solid var(--hairline)', marginBottom: 48 }}>
+        <div className="mb-12 border-t border-hairline">
           {project.detail.map((d) => (
-            <div
-              key={d.label}
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                padding: '14px 0',
-                borderBottom: '1px solid var(--hairline)',
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'var(--fs-10)',
-                  color: 'var(--dim-label)',
-                  letterSpacing: '0.12em',
-                }}
-              >
-                {d.label}
-              </span>
-              <span
-                style={{
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'var(--fs-11)',
-                  color: 'var(--phosphor-white)',
-                  letterSpacing: '0.05em',
-                }}
-              >
-                {d.value}
-              </span>
+            <div key={d.label} className="flex justify-between border-b border-hairline py-3.5">
+              <span className="font-mono text-fs-10 tracking-[0.12em] text-dim-label">{d.label}</span>
+              <span className="font-mono text-fs-11 tracking-[0.05em] text-phosphor-white">{d.value}</span>
             </div>
           ))}
         </div>
 
         {/* Image */}
-        <div
-          onMouseEnter={() => setImageHovered(true)}
-          onMouseLeave={() => setImageHovered(false)}
-          style={{
-            position: 'relative',
-            marginBottom: 48,
-            overflow: 'hidden',
-            border: `1px solid ${imageHovered ? 'var(--active-gray)' : 'transparent'}`,
-            transition: 'border-color 0.3s',
-          }}
-        >
+        <div className="group relative mb-12 overflow-hidden border border-transparent transition-colors duration-300 hover:border-active-gray">
           {imageError ? (
-            <div
-              style={{
-                width: '100%',
-                height: isMobile ? 200 : 320,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: 'var(--panel-black)',
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'var(--fs-11)',
-                color: 'var(--dim-label)',
-                letterSpacing: '0.15em',
-              }}
-            >
+            <div className="flex h-[200px] w-full items-center justify-center bg-panel-black font-mono text-fs-11 tracking-[0.15em] text-dim-label sm:h-[320px]">
               [ IMAGE UNAVAILABLE ]
             </div>
           ) : (
@@ -192,54 +90,15 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
                 src={project.image}
                 alt={project.title}
                 onError={() => setImageError(true)}
-                style={{
-                  width: '100%',
-                  height: isMobile ? 200 : 320,
-                  objectFit: 'cover',
-                  display: 'block',
-                  filter: imageHovered
-                    ? 'grayscale(60%) contrast(1.15) brightness(0.95)'
-                    : 'grayscale(100%) contrast(1.3)',
-                  transform: imageHovered ? 'scale(1.03)' : 'scale(1)',
-                  transition: 'filter 0.4s, transform 0.5s',
-                }}
+                className="block h-[200px] w-full scale-100 object-cover grayscale contrast-[1.3] transition-[filter,transform] duration-500 group-hover:scale-[1.03] group-hover:grayscale-[60%] group-hover:contrast-[1.15] group-hover:brightness-95 sm:h-[320px]"
               />
-              <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background:
-                    'repeating-linear-gradient(0deg, transparent, transparent 3px, var(--scanline-light) 3px, var(--scanline-light) 6px)',
-                  pointerEvents: 'none',
-                }}
-              />
+              <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_3px,var(--scanline-light)_3px,var(--scanline-light)_6px)]" />
             </>
           )}
 
           {/* Hover overlay */}
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'flex-end',
-              padding: isMobile ? 16 : 20,
-              background: imageHovered ? 'linear-gradient(to top, rgba(8,8,8,0.85) 0%, transparent 55%)' : 'none',
-              opacity: imageHovered ? 1 : 0,
-              transition: 'opacity 0.3s',
-              pointerEvents: 'none',
-            }}
-          >
-            <div
-              style={{
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'var(--fs-10)',
-                color: 'var(--signal-green)',
-                lineHeight: 2,
-                letterSpacing: '0.1em',
-              }}
-            >
+          <div className="pointer-events-none absolute inset-0 flex flex-col justify-end p-4 opacity-0 transition-opacity duration-300 group-hover:bg-[linear-gradient(to_top,rgba(8,8,8,0.85)_0%,transparent_55%)] group-hover:opacity-100 sm:p-5">
+            <div className="font-mono text-fs-10 leading-[2] tracking-[0.1em] text-signal-green">
               <div>DOMAIN · {project.domain}</div>
               <div>STATUS · {project.status}</div>
             </div>
@@ -252,23 +111,7 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
               aria-label={`View ${project.title} on GitHub`}
-              style={{
-                position: 'absolute',
-                bottom: isMobile ? 12 : 16,
-                right: isMobile ? 12 : 16,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: 36,
-                height: 36,
-                backgroundColor: 'rgba(8,8,8,0.85)',
-                border: `1px solid ${imageHovered ? 'var(--signal-green)' : 'var(--hairline)'}`,
-                color: imageHovered ? 'var(--signal-green)' : 'var(--muted-steel)',
-                cursor: 'none',
-                opacity: imageHovered || isMobile ? 1 : 0,
-                transform: imageHovered || isMobile ? 'translateY(0)' : 'translateY(6px)',
-                transition: 'opacity 0.3s, transform 0.3s, border-color 0.3s, color 0.3s',
-              }}
+              className="absolute right-3 bottom-3 flex h-9 w-9 translate-y-0 items-center justify-center border border-hairline bg-[rgba(8,8,8,0.85)] text-muted-steel opacity-100 transition-all duration-300 sm:right-4 sm:bottom-4 sm:translate-y-1.5 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:border-signal-green sm:group-hover:text-signal-green sm:group-hover:opacity-100"
             >
               <GitHubIcon />
             </a>
@@ -281,55 +124,18 @@ export function ProjectDetail({ project, onClose }: { project: Project; onClose:
           { label: 'APPROACH', content: project.approach },
           { label: 'OUTCOME', content: project.outcome },
         ].map((section) => (
-          <div key={section.label} style={{ marginBottom: 40 }}>
-            <div
-              style={{
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'var(--fs-10)',
-                color: 'var(--dim-label)',
-                letterSpacing: '0.2em',
-                marginBottom: 16,
-              }}
-            >
-              ── {section.label}
-            </div>
-            <p
-              style={{
-                fontFamily: 'Inter',
-                fontSize: 'var(--fs-16)',
-                color: 'var(--body-gray)',
-                lineHeight: 1.7,
-                margin: 0,
-                fontWeight: 300,
-              }}
-            >
-              {section.content}
-            </p>
+          <div key={section.label} className="mb-10">
+            <div className="mb-4 font-mono text-fs-10 tracking-[0.2em] text-dim-label">── {section.label}</div>
+            <p className="text-fs-16 leading-[1.7] font-light text-body-gray">{section.content}</p>
           </div>
         ))}
 
         {/* Stack */}
-        <div
-          style={{
-            marginTop: 48,
-            paddingTop: 24,
-            borderTop: '1px solid var(--hairline)',
-            display: 'flex',
-            gap: 8,
-            flexWrap: 'wrap',
-          }}
-        >
+        <div className="mt-12 flex flex-wrap gap-2 border-t border-hairline pt-6">
           {project.stack.map((s) => (
             <span
               key={s}
-              style={{
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'var(--fs-10)',
-                color: 'var(--muted-steel)',
-                border: '1px solid var(--active-gray)',
-                padding: '4px 12px',
-                letterSpacing: '0.1em',
-              }}
+              className="border border-active-gray px-3 py-1 font-mono text-fs-10 tracking-[0.1em] text-muted-steel"
             >
               {s}
             </span>

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useIsMobile } from '../hooks/useBreakpoint'
 
 const DISMISSED_KEY = 'akiidjk-cookie-notice-dismissed'
 
@@ -19,9 +18,11 @@ function markDismissed(): void {
   }
 }
 
+const BUTTON_BASE =
+  'flex-1 cursor-none border border-hairline bg-transparent px-4 py-3.5 font-mono text-fs-10 tracking-[0.08em] text-muted-steel transition-colors duration-200 sm:flex-none sm:py-2.5'
+
 export function CookieBanner() {
   const [visible, setVisible] = useState(false)
-  const isMobile = useIsMobile()
 
   // Client-only reveal — nothing here needs to exist during SSR, and
   // checking localStorage on the server isn't possible anyway.
@@ -37,103 +38,24 @@ export function CookieBanner() {
   }
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 90000,
-        backgroundColor: 'var(--panel-black)',
-        borderTop: '1px solid var(--hairline)',
-        padding: isMobile ? '20px' : '20px 40px',
-        display: 'flex',
-        flexDirection: isMobile ? 'column' : 'row',
-        alignItems: isMobile ? 'stretch' : 'center',
-        justifyContent: 'space-between',
-        gap: isMobile ? 16 : 32,
-        animation: 'modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-      }}
-    >
-      <div style={{ maxWidth: 860 }}>
-        <div
-          style={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'var(--fs-9)',
-            color: 'var(--dim-label)',
-            letterSpacing: '0.2em',
-            marginBottom: 8,
-            textTransform: 'uppercase',
-          }}
-        >
-          [ COOKIE.NOTICE ]
-        </div>
-        <p
-          style={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: isMobile ? 'var(--fs-11)' : 'var(--fs-12)',
-            color: 'var(--muted-steel)',
-            lineHeight: 1.6,
-            margin: 0,
-          }}
-        >
-          This site sets <span style={{ color: 'var(--phosphor-white)' }}>zero</span> cookies. If analytics ever show up
-          here, they'll be the cookieless, anonymous kind, no identity, no cross-site profile, nothing sold. You are
-          still legally required to click something anyway.
+    <div className="fixed inset-x-0 bottom-0 z-[90000] flex animate-[modalSlideUp_0.4s_cubic-bezier(0.16,1,0.3,1)] flex-col items-stretch justify-between gap-4 border-t border-hairline bg-panel-black p-5 sm:flex-row sm:items-center sm:gap-8 sm:px-10">
+      <div className="max-w-[860px]">
+        <div className="mb-2 font-mono text-fs-9 tracking-[0.2em] text-dim-label uppercase">[ COOKIE.NOTICE ]</div>
+        <p className="font-mono text-fs-11 leading-[1.6] text-muted-steel sm:text-fs-12">
+          This site sets <span className="text-phosphor-white">zero</span> cookies. If analytics ever show up here,
+          they'll be the cookieless, anonymous kind, no identity, no cross-site profile, nothing sold. You are still
+          legally required to click something anyway.
         </p>
       </div>
 
-      <div style={{ display: 'flex', gap: 10, flexShrink: 0 }}>
+      <div className="flex shrink-0 gap-2.5">
         <button
           onClick={dismiss}
-          style={{
-            background: 'none',
-            border: '1px solid var(--hairline)',
-            color: 'var(--muted-steel)',
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'var(--fs-10)',
-            padding: isMobile ? '14px 16px' : '10px 16px',
-            cursor: 'none',
-            letterSpacing: '0.08em',
-            flex: isMobile ? 1 : undefined,
-            transition: 'color 0.2s, border-color 0.2s',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = 'var(--void-black)'
-            e.currentTarget.style.backgroundColor = 'var(--signal-green)'
-            e.currentTarget.style.borderColor = 'var(--signal-green)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = 'var(--muted-steel)'
-            e.currentTarget.style.backgroundColor = 'transparent'
-            e.currentTarget.style.borderColor = 'var(--hairline)'
-          }}
+          className={`${BUTTON_BASE} hover:border-signal-green hover:bg-signal-green hover:text-void-black`}
         >
           ACCEPT (DOESN'T MATTER)
         </button>
-        <button
-          onClick={dismiss}
-          style={{
-            background: 'none',
-            border: '1px solid var(--hairline)',
-            color: 'var(--muted-steel)',
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'var(--fs-10)',
-            padding: isMobile ? '14px 16px' : '10px 16px',
-            cursor: 'none',
-            letterSpacing: '0.08em',
-            flex: isMobile ? 1 : undefined,
-            transition: 'color 0.2s, border-color 0.2s',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = 'var(--phosphor-white)'
-            e.currentTarget.style.borderColor = 'var(--active-gray)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = 'var(--muted-steel)'
-            e.currentTarget.style.borderColor = 'var(--hairline)'
-          }}
-        >
+        <button onClick={dismiss} className={`${BUTTON_BASE} hover:border-active-gray hover:text-phosphor-white`}>
           REJECT (ALSO DOESN'T MATTER)
         </button>
       </div>
