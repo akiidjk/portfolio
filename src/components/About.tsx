@@ -46,24 +46,12 @@ export function About() {
               fontSize: 'var(--fs-14)',
               color: 'var(--soft-gray)',
               lineHeight: 1.75,
-              margin: '0 0 16px',
-            }}
-          >
-            I have a solid grounding in Python and hands-on experience across different areas of IT. Right now I'm
-            focused on cybersecurity, actively competing in CTF competitions, mostly web exploitation, alongside a
-            growing interest in microservices, scalability, DevOps and distributed systems architecture: service
-            decomposition, API design, event-driven systems, deployment pipelines and observability.
-          </p>
-          <p
-            style={{
-              fontFamily: 'Inter',
-              fontSize: 'var(--fs-14)',
-              color: 'var(--soft-gray)',
-              lineHeight: 1.75,
               margin: 0,
             }}
           >
-            My goal is simple: learn, learn, learn, never stop learning, and become better than yesterday.
+            I know Python, Go well and I've picked up bits of everything else along the way. Most of my time goes to CTFs,
+            mainly web exploitation, and to microservices: API design, event-driven pipelines, deployment,
+            observability.
           </p>
         </div>
 
