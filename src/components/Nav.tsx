@@ -45,8 +45,9 @@ function NavLink({
           e.preventDefault()
           navigate(link.path)
         }}
-        className={`font-mono text-fs-9 tracking-[0.02em] no-underline transition-colors duration-200 sm:text-fs-10 sm:tracking-[0.1em] ${active ? 'text-phosphor-white' : 'text-dim-label'
-          }`}
+        className={`font-mono text-fs-9 tracking-[0.02em] no-underline transition-colors duration-200 sm:text-fs-10 sm:tracking-[0.1em] ${
+          active ? 'text-phosphor-white' : 'text-dim-label'
+        }`}
       >
         {link.label}
       </a>
@@ -178,8 +179,9 @@ export function Nav({ active, navigate }: { active: string; navigate: (to: strin
                     e.preventDefault()
                     handleMobileNavigate(l.path)
                   }}
-                  className={`px-5 py-4 font-mono text-fs-13 tracking-[0.05em] uppercase no-underline ${active === l.path ? 'text-phosphor-white' : 'text-dim-label'
-                    }`}
+                  className={`px-5 py-4 font-mono text-fs-13 tracking-[0.05em] uppercase no-underline ${
+                    active === l.path ? 'text-phosphor-white' : 'text-dim-label'
+                  }`}
                 >
                   {l.label}
                 </a>

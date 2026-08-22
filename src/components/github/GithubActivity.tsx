@@ -10,7 +10,7 @@ export function GithubActivity() {
 
   return (
     <div>
-      <div className="mb-5 font-mono text-fs-9 tracking-[0.18em] text-dim-label uppercase sm:mb-7 sm:text-fs-10">
+      <div className="mb-1 font-mono text-fs-9 tracking-[0.18em] text-dim-label uppercase sm:mb-2 sm:text-fs-10 sm:ml-2">
         [ GITHUB ACTIVITY ]
       </div>
       <ErrorBoundary>
