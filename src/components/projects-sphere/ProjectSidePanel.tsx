@@ -46,8 +46,7 @@ export function ProjectSidePanel({
                 lineHeight: 1.6,
               }}
             >
-              [ {projects.length} PROJECT{projects.length === 1 ? '' : 'S'} ] — TAP A POINT ON THE SPHERE OR AN ENTRY
-              BELOW
+              TAP A POINT ON THE SPHERE OR AN ENTRY
             </div>
             <div style={{ border: '1px solid var(--hairline)', maxHeight: 480, overflowY: 'auto' }}>
               {projects.map((p, i) => (

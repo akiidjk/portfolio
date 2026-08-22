@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { PROJECTS } from '../data/projects'
 import { useIsMobile } from '../hooks/useBreakpoint'
 import { isWebGLAvailable } from '../lib/webgl-support'
@@ -14,21 +14,8 @@ const ProjectsSphere = lazy(() =>
 )
 
 const activeCount = PROJECTS.filter((p) => /active|maintained/i.test(p.status)).length
-const years = PROJECTS.map((p) => Number(p.year)).filter((y) => !Number.isNaN(y))
-const earliestYear = years.length ? Math.min(...years) : undefined
 
-function SearchIcon() {
-  return (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted-steel)" strokeWidth="2">
-      <circle cx="11" cy="11" r="7" />
-      <line x1="21" y1="21" x2="16.65" y2="16.65" />
-    </svg>
-  )
-}
-
-export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void }) {
-  const [query, setQuery] = useState('')
-  const [category, setCategory] = useState('ALL')
+export function ProjectsPage() {
   const [selected, setSelected] = useState<Project | null>(null)
   // Starts false to match SSR (no WebGL there), upgraded after mount.
   const [supportsWebGL, setSupportsWebGL] = useState(false)
@@ -37,103 +24,8 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
 
   useEffect(() => setSupportsWebGL(isWebGLAvailable()), [])
 
-  const categories = useMemo(() => {
-    const set = new Set(PROJECTS.map((p) => p.domain.split('/')[0]?.trim() ?? p.domain))
-    return ['ALL', ...Array.from(set).sort()]
-  }, [])
-
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase()
-    return PROJECTS.filter((p) => {
-      const matchesCategory = category === 'ALL' || p.domain.startsWith(category)
-      const matchesQuery = !q || [p.title, p.subtitle, p.domain, ...p.stack].join(' ').toLowerCase().includes(q)
-      return matchesCategory && matchesQuery
-    })
-  }, [query, category])
-
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'var(--void-black)' }}>
-      {/* Header */}
-      <header
-        style={{
-          position: 'sticky',
-          top: 0,
-          zIndex: 1000,
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: isMobile ? '14px 16px' : '18px 40px',
-          borderBottom: '1px solid var(--hairline)',
-          backgroundColor: 'rgba(8,8,8,0.96)',
-          backdropFilter: 'blur(12px)',
-          gap: isMobile ? 12 : 24,
-        }}
-      >
-        <button
-          onClick={onNavigateHome}
-          style={{
-            background: 'none',
-            border: 'none',
-            padding: 0,
-            cursor: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            flexShrink: 0,
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'var(--fs-11)',
-            letterSpacing: '0.1em',
-            color: 'var(--muted-steel)',
-          }}
-        >
-          ← INDEX
-        </button>
-
-        {!isMobile && (
-          <span
-            style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: 'var(--fs-11)',
-              color: 'var(--phosphor-white)',
-              letterSpacing: '0.15em',
-              flexShrink: 0,
-            }}
-          >
-            PROJECTS
-          </span>
-        )}
-
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            border: '1px solid var(--hairline)',
-            padding: '8px 14px',
-            flex: isMobile ? 1 : '0 1 auto',
-            minWidth: isMobile ? 0 : 200,
-          }}
-        >
-          <SearchIcon />
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="SEARCH PROJECTS"
-            style={{
-              background: 'none',
-              border: 'none',
-              outline: 'none',
-              flex: 1,
-              minWidth: 0,
-              fontFamily: 'JetBrains Mono',
-              fontSize: 'var(--fs-10)',
-              letterSpacing: '0.1em',
-              color: 'var(--phosphor-white)',
-            }}
-          />
-        </div>
-      </header>
-
+    <div style={{ backgroundColor: 'var(--void-black)' }}>
       {/* Hero */}
       <section
         style={{
@@ -146,19 +38,6 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
         }}
       >
         <div>
-          <div
-            style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: 'var(--fs-10)',
-              color: 'var(--dim-label)',
-              letterSpacing: '0.2em',
-              marginBottom: 20,
-              textTransform: 'uppercase',
-            }}
-          >
-            [ CATALOG / {PROJECTS.length.toString().padStart(2, '0')} ENTRIES ]
-          </div>
-
           <h1
             style={{
               fontFamily: 'Inter',
@@ -210,16 +89,6 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             >
               OPEN CATALOG ↓
             </button>
-            <span
-              style={{
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'var(--fs-10)',
-                color: 'var(--dim-label)',
-                letterSpacing: '0.08em',
-              }}
-            >
-              {PROJECTS.length} PROJECTS{earliestYear ? ` · SINCE ${earliestYear}` : ''}
-            </span>
           </div>
         </div>
 
@@ -312,29 +181,15 @@ export function ProjectsPage({ onNavigateHome }: { onNavigateHome: () => void })
             marginBottom: 32,
           }}
         >
-          [ {filtered.length} RESULT{filtered.length === 1 ? '' : 'S'} ]
+          [ {PROJECTS.length} RESULT{PROJECTS.length === 1 ? '' : 'S'} ]
         </div>
 
-        {filtered.length === 0 ? (
-          <div
-            style={{
-              border: '1px solid var(--hairline)',
-              padding: '60px 40px',
-              textAlign: 'center',
-              fontFamily: 'JetBrains Mono',
-              fontSize: 'var(--fs-12)',
-              color: 'var(--dim-label)',
-              letterSpacing: '0.05em',
-            }}
-          >
-            NO PROJECTS MATCH YOUR SEARCH.
-          </div>
-        ) : supportsWebGL ? (
-          <Suspense fallback={<ProjectsList projects={filtered} onSelect={setSelected} />}>
-            <ProjectsSphere projects={PROJECTS} filtered={filtered} onOpen={setSelected} />
+        {supportsWebGL ? (
+          <Suspense fallback={<ProjectsList projects={PROJECTS} onSelect={setSelected} />}>
+            <ProjectsSphere projects={PROJECTS} onOpen={setSelected} />
           </Suspense>
         ) : (
-          <ProjectsList projects={filtered} onSelect={setSelected} />
+          <ProjectsList projects={PROJECTS} onSelect={setSelected} />
         )}
       </section>
 

@@ -7,13 +7,10 @@ import { SphereScene } from './SphereScene'
 
 export function ProjectsSphere({
   projects,
-  filtered,
   onOpen,
 }: {
   /** Full, unfiltered project list — positions on the sphere stay fixed regardless of filtering. */
   projects: Project[]
-  /** Currently matching projects (search/category) — non-matching points dim out instead of moving. */
-  filtered: Project[]
   onOpen: (project: Project) => void
 }) {
   const [activeId, setActiveId] = useState<string | null>(null)
@@ -21,7 +18,7 @@ export function ProjectsSphere({
   const isCompact = useMediaQuery('(max-width: 900px)')
   const isMobile = useIsMobile()
 
-  const matchingIds = useMemo(() => new Set(filtered.map((p) => p.id)), [filtered])
+  const matchingIds = useMemo(() => new Set(projects.map((p) => p.id)), [projects])
   const activeProject = useMemo(() => projects.find((p) => p.id === activeId) ?? null, [projects, activeId])
 
   const handleDismiss = () => setActiveId(null)
@@ -72,7 +69,7 @@ export function ProjectsSphere({
       </div>
 
       <ProjectSidePanel
-        projects={filtered}
+        projects={projects}
         activeProject={activeProject}
         onSelectList={handleSelect}
         onOpen={onOpen}
