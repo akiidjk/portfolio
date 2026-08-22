@@ -49,7 +49,7 @@ export function About() {
               margin: 0,
             }}
           >
-            I know Python, Go well and I've picked up bits of everything else along the way. Most of my time goes to CTFs,
+            I know Python and Go well and I've picked up bits of everything else along the way. Most of my time goes to CTFs,
             mainly web exploitation, and to microservices: API design, event-driven pipelines, deployment,
             observability.
           </p>
