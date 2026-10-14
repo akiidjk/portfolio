@@ -15,8 +15,6 @@ import { ProjectsPage } from './components/ProjectsPage'
 import { useRoute } from './hooks/useRoute'
 import { canonicalUrl, getRouteMeta, isKnownRoute } from './route-meta'
 
-// One fade + slight rise per page, kept short so navigating between the
-// five pages reads as instant rather than as a slideshow.
 const pageTransition = {
   initial: { opacity: 0, y: 8 },
   animate: { opacity: 1, y: 0 },
@@ -45,11 +43,6 @@ export default function App({ initialPath = '/' }: { initialPath?: string }) {
   const isProjectsPage = path === '/projects'
   const isNotFound = !isKnownRoute(path)
 
-  // The initial <head> for each route is rendered server-side straight into
-  // the static template (see index.tsx) — SSR streams into #root only, and
-  // React's <title>/<meta> hoisting would land inside #root, not <head>, if
-  // used here. In-app navigation (no reload) still needs the tab title and
-  // OG/description tags to follow the route, hence the imperative update.
   useEffect(() => {
     const meta = getRouteMeta(path)
     const url = canonicalUrl(path)
