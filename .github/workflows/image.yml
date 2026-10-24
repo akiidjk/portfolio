@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - suffix: "" # ghcr.io/<owner>/<repo>
+          - suffix: '' # ghcr.io/<owner>/<repo>
             context: .
           # - suffix: "-backend"  # ghcr.io/<owner>/<repo>-backend, Dockerfile in backend/
           #   context: backend
