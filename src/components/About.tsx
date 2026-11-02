@@ -25,7 +25,7 @@ export function About() {
       <div className="grid gap-10 px-5 py-14 sm:grid-cols-2 sm:gap-20 sm:px-10 sm:pt-20 sm:pb-12">
         <div>
           <p className="mb-7 text-[clamp(1.0625rem,5vw,1.3125rem)] leading-normal font-light tracking-tight text-phosphor-white">
-            First-year Computer Science student at UNISA, split between breaking web applications in CTFs and studying
+            Second-year Computer Science student at UNISA, split between breaking web applications in CTFs and studying
             how large-scale systems are designed, deployed, and kept alive.
           </p>
           <p className="text-fs-14 leading-[1.75] text-soft-gray">
